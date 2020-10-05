@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Redis实现分布式锁 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-06-04 00:00" pubdate>
+        June 4, 2020 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      26
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Redis实现分布式锁</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="Redis实现分布式锁"><a href="#Redis实现分布式锁" class="headerlink" title="Redis实现分布式锁"></a>Redis实现分布式锁</h1><h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>​        分布式锁一般有三种实现方式：1. 数据库乐观锁；2. 基于Redis的分布式锁；3. 基于ZooKeeper的分布式锁。</p>
+<h2 id="二、可靠性"><a href="#二、可靠性" class="headerlink" title="二、可靠性"></a>二、可靠性</h2><p>​        为了确保分布式锁的可用性，至少要确保锁的实现同时满足以下四个条件：</p>
+<ul>
+<li>互斥性。在任意时刻，只有一个客户端能持有锁。</li>
+<li>杜绝发生死锁。即使有一个客户端在持有锁的期间奔溃而没有主动解锁，也能保证后续其他客户端能加锁。</li>
+<li>具有容错性。只要大部分的redis节点正常运行，客户端就可以加锁和解锁。</li>
+<li>解铃还须系铃人。加锁和解锁必须是同一个客户端，客户端自己不能把别人加的锁给解了。</li>
+</ul>
+<h2 id="三、代码实现"><a href="#三、代码实现" class="headerlink" title="三、代码实现"></a>三、代码实现</h2><h3 id="1、组件依赖"><a href="#1、组件依赖" class="headerlink" title="1、组件依赖"></a>1、组件依赖</h3><pre><code class="hljs java">&lt;dependency&gt;
+    &lt;groupId&gt;redis.clients&lt;/groupId&gt;
+    &lt;artifactId&gt;jedis&lt;/artifactId&gt;
+    &lt;version&gt;2.9.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+
+
+
+<h3 id="2、加锁代码-正确代码"><a href="#2、加锁代码-正确代码" class="headerlink" title="2、加锁代码-正确代码"></a>2、加锁代码-正确代码</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisTool</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String LOCK_SUCCESS = <span class="hljs-string">&quot;OK&quot;</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String SET_IF_NOT_EXIST = <span class="hljs-string">&quot;NX&quot;</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> String SET_WITH_EXPIRE_TIME = <span class="hljs-string">&quot;PX&quot;</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 尝试获取分布式锁</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> jedis Redis客户端</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> lockKey 锁</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> requestId 请求标识</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> expireTime 超期时间</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 是否获取成功</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">tryGetDistributedLock</span><span class="hljs-params">(Jedis jedis, String lockKey, String requestId, <span class="hljs-keyword">int</span> expireTime)</span> </span>&#123;
+
+        String result = jedis.set(lockKey, requestId, SET_IF_NOT_EXIST,SET_WITH_EXPIRE_TIME, expireTime);
+
+        <span class="hljs-keyword">if</span> (LOCK_SUCCESS.equals(result)) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    &#125;
+&#125;</code></pre>
+
+<p>可以看到，我们加锁就一行代码：<code>jedis.set(String key, String value, String nxxx, String expx, int time)</code>，这个set()方法一共有五个形参：</p>
+<ul>
+<li>第一个为key，我们使用key来当锁，因为key是唯一的。</li>
+<li>第二个为value，我们传的是requestId，很多童鞋可能不明白，有key作为锁不就够了吗，为什么还要用到value？原因就是我们在上面讲到可靠性时，分布式锁要满足第四个条件解铃还须系铃人，通过给value赋值为requestId，我们就知道这把锁是哪个请求加的了，在解锁的时候就可以有依据。requestId可以使用<code>UUID.randomUUID().toString()</code>方法生成。</li>
+<li>第三个为nxxx，这个参数我们填的是NX，意思是SET IF NOT EXIST，即当key不存在时，我们进行set操作；若key已经存在，则不做任何操作；</li>
+<li>第四个为expx，这个参数我们传的是PX，意思是我们要给这个key加一个过期的设置，具体时间由第五个参数决定。</li>
+<li>第五个为time，与第四个参数相呼应，代表key的过期时间。</li>
+</ul>
+<p>总的来说，执行上面的set()方法就只会导致两种结果：1. 当前没有锁（key不存在），那么就进行加锁操作，并对锁设置个有效期，同时value表示加锁的客户端。2. 已有锁存在，不做任何操作。</p>
+<p>心细的童鞋就会发现了，我们的加锁代码满足我们可靠性里描述的三个条件。首先，set()加入了NX参数，可以保证如果已有key存在，则函数不会调用成功，也就是只有一个客户端能持有锁，满足互斥性。其次，由于我们对锁设置了过期时间，即使锁的持有者后续发生崩溃而没有解锁，锁也会因为到了过期时间而自动解锁（即key被删除），不会发生死锁。最后，因为我们将value赋值为requestId，代表加锁的客户端请求标识，那么在客户端在解锁的时候就可以进行校验是否是同一个客户端。由于我们只考虑Redis单机部署的场景，所以容错性我们暂不考虑。</p>
+<h3 id="3、错误示例1"><a href="#3、错误示例1" class="headerlink" title="3、错误示例1"></a>3、错误示例1</h3><p>比较常见的错误示例就是使用<code>jedis.setnx()</code>和<code>jedis.expire()</code>组合实现加锁，代码如下：</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">wrongGetLock1</span><span class="hljs-params">(Jedis jedis, String lockKey, String requestId, <span class="hljs-keyword">int</span> expireTime)</span> </span>&#123;
+
+    Long result = jedis.setnx(lockKey, requestId);
+    <span class="hljs-keyword">if</span> (result == <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-comment">// 若在这里程序突然崩溃，则无法设置过期时间，将发生死锁</span>
+        jedis.expire(lockKey, expireTime);
+    &#125;
+&#125;</code></pre>
+
+<p>setnx()方法作用就是SET IF NOT EXIST，expire()方法就是给锁加一个过期时间。乍一看好像和前面的set()方法结果一样，然而由于这是两条Redis命令，不具有原子性，如果程序在执行完setnx()之后突然崩溃，导致锁没有设置过期时间。那么将会发生死锁。网上之所以有人这样实现，是因为低版本的jedis并不支持多参数的set()方法。</p>
+<h3 id="4、错误示例2"><a href="#4、错误示例2" class="headerlink" title="4、错误示例2"></a>4、错误示例2</h3><p>这一种错误示例就比较难以发现问题，而且实现也比较复杂。实现思路：使用<code>jedis.setnx()</code>命令实现加锁，其中key是锁，value是锁的过期时间。执行过程：</p>
+<ol>
+<li>通过setnx()方法尝试加锁，如果当前锁不存在，返回加锁成功。</li>
+<li>如果锁已经存在则获取锁的过期时间，和当前时间比较，如果锁已经过期，则设置新的过期时间，返回加锁成功。代码如下：</li>
+</ol>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">wrongGetLock2</span><span class="hljs-params">(Jedis jedis, String lockKey, <span class="hljs-keyword">int</span> expireTime)</span> </span>&#123;
+
+    <span class="hljs-keyword">long</span> expires = System.currentTimeMillis() + expireTime;
+    String expiresStr = String.valueOf(expires);
+
+    <span class="hljs-comment">// 如果当前锁不存在，返回加锁成功</span>
+    <span class="hljs-keyword">if</span> (jedis.setnx(lockKey, expiresStr) == <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    &#125;
+
+    <span class="hljs-comment">// 如果锁存在，获取锁的过期时间</span>
+    String currentValueStr = jedis.get(lockKey);
+    <span class="hljs-keyword">if</span> (currentValueStr != <span class="hljs-keyword">null</span> &amp;&amp; Long.parseLong(currentValueStr) &lt; System.currentTimeMillis()) &#123;
+        <span class="hljs-comment">// 锁已过期，获取上一个锁的过期时间，并设置现在锁的过期时间</span>
+        String oldValueStr = jedis.getSet(lockKey, expiresStr);
+        <span class="hljs-keyword">if</span> (oldValueStr != <span class="hljs-keyword">null</span> &amp;&amp; oldValueStr.equals(currentValueStr)) &#123;
+            <span class="hljs-comment">// 考虑多线程并发的情况，只有一个线程的设置值和当前值相同，它才有权利加锁</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        &#125;
+    &#125;
+        
+    <span class="hljs-comment">// 其他情况，一律返回加锁失败</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+
+&#125;</code></pre>
+
+<p>那么这段代码问题在哪里？</p>
+<ol>
+<li>由于是客户端自己生成过期时间，所以需要强制要求分布式下每个客户端的时间必须同步。</li>
+<li>当锁过期的时候，如果多个客户端同时执行<code>jedis.getSet()</code>方法，那么虽然最终只有一个客户端可以加锁，但是这个客户端的锁的过期时间可能被其他客户端覆盖。</li>
+<li>锁不具备拥有者标识，即任何客户端都可以解锁。</li>
+</ol>
+<h3 id="5、解锁代码-正确代码"><a href="#5、解锁代码-正确代码" class="headerlink" title="5、解锁代码-正确代码"></a>5、解锁代码-正确代码</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RedisTool</span> </span>&#123;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Long RELEASE_SUCCESS = <span class="hljs-number">1L</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 释放分布式锁</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> jedis Redis客户端</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> lockKey 锁</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> requestId 请求标识</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span> 是否释放成功</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">releaseDistributedLock</span><span class="hljs-params">(Jedis jedis, String lockKey, String requestId)</span> </span>&#123;
+
+        String script = <span class="hljs-string">&quot;if redis.call(&#x27;get&#x27;, KEYS[1]) == ARGV[1] then return redis.call(&#x27;del&#x27;, KEYS[1]) else return 0 end&quot;</span>;
+        Object result = jedis.eval(script, Collections.singletonList(lockKey), Collections.singletonList(requestId));
+
+        <span class="hljs-keyword">if</span> (RELEASE_SUCCESS.equals(result)) &#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    &#125;
+&#125;</code></pre>
+
+<p>我们将Lua代码传到<code>jedis.eval()</code>方法里，并使参数KEYS[1]赋值为lockKey，ARGV[1]赋值为requestId。eval()方法是将Lua代码交给Redis服务端执行。首先获取锁对应的value值，检查是否与requestId相等，如果相等则删除锁（解锁）。</p>
+<p>执行eval()方法可以确保原子性，源于Redis的特性，在eval命令执行Lua代码的时候，Lua代码将被当成一个命令去执行，并且直到eval命令执行完成，Redis才会执行其他命令。</p>
+<h3 id="6、错误示例1"><a href="#6、错误示例1" class="headerlink" title="6、错误示例1"></a>6、错误示例1</h3><p>最常见的解锁代码就是直接使用<code>jedis.del()</code>方法删除锁，这种不先判断锁的拥有者而直接解锁的方式，会导致任何客户端都可以随时进行解锁，即使这把锁不是它的。</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">wrongReleaseLock1</span><span class="hljs-params">(Jedis jedis, String lockKey)</span> </span>&#123;
+    jedis.del(lockKey);
+&#125;</code></pre>
+
+
+
+<h3 id="7、错误示例2"><a href="#7、错误示例2" class="headerlink" title="7、错误示例2"></a>7、错误示例2</h3><p>这种解锁代码乍一看也是没问题，甚至我之前也差点这样实现，与正确姿势差不多，唯一区别的是分成两条命令去执行，代码如下：</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">wrongReleaseLock2</span><span class="hljs-params">(Jedis jedis, String lockKey, String requestId)</span> </span>&#123;
+        
+    <span class="hljs-comment">// 判断加锁与解锁是不是同一个客户端</span>
+    <span class="hljs-keyword">if</span> (requestId.equals(jedis.get(lockKey))) &#123;
+        <span class="hljs-comment">// 若在此时，这把锁突然不是这个客户端的，则会误解锁</span>
+        jedis.del(lockKey);
+    &#125;
+&#125;</code></pre>
+
+<p>如代码注释，问题在于如果调用<code>jedis.del()</code>方法的时候，这把锁已经不属于当前客户端的时候会解除他人加的锁。那么是否真的有这种场景？答案是肯定的，比如客户端A加锁，一段时间之后客户端A解锁，在执行<code>jedis.del()</code>之前，锁突然过期了，此时客户端B尝试加锁成功，然后客户端A再执行del()方法，则将客户端B的锁给解除了。</p>
+<p>转载：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/williamjie/p/9395659.html">https://www.cnblogs.com/williamjie/p/9395659.html</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Redis/">Redis</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">分布式锁</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/10/05/Redis/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/03/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E7%BC%96%E5%86%99%E9%AB%98%E8%B4%A8%E9%87%8F%E4%BB%A3%E7%A0%81%20%E6%94%B9%E5%96%84Java%E7%A8%8B%E5%BA%8F%E7%9A%84151%E4%B8%AA%E5%BB%BA%E8%AE%AE/">
+                        <span class="hidden-mobile">读书笔记-编写高质量代码 改善Java程序的151个建议</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Redis实现分布式锁&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

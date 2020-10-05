@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>搭建hexo博客 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-03-23 00:00" pubdate>
+        March 23, 2020 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">搭建hexo博客</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="一、hexo是什么？"><a href="#一、hexo是什么？" class="headerlink" title="一、hexo是什么？"></a>一、hexo是什么？</h2><p>​        hexo 可以理解为是基于node.js制作的一个博客工具，简单来说利用hexo框架可以快速搭建一个属于自己的博客网站</p>
+<p>​       关于hexo的介绍，官网上的介绍很详细了。<a target="_blank" rel="noopener" href="https://hexo.io/">https://hexo.io/</a></p>
+<h2 id="二、本地快速搭建hexo博客"><a href="#二、本地快速搭建hexo博客" class="headerlink" title="二、本地快速搭建hexo博客"></a>二、本地快速搭建hexo博客</h2><h3 id="1、安装Node-js"><a href="#1、安装Node-js" class="headerlink" title="1、安装Node.js"></a>1、安装Node.js</h3><p>进入node.js官网，下载LTS长期支持版</p>
+<p><img src="/images/nodejs.jpg" srcset="/img/loading.gif"></p>
+<h3 id="2、下载hexo"><a href="#2、下载hexo" class="headerlink" title="2、下载hexo"></a>2、下载hexo</h3><p>打开命令行</p>
+<p>切换到root权限：sudu su</p>
+<p>查看nodejs的版本和npm的版本：node -v     npm -v</p>
+<p>需要借助nmp安装包，但是国内很慢，所以需要借助国内的nmp包管理器 npm install -g cnpm –registry=<a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
+<p>检测cnpm是否安装成功，输入cnpm -v</p>
+<p>借助cnpm全局安装hexo   cnpm install -g hexo-cli   然后验证 hexo -v</p>
+<h3 id="3、本地搭建hexo博客"><a href="#3、本地搭建hexo博客" class="headerlink" title="3、本地搭建hexo博客"></a>3、本地搭建hexo博客</h3><p>本地建立一个空文件夹 blog 所有博客文件全部在blog中生成，如果出错，删除重来</p>
+<p>进入blog 文件</p>
+<p>sudu hexo init 初始化一个hexo博客</p>
+<p>hexo s 启动</p>
+<h3 id="4、编写博客文章"><a href="#4、编写博客文章" class="headerlink" title="4、编写博客文章"></a>4、编写博客文章</h3><p>hexo n “我的第一篇博文”      会生成到source/_posts文件下</p>
+<p>hexo clean 清除缓存</p>
+<p>hexo g 重新生成 然后访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 就可以了</p>
+<p>我一般会用Typora软件写博客</p>
+<pre><code class="hljs java">安装 代码高亮插件 
+<span class="hljs-comment">// 1.卸载 Hexo 默认自带的 Markdown 渲染器</span>
+cnpm un hexo-renderer-marked --save
+<span class="hljs-comment">// 2.安装 hexo-renderer-markdown-it 插件</span>
+cnpm i hexo-renderer-markdown-it --save
+<span class="hljs-comment">// 3.修改_config配置文件</span>
+markdown: <span class="hljs-string">&#x27;commonmark&#x27;</span>
+<span class="hljs-comment">// 4.关闭hexo自带的渲染插件</span>
+highlight:
+  enable: <span class="hljs-keyword">false</span> <span class="hljs-comment">// 关闭</span>
+  line_number: <span class="hljs-keyword">true</span>
+  auto_detect: <span class="hljs-keyword">false</span>
+  tab_replace: <span class="hljs-string">&#x27;&#x27;</span>
+  wrap: <span class="hljs-keyword">true</span>
+  hljs: <span class="hljs-keyword">false</span></code></pre>
+
+
+
+<h3 id="5、修改hexo主题"><a href="#5、修改hexo主题" class="headerlink" title="5、修改hexo主题"></a>5、修改hexo主题</h3><p>直接在官网获取更多主题 <a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a>  ，选择自己喜欢的主题，获取git路径</p>
+<p>比如我下载的主题是 yilia</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a> themes/yilia</p>
+<p>修改配置文件_config.yml</p>
+<p>theme: landscape 修改为 theme: yilia</p>
+<p>然后重新执行命令就可以了 </p>
+<p>hexo clean </p>
+<p>hexo g </p>
+<p>hexo s</p>
+<h2 id="三、将博客部署到github"><a href="#三、将博客部署到github" class="headerlink" title="三、将博客部署到github"></a>三、将博客部署到github</h2><p>一般我们的博客会部署到github上，这样就可以远端访问了</p>
+<p>创建github账号(以我的github为例  lukaixin0527)，并且创建一个库 库名格式必须为 ： lukaixin0527.github.io</p>
+<p>下载一个部署插件,进入blog文件夹下 cnpm install –save hexo-deployer-git</p>
+<p>修改设置，修改_config.yml 到文件的最底部 repo:为github路径</p>
+<p>deploy:</p>
+<p> type: git</p>
+<p> repo: <a target="_blank" rel="noopener" href="https://github.com/lukaixin0527/lukaixin0527.github.io.git">https://github.com/lukaixin0527/lukaixin0527.github.io.git</a>            </p>
+<p> branch: master</p>
+<p>最后部署到远端 hexo d  输入github账号和密码就可以了</p>
+<p>如果提示403，说明没有切换github账号信息，找到本地的账号密码信息删除即可。</p>
+<p>如果成功了，直接访问xxxxx.github.io就可以访问了，比如我的github博客网址 lukaixin0527.github.io</p>
+<h2 id="四、域名绑定"><a href="#四、域名绑定" class="headerlink" title="四、域名绑定"></a>四、域名绑定</h2><p>首先需要购买一个域名</p>
+<p>我是在阿里云买的域名 lukaixin.com</p>
+<p>然后需要实名认证后才可以使用</p>
+<h3 id="1、解析域名"><a href="#1、解析域名" class="headerlink" title="1、解析域名"></a>1、解析域名</h3><p>​        就是把网站域名解析到你所购买的网站空间(云服务器)IP上，其实这里说的解析就是一个绑定和指向关系，网站域名指向空间IP地址。</p>
+<p>​        简单来说，就是访问购买的域名就可以访问到github上的博客网址</p>
+<p>​        接下来开始解析域名</p>
+<p>​        这是我的域名，已经实名认证了，DNS服务器状态显示 正常</p>
+<p>​        <img src="/images/aliyunhoutai.jpg" srcset="/img/loading.gif">        </p>
+<p>​        点击解析设置——添加记录，选择CNAME类型(将一个域名指向另一个域名的类型)</p>
+<p>​        到这里，域名解析的完成了第一步</p>
+<h3 id="2、github设置"><a href="#2、github设置" class="headerlink" title="2、github设置"></a>2、github设置</h3><p>​         在github仓库首页，选择自己的仓库 (lukaixin0527.github.io)</p>
+<p>​         找到 create new file ，点击新建文件</p>
+<p>​         文件名称命名为 <strong>CNAME</strong></p>
+<p>​         内容填写自己的域名 比如我的 <a target="_blank" rel="noopener" href="http://www.lukaixin.com/">www.lukaixin.com</a> </p>
+<p>​         最后点击commit new file 提交文件就可以</p>
+<h3 id="3、配置成功"><a href="#3、配置成功" class="headerlink" title="3、配置成功"></a>3、配置成功</h3><p>​          到这里域名就配置成功了，直接访问域名，就可以访问了</p>
+<h2 id="五、配置SSL安全证书"><a href="#五、配置SSL安全证书" class="headerlink" title="五、配置SSL安全证书"></a>五、配置SSL安全证书</h2><p><strong>HTTP</strong>是明文传输协议，传输内容容易被嗅探和篡改。</p>
+<p>而<strong>HTTPS</strong>，即<strong>HTTP over SSL/TLS</strong>,是添加了一层<strong>SSL(Secure Sockets Layer，安全套接层)**，或者是</strong>TLS(Transport Layer Security,<strong>**传输层安全协议)**，所以</strong>HTTPS<strong>就可以视为</strong>HTTP<strong>和</strong>SSL/TLS**协议的组合。</p>
+<p><strong>HTTPS</strong>能做到良好的保密性(防嗅探)，真实性(防篡改)，完整性(防域名劫持和域名欺骗)。</p>
+<h3 id="1、购买证书"><a href="#1、购买证书" class="headerlink" title="1、购买证书"></a>1、购买证书</h3><p>进入阿里云首页，直接搜索SSL证书，点击购买，进入证书选择页面</p>
+<p>因为我的证书是在阿里云购买的，所有可以享受一年免费的证书(嘿嘿~)</p>
+<p><img src="/images/zhengshuxuanze.jpg" srcset="/img/loading.gif"></p>
+<h3 id="2、证书申请"><a href="#2、证书申请" class="headerlink" title="2、证书申请"></a>2、证书申请</h3><p>购买证书成功后，进入证书详情，点击【证书申请】，填写相关信息，注意填写正确的域名</p>
+<p>因为我的证书和域名都在阿里云购买，所有可以享受自动DNS验证，不需要自己去验证了</p>
+<p>点击下一步，再点击验证，到这里就ok了，只需要耐心等待审核就可以了。</p>
+<img src="/images/zhengshushenqing.jpg" srcset="/img/loading.gif" style="zoom:35%;" />
+
+<h3 id="3、配置成功-1"><a href="#3、配置成功-1" class="headerlink" title="3、配置成功"></a>3、配置成功</h3><p>等待证书配置成功后，就可以安全访问了。</p>
+<p>比如我的域名：<a target="_blank" rel="noopener" href="https://www.lukaixin.com/">https://www.lukaixin.com/</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/hexo/">hexo</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8D%9A%E5%AE%A2/">博客</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/23/%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">跨站脚本攻击</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "搭建hexo博客&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

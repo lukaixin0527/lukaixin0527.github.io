@@ -1,0 +1,568 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Nginx+Keepalived 高可用 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-16 00:00" pubdate>
+        April 16, 2020 am
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      685 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Nginx+Keepalived 高可用</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="Nginx-Keepalived-高可用"><a href="#Nginx-Keepalived-高可用" class="headerlink" title="Nginx+Keepalived 高可用"></a>Nginx+Keepalived 高可用</h1><h3 id="1、什么是Keepalived？"><a href="#1、什么是Keepalived？" class="headerlink" title="1、什么是Keepalived？"></a>1、什么是Keepalived？</h3><pre><code class="hljs java">keepalived是为管理管理中保证能够提供高可用的一个服务软件，其功能称为心跳，可以防止单点故障。</code></pre>
+
+<h3 id="2、Keepalived安装"><a href="#2、Keepalived安装" class="headerlink" title="2、Keepalived安装"></a>2、Keepalived安装</h3><p><strong>每个Nginx下都要安装Keepalived</strong></p>
+<pre><code class="hljs java"><span class="hljs-number">1</span>、下载地址：http:<span class="hljs-comment">//www.keepalived.org/download.html</span>
+<span class="hljs-number">2</span>、cd /usr/local
+<span class="hljs-number">3</span>、tar -zxvf keepalived-<span class="hljs-number">1.2</span>.<span class="hljs-number">18.</span>tar.gz 
+<span class="hljs-number">4</span>、cd keepalived-<span class="hljs-number">1.2</span>.<span class="hljs-number">18</span>
+<span class="hljs-number">5</span>、安装软件包 yum install -y openssl openssl-devel
+<span class="hljs-number">6</span>、./configure --prefix=/usr/local/keepalived
+<span class="hljs-number">7</span>、make &amp;&amp; make install</code></pre>
+
+<h3 id="3、Keepalived安装成Linux系统服务"><a href="#3、Keepalived安装成Linux系统服务" class="headerlink" title="3、Keepalived安装成Linux系统服务"></a>3、Keepalived安装成Linux系统服务</h3><pre><code class="hljs java"><span class="hljs-number">1</span>、将keepalived安装成Linux系统服务，因为没有使用keepalived的默认安装路径（默认路径：/usr/local）,安装完成之后，需要做一些修改工作
+<span class="hljs-number">2</span>、首先创建文件夹，将keepalived配置文件进行复制：
+<span class="hljs-number">3</span>、mkdir /etc/keepalived
+<span class="hljs-number">4</span>、cd /usr/local/keepalived-<span class="hljs-number">1.2</span>.<span class="hljs-number">18</span>
+	cp /usr/local/keepalived/etc/keepalived/keepalived.conf /etc/keepalived/
+  然后复制keepalived脚本文件：
+  cp /usr/local/keepalived/etc/rc.d/init.d/keepalived /etc/init.d/
+  cp /usr/local/keepalived/etc/sysconfig/keepalived /etc/sysconfig/
+  ln -s /usr/local/sbin/keepalived /usr/sbin/
+  ln -s /usr/local/keepalived/sbin/keepalived /sbin/
+  可以设置开机启动：chkconfig keepalived on</code></pre>
+
+<h3 id="4、修改配置文件"><a href="#4、修改配置文件" class="headerlink" title="4、修改配置文件"></a>4、修改配置文件</h3><pre><code class="hljs java"><span class="hljs-number">1</span>、cd /etc/keepalived/
+<span class="hljs-number">2</span>、修改keeplived.conf 配置高可用文件
+<span class="hljs-number">3</span>、添加nginx_check.sh脚本(重启Nginx脚本)</code></pre>
+
+<pre><code class="hljs java">! Configuration File <span class="hljs-keyword">for</span> keepalived
+
+vrrp_script chk_nginx &#123;
+    script &quot;/etc/keepalived/nginx_check.sh&quot; #运行脚本，脚本内容下面有，就是起到一个nginx宕机以后，自动开启服务
+    interval 2 #检测时间间隔
+    weight -20 #如果条件成立的话，则权重 -20
+&#125;
+# 定义虚拟路由，VI_1 为虚拟路由的标示符，自己定义名称
+vrrp_instance VI_1 &#123;
+    state MASTER #来决定主从   BACKUP是从
+    <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">eth0</span> # 绑定虚拟 <span class="hljs-title">IP</span> 的网络接口，根据自己的机器填写 指令<span class="hljs-title">ip</span> <span class="hljs-title">a</span> 查看</span>
+<span class="hljs-class">    <span class="hljs-title">virtual_router_id</span> 121 # 虚拟路由的 <span class="hljs-title">ID</span> 号， 两个节点设置必须一样</span>
+<span class="hljs-class">    <span class="hljs-title">mcast_src_ip</span> 47.93.223.237 #填写本机<span class="hljs-title">ip</span></span>
+<span class="hljs-class">    <span class="hljs-title">priority</span> 100 # 节点优先级,主要比从节点优先级高</span>
+<span class="hljs-class">    <span class="hljs-title">nopreempt</span> # 优先级高的设置 <span class="hljs-title">nopreempt</span> 解决异常恢复后再次抢占的问题</span>
+<span class="hljs-class">    <span class="hljs-title">advert_int</span> 1 # 组播信息发送间隔，两个节点设置必须一样，默认 1<span class="hljs-title">s</span></span>
+<span class="hljs-class">    <span class="hljs-title">authentication</span> </span>&#123;
+        auth_type PASS
+        auth_pass <span class="hljs-number">1111</span>
+    &#125;
+    # 将 track_script 块加入 instance 配置块
+    track_script &#123;
+        chk_nginx #执行 Nginx 监控的服务
+    &#125;
+
+    virtual_ipaddress &#123;
+        192.168.110.110 # 虚拟ip,也就是解决写死程序的ip怎么能切换的ip,也可扩展，用途广泛。可配置多个。
+    &#125;
+&#125;
+</code></pre>
+
+<pre><code class="hljs java">#!/bin/bash
+A=`ps -C nginx ¨Cno-header |wc -l`
+<span class="hljs-keyword">if</span> [ $A -eq <span class="hljs-number">0</span> ];then
+    /usr/local/nginx/sbin/nginx
+    sleep <span class="hljs-number">2</span>
+    <span class="hljs-keyword">if</span> [ `ps -C nginx --no-header |wc -l` -eq <span class="hljs-number">0</span> ];then
+        killall keepalived
+    fi
+fi</code></pre>
+
+<h3 id="5、常用指令"><a href="#5、常用指令" class="headerlink" title="5、常用指令"></a>5、常用指令</h3><pre><code class="hljs java">service keepalived start # 启动
+service keepalived stop  # 关闭</code></pre>
+
+<p>流程图</p>
+<img src="/images/Keepalived流程图.jpg" srcset="/img/loading.gif" style="zoom:50%;" />
+
+<h3 id="6、常见问题"><a href="#6、常见问题" class="headerlink" title="6、常见问题"></a>6、常见问题</h3><pre><code class="hljs java"><span class="hljs-number">1</span>、如果nginx服务器宕机后，Keepalived没有重启ngxin，有可能是脚本没有权限重启
+进入文件夹后，chmod <span class="hljs-number">777</span> nginx_check.sh</code></pre>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%BA%94%E7%94%A8/">企业级应用</a>
+                    
+                      <a class="hover-with-bg" href="/tags/nginx/">nginx</a>
+                    
+                      <a class="hover-with-bg" href="/tags/keepalived/">keepalived</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8/">高可用</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/17/%E9%AB%98%E5%B9%B6%E5%8F%91%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%A4%A7%E7%BA%B2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">高并发解决方案大纲</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/16/Nginx%E9%AB%98%E7%BA%A7/">
+                        <span class="hidden-mobile">Nginx-Liunx安装</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Nginx+Keepalived 高可用&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

