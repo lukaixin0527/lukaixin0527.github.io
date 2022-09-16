@@ -384,19 +384,19 @@
         
         
         <a  class="All 运维 "
-           href="/2022/03/23/Nginx+Keepalived-%E9%AB%98%E5%8F%AF%E7%94%A8/"
-           data-tag="Nginx"
+           href="/2022/03/23/Linux%E7%BC%96%E5%86%99%E9%87%8D%E5%90%AFJar%E7%A8%8B%E5%BA%8F%E8%84%9A%E6%9C%AC/"
+           data-tag="服务监控"
            data-author="" >
-            <span class="post-title" title="Nginx+Keepalived 高可用">Nginx+Keepalived 高可用</span>
+            <span class="post-title" title="Linux编写重启Jar程序脚本">Linux编写重启Jar程序脚本</span>
             <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
         </a>
         
         
         <a  class="All 运维 "
-           href="/2022/03/23/Linux%E7%BC%96%E5%86%99%E9%87%8D%E5%90%AFJar%E7%A8%8B%E5%BA%8F%E8%84%9A%E6%9C%AC/"
-           data-tag="服务监控"
+           href="/2022/03/23/Nginx+Keepalived-%E9%AB%98%E5%8F%AF%E7%94%A8/"
+           data-tag="Nginx"
            data-author="" >
-            <span class="post-title" title="Linux编写重启Jar程序脚本">Linux编写重启Jar程序脚本</span>
+            <span class="post-title" title="Nginx+Keepalived 高可用">Nginx+Keepalived 高可用</span>
             <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
         </a>
         
@@ -411,19 +411,19 @@
         
         
         <a  class="All 运维 "
-           href="/2022/03/23/Prometheus+Grafana%E6%9C%8D%E5%8A%A1%E7%9B%91%E6%8E%A7/"
-           data-tag="服务监控"
+           href="/2022/03/23/%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/"
+           data-tag="hexo,博客"
            data-author="" >
-            <span class="post-title" title="Prometheus+Grafana搭建服务监控">Prometheus+Grafana搭建服务监控</span>
+            <span class="post-title" title="搭建Hexo博客">搭建Hexo博客</span>
             <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
         </a>
         
         
         <a  class="All 运维 "
-           href="/2022/03/23/%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/"
-           data-tag="hexo,博客"
+           href="/2022/03/23/Prometheus+Grafana%E6%9C%8D%E5%8A%A1%E7%9B%91%E6%8E%A7/"
+           data-tag="服务监控"
            data-author="" >
-            <span class="post-title" title="搭建Hexo博客">搭建Hexo博客</span>
+            <span class="post-title" title="Prometheus+Grafana搭建服务监控">Prometheus+Grafana搭建服务监控</span>
             <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
         </a>
         
@@ -489,6 +489,17 @@
             </span>
         </span>
         
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
         
     </div>
     
@@ -973,6 +984,27 @@ password=root
 
 
 
+    <div id="comments"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script type="text/javascript">
+    $.getScript('/js/gitalk.js', function () {
+        var gitalk = new Gitalk({
+            clientID: '56edcd306f2975bb61cf',
+            clientSecret: '0074cacd48a60a4b7249826b1ccdc7d99a273bb1',
+            repo: 'lukaixin0527.github.io',
+            owner: 'lukaixin0527',
+            admin: ['lukaixin0527'],
+            id: decodeURI(location.pathname),
+            distractionFreeMode: 'true',
+            language: 'zh-CN',
+            perPage: parseInt('10',10)
+        })
+        gitalk.render('comments')
+    })
+</script>
+
+
 
 
     
@@ -1149,5 +1181,37 @@ password=root
 
 
 
+<div id="musicMouseDrag" style="position:fixed; z-index: 9999; bottom: 0; right: 0;">
+<div id="musicDragArea" style="position: absolute; top: 0; left: 0; width: 100%;height: 10px;cursor: move; z-index: 10;"></div>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=33761576&auto=1&height=66"></iframe>
+</div>
 
+<!--以下代码是为了支持随时拖动音乐控件的位置，如没有需求，可去掉下面代码-->
+<script>
+var $DOC = $(document)
+$('#musicMouseDrag').on('mousedown', function (e) {
+// 阻止文本选中
+$DOC.bind("selectstart", function () {
+return false;
+});
+$('#musicDragArea').css('height', '100%');
+var $moveTarget = $('#musicMouseDrag');
+$moveTarget.css('border', '1px dashed grey')
+var div_x = e.pageX - $moveTarget.offset().left;
+var div_y = e.pageY - $moveTarget.offset().top;
+$DOC.on('mousemove', function (e) {
+var targetX = e.pageX - div_x;
+var targetY = e.pageY - div_y;
+targetX = targetX < 0 ? 0 : (targetX + $moveTarget.outerWidth() >= window.innerWidth) ? window.innerWidth - $moveTarget.outerWidth() : targetX;
+targetY = targetY < 0 ? 0 : (targetY + $moveTarget.outerHeight() >= window.innerHeight) ? window.innerHeight - $moveTarget.outerHeight() : targetY;
+$moveTarget.css({'left': targetX + 'px', 'top': targetY + 'px', 'bottom': 'inherit', 'right': 'inherit'})
+}).on('mouseup', function () {
+$DOC.unbind("selectstart");
+$DOC.off('mousemove')
+$DOC.off('mouseup')
+$moveTarget.css('border', 'none')
+$('#musicDragArea').css('height', '10px');
+})
+})
+</script>
 </html>
