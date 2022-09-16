@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Prometheus+Grafana搭建服务监控 | Hexo</title>
+  <meta name="keywords" content=" 服务监控 ">
+  <meta name="description" content="Prometheus+Grafana搭建服务监控 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Docker容器最近因为工作需要，利用课余时间通过视频、书籍学习Docker，并在此记录笔记。 第一章Docker简介1.1 Docker能解决什么问题问题：开发人员经常说：&quot;它在我的机器可以正常运行&quot;，言下之意就是，其他机器很可能跑不了 解决：开发人员可以使用 Docker 来解决 &quot;它在我的机器可以正常运行&quot; 的问题，它会将运行程序的相关配置打包（打包成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker容器">
+<meta property="og:url" content="http://example.com/2022/03/23/Docker%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Docker容器最近因为工作需要，利用课余时间通过视频、书籍学习Docker，并在此记录笔记。 第一章Docker简介1.1 Docker能解决什么问题问题：开发人员经常说：&quot;它在我的机器可以正常运行&quot;，言下之意就是，其他机器很可能跑不了 解决：开发人员可以使用 Docker 来解决 &quot;它在我的机器可以正常运行&quot; 的问题，它会将运行程序的相关配置打包（打包成">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-23T07:13:47.000Z">
+<meta property="article:modified_time" content="2022-09-16T02:23:24.616Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.2.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/yelog/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/u/2307534817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/u/ff56736de7cf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:417860634@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=417860634&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(6)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="后端">
+                        
+                        后端
+                        <small>(1)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="运维">
+                        
+                        运维
+                        <small>(5)</small>
+                        
+                    </div>
+                    
+                </li>
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="6">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>博客</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>服务监控</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>微服务</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Docker</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>hexo</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Nginx</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 运维 "
+           href="/2022/03/23/Docker%E5%AE%B9%E5%99%A8/"
+           data-tag="Docker"
+           data-author="" >
+            <span class="post-title" title="Docker容器">Docker容器</span>
+            <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
+        </a>
+        
+        
+        <a  class="All 运维 "
+           href="/2022/03/23/Linux%E7%BC%96%E5%86%99%E9%87%8D%E5%90%AFJar%E7%A8%8B%E5%BA%8F%E8%84%9A%E6%9C%AC/"
+           data-tag="服务监控"
+           data-author="" >
+            <span class="post-title" title="Linux编写重启Jar程序脚本">Linux编写重启Jar程序脚本</span>
+            <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
+        </a>
+        
+        
+        <a  class="All 运维 "
+           href="/2022/03/23/Nginx+Keepalived-%E9%AB%98%E5%8F%AF%E7%94%A8/"
+           data-tag="Nginx"
+           data-author="" >
+            <span class="post-title" title="Nginx+Keepalived 高可用">Nginx+Keepalived 高可用</span>
+            <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
+        </a>
+        
+        
+        <a  class="All 运维 "
+           href="/2022/03/23/Prometheus+Grafana%E6%9C%8D%E5%8A%A1%E7%9B%91%E6%8E%A7/"
+           data-tag="服务监控"
+           data-author="" >
+            <span class="post-title" title="Prometheus+Grafana搭建服务监控">Prometheus+Grafana搭建服务监控</span>
+            <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
+        </a>
+        
+        
+        <a  class="All 后端 "
+           href="/2022/03/23/SpringCloud-%E5%85%A5%E9%97%A8/"
+           data-tag="微服务"
+           data-author="" >
+            <span class="post-title" title="SpringCloud-入门">SpringCloud-入门</span>
+            <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
+        </a>
+        
+        
+        <a  class="All 运维 "
+           href="/2022/03/23/%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/"
+           data-tag="hexo,博客"
+           data-author="" >
+            <span class="post-title" title="搭建Hexo博客">搭建Hexo博客</span>
+            <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Prometheus+Grafana服务监控" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Prometheus+Grafana搭建服务监控</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="运维">运维</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">服务监控</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-09-02 15:12:28'>2022-03-23 15:13</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Prometheus%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-text">二、Prometheus的特点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E6%98%93%E4%BA%8E%E7%AE%A1%E7%90%86"><span class="toc-text">1、易于管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E7%9B%91%E6%8E%A7%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%86%85%E9%83%A8%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="toc-text">2、监控服务的内部运行状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-text">3、强大的数据模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E5%BC%BA%E5%A4%A7%E7%9A%84%E6%9F%A5%E8%AF%A2%E8%AF%AD%E8%A8%80-PromQL"><span class="toc-text">4、强大的查询语言 PromQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E9%AB%98%E6%95%88"><span class="toc-text">5、高效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E5%8F%AF%E6%89%A9%E5%B1%95"><span class="toc-text">6、可扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%E3%80%81%E6%98%93%E4%BA%8E%E9%9B%86%E6%88%90"><span class="toc-text">7、易于集成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%E3%80%81%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="toc-text">8、可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%E3%80%81%E5%BC%80%E6%94%BE%E6%80%A7"><span class="toc-text">9、开放性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Prometheus-%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">三、Prometheus 的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%AD%98%E5%82%A8%E8%AE%A1%E7%AE%97%E5%B1%82"><span class="toc-text">1、存储计算层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E9%87%87%E9%9B%86%E5%B1%82"><span class="toc-text">2、采集层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%BA%94%E7%94%A8%E5%B1%82"><span class="toc-text">3、应用层</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Prometheus-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">四、Prometheus 的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81prometheus%E5%AE%89%E8%A3%85"><span class="toc-text">1、prometheus安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81node-exporter%E5%AE%89%E8%A3%85"><span class="toc-text">2、node_exporter安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81prometheus%E5%90%AF%E5%8A%A8"><span class="toc-text">3、prometheus启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81pushgateway-%E5%AE%89%E8%A3%85%E4%B8%8E%E5%90%AF%E5%8A%A8"><span class="toc-text">4、pushgateway 安装与启动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81PromQL%E4%BB%8B%E7%BB%8D"><span class="toc-text">五、PromQL介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-text">1、基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97"><span class="toc-text">查询时间序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2"><span class="toc-text">范围查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E4%BD%8D%E7%A7%BB%E6%93%8D%E4%BD%9C"><span class="toc-text">时间位移操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C"><span class="toc-text">使用聚合操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%87%8F%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">标量和字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E6%B3%95%E7%9A%84-PromQL-%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">合法的 PromQL 表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PromQL-%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-text">PromQL 操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">使用集合运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">操作符优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PromQL-%E8%81%9A%E5%90%88%E6%93%8D%E4%BD%9C"><span class="toc-text">PromQL 聚合操作</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81Prometheus-%E5%92%8C-Grafana-%E9%9B%86%E6%88%90"><span class="toc-text">六、Prometheus 和 Grafana 集成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85"><span class="toc-text">1、安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1%E4%BD%BF%E7%94%A8"><span class="toc-text">2、启动服务使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-text">3、配置数据源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%E4%BB%AA%E8%A1%A8%E7%9B%98-Dashboard"><span class="toc-text">4、手动创建仪表盘 Dashboard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81-Dashboard-%E6%A8%A1%E6%9D%BF"><span class="toc-text">5、 Dashboard 模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-text">6、配置免密登录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%AE%9E%E6%88%98"><span class="toc-text">七、实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%9B%91%E6%8E%A7RabbitMq"><span class="toc-text">1、监控RabbitMq</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E7%9B%91%E6%8E%A7liunx%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">2、监控liunx服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E7%9B%91%E6%8E%A7mysql%E6%9C%8D%E5%8A%A1"><span class="toc-text">3、监控mysql服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81%E7%9B%91%E6%8E%A7springboot%E6%9C%8D%E5%8A%A1"><span class="toc-text">4、监控springboot服务</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a><strong>一、简介</strong></h1><p> Prometheus可以监控服务器情况，也可以监控应用服务内部情况。主要配合Grafana使用，Prometheus负责采集数据推送到Grafana,Grafana负载可视化展示。</p>
+<p>官网：<a target="_blank" rel="noopener" href="https://prometheus.io/">https://prometheus.io/</a></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://prometheus.io/download/">https://prometheus.io/download/</a></p>
+<h1 id="二、Prometheus的特点"><a href="#二、Prometheus的特点" class="headerlink" title="二、Prometheus的特点"></a><strong>二、Prometheus的特点</strong></h1><p>Prometheus 是一个开源的完整监控解决方案，其对传统监控系统的测试和告警模型进行了彻底的颠覆，形成了基于中央化的规则计算、统一分析和告警的新模型。 相比于传统监控系统，Prometheus 具有以下优点：</p>
+<h2 id="1、易于管理"><a href="#1、易于管理" class="headerlink" title="1、易于管理"></a><strong>1、易于管理</strong></h2><p>Prometheus 核心部分只有一个单独的二进制文件，不存在任何的第三方依赖(数据库，缓存等等)。唯一需要的就是本地磁盘，因此不会有潜在级联故障的风险。</p>
+<p>Prometheus 基于 Pull 模型的架构方式，可以在任何地方（本地电脑，开发环境，测试环境）搭建我们的监控系统。</p>
+<p>对于一些复杂的情况，还可以使用 Prometheus 服务发现(Service Discovery)的能力动态管理监控目标。</p>
+<h2 id="2、监控服务的内部运行状态"><a href="#2、监控服务的内部运行状态" class="headerlink" title="2、监控服务的内部运行状态"></a><strong>2、监控服务的内部运行状态</strong></h2><p>Pometheus 鼓励用户监控服务的内部状态，基于Prometheus 丰富的 Client 库，用户可以轻松的在应用程序中添加对Prometheus 的支持，从而让用户可以获取服务和应用内部真正的运行状态。</p>
+<h2 id="3、强大的数据模型"><a href="#3、强大的数据模型" class="headerlink" title="3、强大的数据模型"></a><strong>3、强大的数据模型</strong></h2><p>所有采集的监控数据均以指标(metric)的形式保存在<strong>内置的时间序列数据库</strong>当中（TSDB，Time Series DB）。所有的样本除了基本的指标名称以外，还包含一组用于描述该样本特征的标签。</p>
+<pre><code class="java">http_request_status&#123;
+    code=&#39;200&#39;,
+    content_path=&#39;/api/path&#39;,
+    environment=&#39;produment&#39;
+&#125; =&gt;
+[value1@timestamp1,value2@timestamp2...]
+
+http_request_status&#123; # 指标名称
+    code=&#39;200&#39;, # 维度的标签
+    content_path=&#39;/api/path2&#39;,
+    environment=&#39;produment&#39;
+&#125; =&gt;
+[value1@timestamp1,value2@timestamp2...] # 存储的样本值
+</code></pre>
+<p>每一条时间序列由**指标名称(Metrics Name)<strong>以及一组</strong>标签(Labels)**唯一标识。每条时间序列按照时间的先后顺序存储一系列的样本值。</p>
+<pre><code class="java">http_request_status：指标名称(Metrics Name)
+
+&#123;code=‘200’,content_path=’/api/path’,environment=‘produment’&#125;：表示维度的标签，基于这些 Labels 我们可以方便地对监控数据进行聚合，过滤，裁剪。
+
+[value1@timestamp1,value2@timestamp2…]：按照时间的先后顺序存储的样本值。
+</code></pre>
+<h2 id="4、强大的查询语言-PromQL"><a href="#4、强大的查询语言-PromQL" class="headerlink" title="4、强大的查询语言 PromQL"></a><strong>4、强大的查询语言 PromQL</strong></h2><p>Prometheus 内置了一个强大的数据查询语言 PromQL。 通过 PromQL 可以实现对监控数据的查询、聚合。同时 PromQL 也被应用于数据可视化(如 Grafana)以及告警当中。</p>
+<p>通过PromQL 可以轻松回答类似于以下问题：</p>
+<pre><code>在过去一段时间中 95%应用延迟时间的分布范围？
+
+预测在 4 小时后，磁盘空间占用大致会是什么情况？
+
+CPU 占用率前 5 位的服务有哪些？(过滤)
+</code></pre>
+<h2 id="5、高效"><a href="#5、高效" class="headerlink" title="5、高效"></a><strong>5、高效</strong></h2><p>对于监控系统而言，大量的监控任务必然导致有大量的数据产生。而Prometheus 可以高效地处理这些数据，对于单一Prometheus Server 实例而言它可以处理：</p>
+<pre><code>数以百万的监控指标
+每秒处理数十万的数据点
+</code></pre>
+<h2 id="6、可扩展"><a href="#6、可扩展" class="headerlink" title="6、可扩展"></a><strong>6、可扩展</strong></h2><p>可以在每个数据中心、每个团队运行独立的Prometheus Sevrer。Prometheus 对于联邦集群的支持，可以让多个 Prometheus 实例产生一个逻辑集群，当单实例 Prometheus Server 处理的任务量过大时，通过使用功能分区(sharding)+联邦集群(federation)可以对其进行扩展。</p>
+<h2 id="7、易于集成"><a href="#7、易于集成" class="headerlink" title="7、易于集成"></a><strong>7、易于集成</strong></h2><p>使用Prometheus 可以快速搭建监控服务，并且可以非常方便地在应用程序中进行集成。目前支持：Java，JMX，Python，Go，Ruby，.Net，Node.js 等等语言的客户端 SDK，基于这些 SDK 可以快速让应用程序纳入到 Prometheus 的监控当中，或者开发自己的监控数据收集程序。</p>
+<p>同时这些客户端收集的监控数据，不仅仅支持 Prometheus，还能支持 Graphite 这些其他的监控工具。</p>
+<p>同时Prometheus 还支持与其他的监控系统进行集成：Graphite，Statsd，Collected， Scollector， muini， Nagios 等。 Prometheus 社区还提供了大量第三方实现的监控数据采集支持：JMX，CloudWatch，EC2，MySQL，PostgresSQL，Haskell，Bash，SNMP， Consul，Haproxy，Mesos，Bind，CouchDB，Django，Memcached，RabbitMQ，Redis，RethinkDB，Rsyslog 等等。</p>
+<h2 id="8、可视化"><a href="#8、可视化" class="headerlink" title="8、可视化"></a><strong>8、可视化</strong></h2><p>Prometheus Server 中自带的 <code>Prometheus UI</code>，可以方便地直接对数据进行查询，并且支持直接以图形化的形式展示数据。同时 Prometheus 还提供了一个独立的基于Ruby On Rails 的 Dashboard 解决方案 Promdash。</p>
+<p>最新的 <code>Grafana</code> 可视化工具也已经提供了完整的Prometheus 支持，基于 Grafana 可以创建更加精美的监控图标。</p>
+<p>基于Prometheus 提供的API 还可以实现<code>自己的监控可视化UI</code>。</p>
+<h2 id="9、开放性"><a href="#9、开放性" class="headerlink" title="9、开放性"></a><strong>9、开放性</strong></h2><p>通常来说当我们需要监控一个应用程序时，一般需要该应用程序提供对相应监控系统协议的支持，因此应用程序会与所选择的监控系统进行绑定。为了减少这种绑定所带来的限制，对于决策者而言要么你就直接在应用中集成该监控系统的支持，要么就在外部创建单独的服务来适配不同的监控系统。</p>
+<p>而对于 Prometheus 来说，使用 Prometheus 的 client library 的输出格式不止支持Prometheus 的格式化数据，也可以输出支持其它监控系统的格式化数据，比如 Graphite。因此你甚至可以在不使用Prometheus 的情况下，采用 Prometheus 的 client library 来让你的应用程序支持监控数据采集。</p>
+<h1 id="三、Prometheus-的架构"><a href="#三、Prometheus-的架构" class="headerlink" title="三、Prometheus 的架构"></a><strong>三、Prometheus 的架构</strong></h1><p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/d6476d493d8232e51931cdae138f05f4.png" alt="img"></p>
+<p>prometheus 负责从 <code>pushgateway</code> 和 <code>job</code> 中采集数据， 存储到后端 <code>Storatge</code> 中，可以通过<code>PromQL</code> 进行查询， 推送 alerts 信息到 <code>AlertManager</code>。 AlertManager 根据不同的路由规则进行报警通知</p>
+<h2 id="1、存储计算层"><a href="#1、存储计算层" class="headerlink" title="1、存储计算层"></a><strong>1、存储计算层</strong></h2><pre><code>Prometheus Server，里面包含了存储引擎和计算引擎。
+Retrieval 组件为取数组件，它会主动从 PushGateway 或者 Exporter 拉取指标数据。
+Service discovery，可以动态发现要监控的目标。
+TSDB，数据核心存储与查询。
+HTTP server，对外提供 HTTP 服务。
+</code></pre>
+<h2 id="2、采集层"><a href="#2、采集层" class="headerlink" title="2、采集层"></a><strong>2、采集层</strong></h2><pre><code>采集层分为两类，一类是生命周期较短的作业，还有一类是生命周期较长的作业。
+短作业：直接通过 API，在退出时间指标推送给PushGateway 。(一般检查不固定的服务)
+长作业：Retrieval 组件直接从 Job 或者 Exporter 拉取数据。(一般检查固定服务器的服务)
+</code></pre>
+<h2 id="3、应用层"><a href="#3、应用层" class="headerlink" title="3、应用层"></a><strong>3、应用层</strong></h2><p>应用层主要分为两种，一种是AlertManager（报警），另一种是数据可视化。</p>
+<pre><code>AlertManager
+    对接Pagerduty，是一套付费的监控报警系统。可实现短信报警、5 分钟无人 ack 打电话通知、仍然无人 ack，通知值班人员 Manager…Emial，发送邮件… 
+数据可视化
+    Prometheus build-in WebUI、Grafana、其他基于API 开发的客户端
+</code></pre>
+<h1 id="四、Prometheus-的安装"><a href="#四、Prometheus-的安装" class="headerlink" title="四、Prometheus 的安装"></a>四、Prometheus 的安装</h1><p>官网：<a target="_blank" rel="noopener" href="https://prometheus.io/">https://prometheus.io/</a></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://prometheus.io/download/">https://prometheus.io/download/</a></p>
+<h2 id="1、prometheus安装"><a href="#1、prometheus安装" class="headerlink" title="1、prometheus安装"></a>1、prometheus安装</h2><pre><code>1、上传 prometheus-2.29.1.linux-amd64.tar.gz
+2、tar  -zxvf  prometheus-2.29.1.linux-amd64.tar.gz -C /opt/module
+3、修改配置文件prometheus.yml
+</code></pre>
+<pre><code class="yml"># my global config
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global &#39;evaluation_interval&#39;.
+rule_files:
+  # - &quot;first_rules.yml&quot;
+  # - &quot;second_rules.yml&quot;
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it&#39;s Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=&lt;job_name&gt;` to any timeseries scraped from this config.
+  - job_name: &quot;prometheus&quot;
+
+    # metrics_path defaults to &#39;/metrics&#39;
+    # scheme defaults to &#39;http&#39;.
+
+    static_configs:
+      - targets: [&quot;127.0.0.1:9090&quot;]
+    
+# 添加 PushGateway 监控配置
+  - job_name: &#39;pushgateway&#39;
+    static_configs:
+    - targets: [&#39;127.0.0.1:9091&#39;]
+      labels:
+        instance: pushgateway
+        
+# 添加 Node Exporter 监控配置
+  - job_name: &#39;node exporter&#39;
+    static_configs:
+    - targets: [&#39;127.0.0.1:9100&#39;]
+</code></pre>
+<h2 id="2、node-exporter安装"><a href="#2、node-exporter安装" class="headerlink" title="2、node_exporter安装"></a>2、node_exporter安装</h2><pre><code class="java">1、上传 node_exporter-1.2.2.linux-amd64.tar.gz 
+2、解压文件 tar  -zxvf  node_exporter-1.2.2.linux-amd64.tar.gz  -C  /opt/module
+3、启动服务 nohup ./node_exporter &gt; node_exporter.log 2&gt;&amp;1 &amp;
+4、访问 IP:9100/metrics 即可获取服务器参数
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220615220203001.png" alt="image-20220615220203001"></p>
+<h2 id="3、prometheus启动"><a href="#3、prometheus启动" class="headerlink" title="3、prometheus启动"></a>3、prometheus启动</h2><pre><code class="java">1、进入prometheus目录
+2、启动服务 nohup ./prometheus --config.file=prometheus.yml &gt;./prometheus.log 2&gt;&amp;1 &amp; 后台启动
+3、访问 IP:9090
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220615215434281.png" alt="image-20220615215434281"></p>
+<h2 id="4、pushgateway-安装与启动"><a href="#4、pushgateway-安装与启动" class="headerlink" title="4、pushgateway 安装与启动"></a>4、pushgateway 安装与启动</h2><pre><code class="java">1、上传 pushgateway-1.4.3.linux-amd64.tar.gz 
+2、解压文件 tar  -zxvf  pushgateway-1.4.3.linux-amd64.tar.gz   -C  /opt/module
+3、启动服务 nohup ./pushgateway --web.listen-address:9091 &gt;./pushgateway.log 2&gt;&amp;1 &amp;
+4、访问 IP:9091/metrics
+</code></pre>
+<p>至此，所有服务均已启动</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220615221701595.png" alt="image-20220615221701595"></p>
+<h1 id="五、PromQL介绍"><a href="#五、PromQL介绍" class="headerlink" title="五、PromQL介绍"></a>五、PromQL介绍</h1><p>Prometheus 通过指标名称（metrics name）以及对应的一组标签（labelset）唯一定义一条时间序列。指标名称反映了监控样本的基本标识，而 label 则在这个基本特征上为采集到的数据提供了多种特征维度。用户可以基于这些特征维度过滤，聚合，统计从而产生新的计算后的一条时间序列。</p>
+<p>PromQL 是 Prometheus 内置的数据查询语言，其提供对时间序列数据丰富的查询，聚合以及逻辑运算能力的支持。并且被广泛应用在Prometheus的日常应用当中，包括对数据查询、可视化、告警处理当中。</p>
+<p>PromQL 是Prometheus 所有应用场景的基础</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220615224314639.png" alt="image-20220615224314639"></p>
+<p>在首页输入框内，输入指标名称，即可查询。也可以编写类似sql语言格式，查询指标数据。</p>
+<p>所有指标 IP:9090&#x2F;metrics 即可查询。或者点击输入框右侧按钮</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220615224540078.png" alt="image-20220615224540078"></p>
+<h2 id="1、基本用法"><a href="#1、基本用法" class="headerlink" title="1、基本用法"></a>1、基本用法</h2><h3 id="查询时间序列"><a href="#查询时间序列" class="headerlink" title="查询时间序列"></a><strong>查询时间序列</strong></h3><p>当 Prometheus 通过 Exporter 采集到相应的监控指标样本数据后，我们就可以通过PromQL 对监控样本数据进行查询。</p>
+<p>当我们直接使用监控指标名称查询时，可以查询该指标下的所有时间序列。如：</p>
+<pre><code>prometheus_http_requests_total                  
+等同于： 
+prometheus_http_requests_total&#123;&#125;     
+</code></pre>
+<p>该表达式会返回指标名称为 prometheus_http_requests_total 的所有时间序列：</p>
+<pre><code>prometheus_http_requests_total&#123;
+    code=&quot;200&quot;,
+    handler=&quot;alerts&quot;,
+    instance=&quot;localhost:9090&quot;,
+    job=&quot;prometheus&quot;,
+    method=&quot;get&quot;
+&#125;= (20889@1518096812.326)
+
+prometheus_http_requests_total&#123;
+    code=&quot;200&quot;,
+    handler=&quot;graph&quot;,
+    instance=&quot;localhost:9090&quot;,
+    job=&quot;prometheus&quot;,
+    method=&quot;get&quot;
+&#125;= (21287@1518096812.326)
+</code></pre>
+<p>PromQL 还支持用户根据时间序列的标签匹配模式来对时间序列进行过滤，目前主要支持两种匹配模式：完全匹配和正则匹配。</p>
+<p>PromQL 支持使用 &#x3D; 和 !&#x3D; 两种完全匹配模式：</p>
+<p>通过使用 label&#x3D;value 可以选择那些标签满足表达式定义的时间序列；<br>反之使用 label!&#x3D;value 则可以根据标签匹配排除时间序列；</p>
+<p>例如，如果我们只需要查询所有 prometheus_http_requests_total 时间序列中满足标签 instance 为 localhost:9090 的时间 序列，则可以使用如下表达式：</p>
+<pre><code>prometheus_http_requests_total&#123;instance=&quot;localhost:9090&quot;&#125;       
+</code></pre>
+<p>反之使用 instance!&#x3D;“localhost:9090” 则可以排除这些时间序列：</p>
+<pre><code>prometheus_http_requests_total&#123;instance!=&quot;localhost:9090&quot;&#125;
+</code></pre>
+<p>PromQL 还可以支持使用正则表达式作为匹配条件，多个表达式之间使用 | 进行分离：</p>
+<p>使用 label&#x3D;<del>regx 表示选择那些标签符合正则表达式定义的时间序列；<br>反之使用 label!</del>regx 进行排除；</p>
+<p>例如，如果想查询多个环节下的时间序列序列可以使用如下表达式：</p>
+<pre><code>prometheus_http_requests_total&#123;environment=~&quot;staging|testing|development&quot;,method!=&quot;GET&quot;&#125;
+排除用法
+prometheus_http_requests_total&#123;environment!~&quot;staging|testing|development&quot;,method!=&quot;GET&quot;&#125;
+</code></pre>
+<h3 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a><strong>范围查询</strong></h3><p>直接通过类似于 PromQL 表达式 httprequeststotal 查询时间序列时，返回值中只会包含该时间序列中的最新的一个样本值，这样的返回结果我们称之为瞬时向量。而相应的这样的表达式称之为 瞬时向量表达式。</p>
+<p>而如果我们想过去一段时间范围内的样本数据时，我们则需要使用区间向量表达式。区间向量表达式和瞬时向量表达式之间的差异在于在区间向量表达式中我们需要定义时间选择的范围，时间范围通过时间范围选择器 [] 进行定义。 例如，通过以下表达式可以选择</p>
+<p>最近 5 分钟内的所有样本数据：</p>
+<pre><code>prometheus_http_requests_total&#123;&#125;[5m]
+</code></pre>
+<p>通过区间向量表达式查询到的结果我们称为区间向量。 除了使用 m 表示分钟以外，</p>
+<p>PromQL 的时间范围选择器支持其它时间单位：</p>
+<pre><code>s - 秒
+m - 分钟
+h - 小时
+d - 天
+w - 周
+y - 年
+</code></pre>
+<h3 id="时间位移操作"><a href="#时间位移操作" class="headerlink" title="时间位移操作"></a>时间位移操作</h3><p>在瞬时向量表达式或者区间向量表达式中，都是以当前时间为基准：</p>
+<pre><code>prometheus_http_requests_total&#123;&#125; # 瞬时向量表达式，选择当前最新的数据 
+prometheus_http_requests_total&#123;&#125;[5m] # 区间向量表达式，选择以当前时间为基准，5 分钟内的数据
+</code></pre>
+<p>而如果我们想查询，5 分钟前的瞬时样本数据，或昨天一天的区间内的样本数据呢? 这个时候我们就可以使用位移操作，位移操作的关键字为 <strong>offset</strong>。 可以使用 offset 时间位移操作：</p>
+<pre><code>prometheus_http_requests_total&#123;&#125; offset 5m
+prometheus_http_requests_total&#123;&#125;[1d] offset 1d
+</code></pre>
+<h3 id="使用聚合操作"><a href="#使用聚合操作" class="headerlink" title="使用聚合操作"></a>使用聚合操作</h3><p>一般来说，如果描述样本特征的标签(label)在并非唯一的情况下，通过 PromQL 查询数据，会返回多条满足这些特征维度的时间序列。而 PromQL 提供的聚合操作可以用来对这些时间序列进行处理，形成一条新的时间序列：</p>
+<pre><code># 查询系统所有 http 请求的总量
+sum(prometheus_http_requests_total)
+# 按照 mode 计算主机 CPU 的平均使用时间
+avg(node_cpu_seconds_total) by (mode)
+# 按照主机查询各个主机的 CPU 使用率
+sum(sum(irate(node_cpu_seconds_total&#123;mode!=&#39;idle&#39;&#125;[5m])) /  sum(irate(node_cpu_seconds_total [5m]))) by (instance)
+</code></pre>
+<h3 id="标量和字符串"><a href="#标量和字符串" class="headerlink" title="标量和字符串"></a>标量和字符串</h3><p>除了使用瞬时向量表达式和区间向量表达式以外，PromQL 还直接支持用户使用标量(Scalar)和字符串(String)。</p>
+<p>➢ 标量（Scalar）：一个浮点型的数字值</p>
+<p>标量只有一个数字，没有时序。 例如：10</p>
+<p>需要注意的是，当使用表达式 count(prometheus_http_requests_total)，返回的数据类型，依然是瞬时向量。用户可以通过内置函数scalar()将单个瞬时向量转换为标量。</p>
+<p>➢ 字符串（String）：一个简单的字符串值</p>
+<p>直接使用字符串，作为PromQL 表达式，则会直接返回字符串。</p>
+<pre><code>&quot;this is a string&quot;
+&#39;these are unescaped: \n \\ \t&#39;
+`these are not unescaped: \n &#39; &quot; \t
+</code></pre>
+<h3 id="合法的-PromQL-表达式"><a href="#合法的-PromQL-表达式" class="headerlink" title="合法的 PromQL 表达式"></a>合法的 PromQL 表达式</h3><p>所有的 PromQL 表达式都<strong>必须至少包含一个指标名称</strong>(例如 http_request_total)，或者一个<strong>不会匹配到空字符串</strong>的标签过滤器(例如{code&#x3D;”200”})。</p>
+<pre><code>因此以下两种方式，均为合法的表达式：
+prometheus_http_requests_total # 合法
+prometheus_http_requests_total&#123;&#125; # 合法
+&#123;method=&quot;get&quot;&#125; # 合法
+
+而如下表达式，则不合法：
+&#123;job=~&quot;.*&quot;&#125; # 不合法
+
+同时，除了使用  &#123;label=value&#125;  的形式以外，我们还可以使用内置的 name 标签来指定监控指标名称：
+&#123;  name  =~&quot;prometheus_http_requests_total&quot;&#125; # 合法
+&#123;  name  =~&quot;node_disk_bytes_read|node_disk_bytes_written&quot;&#125; # 合法
+</code></pre>
+<h3 id="PromQL-操作符"><a href="#PromQL-操作符" class="headerlink" title="PromQL 操作符"></a>PromQL 操作符</h3><p>使用PromQL 除了能够方便的按照查询和过滤时间序列以外，PromQL 还支持丰富的操作符，用户可以使用这些操作符对进一步的对事件序列进行二次加工。这些操作符包括：数学运算符，逻辑运算符，布尔运算符等等。</p>
+<pre><code>数学运算
++ (加法)
+- (减法)
+* (乘法)
+/ (除法)
+% (求余)
+^ (幂运算)
+
+布尔运算
+== (相等)
+!= (不相等)
+&gt;(大于)
+&lt; (小于)
+&gt;= (大于等于)
+&lt;= (小于等于)
+</code></pre>
+<p>➢ 使用bool 修饰符改变布尔运算符的行为</p>
+<p>布尔运算符的默认行为是对时序数据进行过滤。而在其它的情况下我们可能需要的是真正的布尔结果。例如，只需要 知道当前模块的 HTTP 请求量是否&gt;&#x3D;1000，如果大于等于1000 则返回 1（true）否则返回 0（false）。这时可以使 用 bool 修饰符改变布尔运算的默认行为。 例如：</p>
+<p>prometheus_http_requests_total &gt; bool 1000<br>使用 bool 修改符后，布尔运算不会对时间序列进行过滤，而是直接依次瞬时向量中的各个样本数据与标量的比较结果 0 或者 1。从而形成一条新的时间序列。</p>
+<p>同时需要注意的是，如果是在两个标量之间使用布尔运算，则必须使用 bool 修饰符：2 &#x3D;&#x3D; bool 2 # 结果为 1</p>
+<h3 id="使用集合运算符"><a href="#使用集合运算符" class="headerlink" title="使用集合运算符"></a>使用集合运算符</h3><p>使用瞬时向量表达式能够获取到一个包含多个时间序列的集合，我们称为瞬时向量。通过集合运算，可以在两个瞬时向量与瞬时向量之间进行相应的集合操作。</p>
+<p>目前，Prometheus 支持以下集合运算符：</p>
+<pre><code>and (并且)
+or (或者)
+unless (排除)
+</code></pre>
+<p>vector1 and vector2 会产生一个由 vector1 的元素组成的新的向量。该向量包含vector1 中完全匹配 vector2 中的元素组成。</p>
+<p>vector1 or vector2 会产生一个新的向量，该向量包含 vector1 中所有的样本数据，以及 vector2 中没有与 vector1 匹配到的样本数据。</p>
+<p>vector1 unless vector2 会产生一个新的向量，新向量中的元素由 vector1 中没有与vector2 匹配的元素组成。</p>
+<h3 id="操作符优先级"><a href="#操作符优先级" class="headerlink" title="操作符优先级"></a>操作符优先级</h3><p>对于复杂类型的表达式，需要了解运算操作的运行优先级。例如，查询主机的 CPU 使用率，可以使用表达式：</p>
+<pre><code>100 * (1 - avg (irate(node_cpu_seconds_total&#123;mode=&#39;idle&#39;&#125;[5m])) by(job) ) 
+</code></pre>
+<p>其中irate 是PromQL中的内置函数，用于计算区间向量中时间序列每秒的即时增长率。在 PromQL 操作符中优先级由高到低依次为：</p>
+<pre><code>^
+*, /, %
++, -
+==, !=, &lt;=, =, &gt;
+and, unless
+or
+</code></pre>
+<h3 id="PromQL-聚合操作"><a href="#PromQL-聚合操作" class="headerlink" title="PromQL 聚合操作"></a>PromQL 聚合操作</h3><p>Prometheus 还提供了下列内置的聚合操作符，这些操作符作用域瞬时向量。可以将瞬时表达式返回的样本数据进行 聚合，形成一个新的时间序列。</p>
+<pre><code>sum (求和)
+min (最小值)
+max (最大值)
+avg (平均值)
+
+stddev (标准差)
+stdvar (标准差异)
+count (计数)
+count_values (对 value 进行计数)
+bottomk (后 n 条时序)
+topk (前n 条时序)
+quantile (分布统计)
+</code></pre>
+<p>使用聚合操作的语法如下：</p>
+<pre><code>&lt;aggr-op&gt;([parameter,] &lt;vector expression&gt;) [without|by (&lt;label list&gt;)] 
+</code></pre>
+<p>其中只有 count_values , quantile , topk , bottomk 支持参数(parameter)。</p>
+<p>without 用于从计算结果中移除列举的标签，而保留其它标签。by 则正好相反，结果向量中只保留列出的标签，其余标签则移除。通过 without 和 by 可以按照样本的问题对数据进行聚合。</p>
+<p>例如：</p>
+<pre><code>sum(prometheus_http_requests_total) without (instance)                  等价于
+sum(prometheus_http_requests_total) by (code,handler,job,method)       
+</code></pre>
+<p>如果只需要计算整个应用的 HTTP 请求总量，可以直接使用表达式：sum(prometheus_http_requests_total)</p>
+<p>count_values 用于时间序列中每一个样本值出现的次数。count_values 会为每一个唯一的样本值输出一个时间序列，并且每一个时间序列包含一个额外的标签。 例如：count_values(“count”, prometheus_http_requests_total)</p>
+<p>topk 和 bottomk 则用于对样本值进行排序，返回当前样本值前 n 位，或者后 n 位的时间序列。</p>
+<p>获取 HTTP 请求数前 5 位的时序样本数据，可以使用表达式：topk(5, prometheus_http_requests_total)</p>
+<p>quantile 用于计算当前样本数据值的分布情况 quantile(φ, express)其中 0 ≤ φ ≤ 1。</p>
+<p>例如，当φ 为 0.5 时，即表示找到当前样本数据中的中位数：quantile(0.5, prometheus_http_requests_total)</p>
+<h1 id="六、Prometheus-和-Grafana-集成"><a href="#六、Prometheus-和-Grafana-集成" class="headerlink" title="六、Prometheus 和 Grafana 集成"></a>六、Prometheus 和 Grafana 集成</h1><p>官网下载安装：<a target="_blank" rel="noopener" href="https://grafana.com/grafana/download">https://grafana.com/grafana/download</a></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220615225957649.png" alt="image-20220615225957649"></p>
+<h3 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h3><pre><code>wget https://dl.grafana.com/enterprise/release/grafana-enterprise-8.5.5-1.x86_64.rpmsudo 
+yum install grafana-enterprise-8.5.5-1.x86_64.rpm
+
+推荐使用安装压缩包,下载到opt目录下
+wget https://dl.grafana.com/enterprise/release/grafana-enterprise-9.0.0.linux-amd64.tar.gz
+tar -zxvf grafana -enterprise-9.0.0.linux-amd64.tar.gz
+</code></pre>
+<h3 id="2、启动服务使用"><a href="#2、启动服务使用" class="headerlink" title="2、启动服务使用"></a>2、启动服务使用</h3><pre><code>systemd 启动服务器  
+sudo systemctl daemon-reload   
+sudo systemctl start grafana-server   
+sudo systemctl status grafana-server
+service grafana-server stop
+
+后台启动
+nohup ./bin/grafana-server web &gt; ./grafana.log 2&gt;&amp;1 &amp;
+# 打开web：http://hadoop202:3000,默认用户名和密码：admin
+</code></pre>
+<h3 id="3、配置数据源"><a href="#3、配置数据源" class="headerlink" title="3、配置数据源"></a>3、配置数据源</h3><p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220615230303285.png" alt="image-20220615230303285"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220615230459521.png" alt="image-20220615230459521"></p>
+<h3 id="4、手动创建仪表盘-Dashboard"><a href="#4、手动创建仪表盘-Dashboard" class="headerlink" title="4、手动创建仪表盘 Dashboard"></a>4、手动创建仪表盘 Dashboard</h3><p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616214322877.png" alt="image-20220616214322877"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616214536938.png" alt="image-20220616214536938"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616214800778.png" alt="image-20220616214800778"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616214913538.png" alt="image-20220616214913538"></p>
+<p>一个仪表板可以配置多个监控项，添加其他监控项：</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616215134283.png" alt="image-20220616215134283"></p>
+<p>创建多个panel后，可拖动图表，放到其他row中</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616215907029.png" alt="image-20220616215907029"></p>
+<h3 id="5、-Dashboard-模板"><a href="#5、-Dashboard-模板" class="headerlink" title="5、 Dashboard 模板"></a>5、 Dashboard 模板</h3><p>手动一个个添加 Dashboard 比较繁琐，Grafana 社区鼓励用户分享 Dashboard，通过<a target="_blank" rel="noopener" href="https://grafana.com/dashboards">https://grafana.com/dashboards</a> 网站，可以找到大量可直接使用的 Dashboard 模板。</p>
+<p>Grafana 中所有的Dashboard 通过 JSON 进行共享，下载并且导入这些 JSON 文件，就可以直接使用这些已经定义好的 Dashboard</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616222321846.png" alt="image-20220616222321846"></p>
+<p>下载JSON文件</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616222344832.png" alt="image-20220616222344832"></p>
+<p>导入模板</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616222414302.png" alt="image-20220616222414302"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616222619951.png" alt="image-20220616222619951"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220616222803123.png" alt="image-20220616222803123"></p>
+<h3 id="6、配置免密登录"><a href="#6、配置免密登录" class="headerlink" title="6、配置免密登录"></a>6、配置免密登录</h3><pre><code>首先grafana默认需要登录才可使用，初始用户名和密码为admin/admin.
+grafana也提供了匿名登录，即无须登录即可进入grafana面板，编辑conf目录下的default.ini文件就可以做到。
+
+默认目录/var/share/garafana/conf下面，开启免密登入，enabled改成true
+</code></pre>
+<pre><code> [auth.anonymous]
+ 
+ # enable anonymous access
+ 
+enabled = true         #默认false
+ 
+# specify role for unauthenticated users
+ 
+org_role = Viewer    #默认Viewer
+</code></pre>
+<h1 id="七、实战"><a href="#七、实战" class="headerlink" title="七、实战"></a>七、实战</h1><h2 id="1、监控RabbitMq"><a href="#1、监控RabbitMq" class="headerlink" title="1、监控RabbitMq"></a>1、监控RabbitMq</h2><p>第一种：RabbitMQ内部集成Prometheus来获取指标</p>
+<ul>
+<li>3.8.0之前版本，RabbitMQ可以使用单独的插件prometheus_rabbitmq_exporter来向Prometheus公开指标，要单独下载到RabbitMQ安装目录中进行安装；</li>
+</ul>
+<p>　　　prometheus_rabbitmq_exporter：<a target="_blank" rel="noopener" href="https://github.com/deadtrickster/prometheus_rabbitmq_exporter">https://github.com/deadtrickster/prometheus_rabbitmq_exporter</a></p>
+<ul>
+<li>3.8.0版开始，RabbitMQ附带了内置的Prometheus＆Grafana支持。虽然内置了该插件，但也要进行安装</li>
+</ul>
+<p>　　  rabbitmq-prometheus：<a target="_blank" rel="noopener" href="https://github.com/rabbitmq/rabbitmq-prometheus">https://github.com/rabbitmq/rabbitmq-prometheus</a></p>
+<p>第二种：使用独立程序来获取指标（RabbitMQ_exporter）</p>
+<p>　　不管什么版本都能使用，要单独启动exporter进程</p>
+<p>　　rabbitmq_exporter：<a target="_blank" rel="noopener" href="https://github.com/kbudde/rabbitmq_exporter">https://github.com/kbudde/rabbitmq_exporter</a></p>
+<p>RabbitMQ 官方监控介绍： </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.rabbitmq.com/monitoring.html">https://www.rabbitmq.com/monitoring.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.rabbitmq.com/prometheus.html#overview-prometheus">https://www.rabbitmq.com/prometheus.html#overview-prometheus</a></li>
+</ul>
+<p><strong>接下来采用第二种方式</strong></p>
+<p>安装rabbitmq_exporter</p>
+<p>注：在RabbitMQ集群下的任意一个节点部署它。</p>
+<ul>
+<li><strong>上传解压</strong></li>
+</ul>
+<p>从 <a target="_blank" rel="noopener" href="https://github.com/kbudde/rabbitmq_exporter/releases">https://github.com/kbudde/rabbitmq_exporter/releases</a> 下载并上传rabbitmq_exporter_1.0.0-RC16_linux_amd64.tar.gz安装包并解压到&#x2F;usr&#x2F;local目录</p>
+<pre><code>tar -xvf rabbitmq_exporter_1.0.0-RC16_linux_amd64.tar.gz
+cd rabbitmq_exporter_1.0.0-RC16_linux_amd64/
+</code></pre>
+<ul>
+<li><strong>配置</strong></li>
+</ul>
+<p>使用默认配置</p>
+<ul>
+<li><strong>启动</strong></li>
+</ul>
+<p>进入根目录下，输入以下命令：</p>
+<pre><code>cd /usr/local/rabbitmq_exporter_1.0.0-RC16_linux_amd64
+RABBIT_USER=zat RABBIT_PASSWORD=zat123 OUTPUT_FORMAT=json PUBLISH_PORT=9090 RABBIT_URL=http://localhost:15672 nohup ./rabbitmq_exporter &amp;
+tail -1000f nohup.out
+</code></pre>
+<p>参数说明：</p>
+<p>RABBIT_USER：rabbit用户名</p>
+<p>RABBIT_PASSWORD：rabbit密码</p>
+<p>RABBIT_URL：rabbit服务地址和端口</p>
+<p>OUTPUT_FORMAT：输出格式</p>
+<p>PUBLIC_PORT：暴露端口</p>
+<p>启动成功后，可以访问 <a target="_blank" rel="noopener" href="http://ip:9090/metrics/">http://IP:9090/metrics/</a> ，（IP和端口要改成相应环境的）</p>
+<p>看抓取的信息如下：</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220617095924813.png" alt="image-20220617095924813"></p>
+<p><strong>Prometheus配置</strong></p>
+<p>修改prometheus组件的prometheus.yml加入rabbitMQ节点：</p>
+<pre><code class="yml">    
+# 添加 rabbitmq_export 监控配置
+  - job_name: &#39;rabbitmq_export&#39;
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    static_configs:
+    - targets: [&#39;127.0.0.1:19090&#39;]
+</code></pre>
+<p>先kill掉Prometheus进程，用以下命令重启它，然后查看targets：</p>
+<p><strong>Grafana配置</strong></p>
+<p>下载对应的模板，不需要修改即可使用</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220617104125774.png" alt="image-20220617104125774"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220617104148302.png" alt="image-20220617104148302"></p>
+<h2 id="2、监控liunx服务器"><a href="#2、监控liunx服务器" class="headerlink" title="2、监控liunx服务器"></a>2、监控liunx服务器</h2><p>下载模板</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220617105854848.png" alt="image-20220617105854848"></p>
+<h2 id="3、监控mysql服务"><a href="#3、监控mysql服务" class="headerlink" title="3、监控mysql服务"></a>3、监控mysql服务</h2><p>1、mysqld_exporter下载 <a target="_blank" rel="noopener" href="https://prometheus.io/download/">https://prometheus.io/download/</a></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220617113926523.png" alt="image-20220617113926523"></p>
+<pre><code>1、上传 mysqld_exporter-0.14.0.linux-amd64.tar.gz
+2、tar  -zxvf  mysqld_exporter-0.14.0.linux-amd64.tar.gz -C /opt/module
+3、当前目录下新建配置文件 my.cnf
+</code></pre>
+<p>2、修改 my.cnf配置mysql信息</p>
+<pre><code>[client]
+host=127.0.0.1
+user= root
+password=root
+</code></pre>
+<p>3、启动服务</p>
+<pre><code>nohup ./mysqld_exporter --config.my-cnf=/opt/system_detection/mysqld_exporter-0.14.0.linux-amd64/my.cnf &gt;mysqld_exporter.log 2&gt;&amp;1 &amp;
+</code></pre>
+<p>访问：<a target="_blank" rel="noopener" href="http://127.0.0.1:9104/metrics">http://127.0.0.1:9104/metrics</a> 查看</p>
+<p>4、修改prometheus组件的prometheus.yml加入mysql节点：</p>
+<pre><code># 添加 mysql_export 监控配置
+  - job_name: &#39;mysql_export&#39;
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    static_configs:
+    - targets: [&#39;127.0.0.1:9104&#39;]
+</code></pre>
+<p>5、下载模板</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220617114409963.png" alt="image-20220617114409963"></p>
+<h2 id="4、监控springboot服务"><a href="#4、监控springboot服务" class="headerlink" title="4、监控springboot服务"></a>4、监控springboot服务</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38225558/article/details/117696800">https://blog.csdn.net/qq_38225558/article/details/117696800</a></p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
