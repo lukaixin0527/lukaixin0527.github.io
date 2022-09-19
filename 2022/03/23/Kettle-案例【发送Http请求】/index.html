@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Linux编写重启Jar程序脚本 | Hexo</title>
-  <meta name="keywords" content=" 服务监控 ">
-  <meta name="description" content="Linux编写重启Jar程序脚本 | Hexo">
+  <title>Kettle-发送Http请求 | Hexo</title>
+  <meta name="keywords" content=" ETL , Kettle , JSON Path ">
+  <meta name="description" content="Kettle-发送Http请求 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Docker容器最近因为工作需要，利用课余时间通过视频、书籍学习Docker，并在此记录笔记。 第一章Docker简介1.1 Docker能解决什么问题问题：开发人员经常说：&quot;它在我的机器可以正常运行&quot;，言下之意就是，其他机器很可能跑不了 解决：开发人员可以使用 Docker 来解决 &quot;它在我的机器可以正常运行&quot; 的问题，它会将运行程序的相关配置打包（打包成">
 <meta property="og:type" content="article">
@@ -468,9 +468,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Linux编写重启Jar程序脚本" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Kettle-案例【发送Http请求】" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Linux编写重启Jar程序脚本</h1>
+        <h1 class="article-title">Kettle-发送Http请求</h1>
     
     <div class="article-meta">
         
@@ -480,7 +480,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="运维">运维</a>
+            <a  data-rel="后端">后端</a>
             
         </span>
         
@@ -488,19 +488,23 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">服务监控</a>
+            <a class="color4">ETL</a>
+            
+            <a class="color2">Kettle</a>
+            
+            <a class="color5">JSON Path</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-16 10:05:35'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2022-09-19 21:16:07'>2022-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:526</span>
+        <span>Count:1.4k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -530,7 +534,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Centos7%E5%AE%89%E8%A3%85crontab"><span class="toc-text">一、Centos7安装crontab</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BC%96%E5%86%99%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%84%9A%E6%9C%AC"><span class="toc-text">二、编写自动重启脚本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BC%96%E8%BE%91%E7%B3%BB%E7%BB%9F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%87%E4%BB%B6"><span class="toc-text">三、编辑系统定时任务文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8cron%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%8C%E8%AE%BE%E7%BD%AE1%E5%88%86%E9%92%9F%E8%BF%90%E8%A1%8C%E4%B8%80%E6%AC%A1"><span class="toc-text">四、使用cron表达式，设置1分钟运行一次</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%9F%A5%E7%9C%8B%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%97%A5%E5%BF%97%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%AF%8F%E9%9A%941%E5%88%86%E9%92%9F%E6%89%A7%E8%A1%8C%E4%BA%86%E4%B8%80%E6%AC%A1"><span class="toc-text">五、查看定时任务日志，可以看到每隔1分钟执行了一次</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Kettle-%E6%A1%88%E4%BE%8B%E3%80%90%E5%8F%91%E9%80%81Http%E8%AF%B7%E6%B1%82%E3%80%91"><span class="toc-text">一、Kettle-案例【发送Http请求】</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E8%B7%AF%E5%BE%84"><span class="toc-text">1、获取请求路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%8F%91%E9%80%81Http%E8%AF%B7%E6%B1%82"><span class="toc-text">2、发送Http请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%8E%A5%E6%94%B6Http%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C"><span class="toc-text">3、接收Http返回结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81JSON-Path-%E8%AF%AD%E6%B3%95"><span class="toc-text">4、JSON Path 语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%8B%BC%E6%8E%A5url%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">5、拼接url字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E7%BB%93%E6%9D%9F"><span class="toc-text">6、结束</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -546,75 +550,184 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、Centos7安装crontab"><a href="#一、Centos7安装crontab" class="headerlink" title="一、Centos7安装crontab"></a>一、Centos7安装crontab</h1><pre><code class="shell"># 安装
-yum -y install crontabs
-# 查看状态
-systemctl status crond
-# 启动
-systemctl start crond
-# 开机启动
-systemctl enable crond.service
-# 停止
-systemctl stop crond
+        <h1 id="一、Kettle-案例【发送Http请求】"><a href="#一、Kettle-案例【发送Http请求】" class="headerlink" title="一、Kettle-案例【发送Http请求】"></a>一、Kettle-案例【发送Http请求】</h1><p>案例：利用发送Http请求(1)后的结果集中的 url数组，对url进行修改后，再次遍历请求。</p>
+<p>最后的结果是这样</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919204450863.png" alt="image-20220919204450863"></p>
+<h2 id="1、获取请求路径"><a href="#1、获取请求路径" class="headerlink" title="1、获取请求路径"></a>1、获取请求路径</h2><p>可以从数据库中读取，也可以手动生成。这里用 【生成记录】组件</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919204722117.png" alt="image-20220919204722117"></p>
+<h2 id="2、发送Http请求"><a href="#2、发送Http请求" class="headerlink" title="2、发送Http请求"></a>2、发送Http请求</h2><p>这里用的Get请求，利用【HTTP client】组件</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919205010849.png" alt="image-20220919205010849"></p>
+<h2 id="3、接收Http返回结果"><a href="#3、接收Http返回结果" class="headerlink" title="3、接收Http返回结果"></a>3、接收Http返回结果</h2><p>因为返回结果为json字符串，所以用到【JSON 输入】组件</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919205117113.png" alt="image-20220919205117113"></p>
+<p>因为json字符串一般会返回多个不同类型的字段，我们可以自定义返回字段，拿到我们想要的数据。</p>
+<p>其中<strong>路径</strong> 中用到了 <strong>JSON Path</strong> 来筛选数据。 </p>
+<p>例子中的 $.childUriList[*]  为拿到 childUriList数组中的每一个字符串</p>
+<pre><code class="json">&#123;
+&quot;childUriList&quot;:
+[
+&quot;XXXX&quot;,
+&quot;XXXX&quot;,
+&quot;XXXX&quot;
+]
+&#125;
 </code></pre>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220915115005062.png" alt="image-20220915115005062"></p>
-<h1 id="二、编写自动重启脚本"><a href="#二、编写自动重启脚本" class="headerlink" title="二、编写自动重启脚本"></a>二、<strong>编写自动重启脚本</strong></h1><pre><code>vi /opt/traffic-job.sh
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919205300096.png" alt="image-20220919205300096"></p>
+<h2 id="4、JSON-Path-语法"><a href="#4、JSON-Path-语法" class="headerlink" title="4、JSON Path 语法"></a>4、JSON Path 语法</h2><p>1、什么市JSON Path</p>
+<p>SONPath 之于 JSON，就如 XPath之于 XML。JSONPath 可以方便对 JSON 数据结构进行内容提取。</p>
+<p>2、语法介绍</p>
+<table>
+<thead>
+<tr>
+<th><strong>JsonPath</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$</td>
+<td>文档根元素</td>
+</tr>
+<tr>
+<td>@</td>
+<td>当前元素</td>
+</tr>
+<tr>
+<td>.<code>或</code>[]</td>
+<td>匹配下级元素</td>
+</tr>
+<tr>
+<td>..</td>
+<td>递归匹配所有子元素</td>
+</tr>
+<tr>
+<td>*</td>
+<td>通配符，匹配下级元素</td>
+</tr>
+<tr>
+<td>[]</td>
+<td>下标运算符，根据索引获取元素，<strong>XPath索引从1开始，JsonPath索引从0开始</strong></td>
+</tr>
+<tr>
+<td>[,]</td>
+<td>连接操作符，将多个结果拼接成数组返回，可以使用索引或别名</td>
+</tr>
+<tr>
+<td>[start:end:step]</td>
+<td>数据切片操作，XPath不支持</td>
+</tr>
+<tr>
+<td>?()</td>
+<td>过滤表达式</td>
+</tr>
+<tr>
+<td>()</td>
+<td>脚本表达式，使用底层脚本引擎，XPath不支持</td>
+</tr>
+</tbody></table>
+<p>这是一个非常经典的案例，你几乎可以在任何介绍JSON Path的地方看到它，但是很实用。</p>
+<pre><code class="JSON">&#123; &quot;store&quot;: &#123;
+    &quot;book&quot;: [ 
+      &#123; &quot;category&quot;: &quot;reference&quot;,
+        &quot;author&quot;: &quot;Nigel Rees&quot;,
+        &quot;title&quot;: &quot;Sayings of the Century&quot;,
+        &quot;price&quot;: 8.95
+      &#125;,
+      &#123; &quot;category&quot;: &quot;fiction&quot;,
+        &quot;author&quot;: &quot;Evelyn Waugh&quot;,
+        &quot;title&quot;: &quot;Sword of Honour&quot;,
+        &quot;price&quot;: 12.99
+      &#125;,
+      &#123; &quot;category&quot;: &quot;fiction&quot;,
+        &quot;author&quot;: &quot;Herman Melville&quot;,
+        &quot;title&quot;: &quot;Moby Dick&quot;,
+        &quot;isbn&quot;: &quot;0-553-21311-3&quot;,
+        &quot;price&quot;: 8.99
+      &#125;,
+      &#123; &quot;category&quot;: &quot;fiction&quot;,
+        &quot;author&quot;: &quot;J. R. R. Tolkien&quot;,
+        &quot;title&quot;: &quot;The Lord of the Rings&quot;,
+        &quot;isbn&quot;: &quot;0-395-19395-8&quot;,
+        &quot;price&quot;: 22.99
+      &#125;
+    ],
+    &quot;bicycle&quot;: &#123;
+      &quot;color&quot;: &quot;red&quot;,
+      &quot;price&quot;: 19.95
+    &#125;
+  &#125;
+&#125;
 </code></pre>
-<pre><code class="shell">#!/bin/sh
-#traffic 相关任务 - 重启命令
-
-
-date=`date`
-
-# 案件分享
-caseShare=`ps -ef|grep traffic-job-executor-case-share-1.0.0.jar|grep -v grep|wc -l`
-if [ $&#123;caseShare&#125; -eq 0 ]
-then
-    echo  &quot;时间：$&#123;date&#125;，traffic-job-executor-case-share-1.0.0.jar 服务器已挂，重启中...&quot;
-    sleep 10s
-    source /etc/profile;
-    nohup java -jar /opt/traffic-job-executor-case-share-1.0.0.jar &gt;&gt;/opt/case-share.log 2&gt;&amp;1 &amp;
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-case-share-1.0.0.jar 重启完成！&quot;
-else
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-case-share-1.0.0.jar 服务【正常】&quot;
-fi
-
-# 获取12328数据
-complaint=`ps -ef|grep traffic-job-executor-complaint-1.0.0.jar|grep -v grep|wc -l`
-if [ $&#123;complaint&#125; -eq 0 ]
-then
-    echo  &quot;时间：$&#123;date&#125;，traffic-job-executor-complaint-1.0.0.jar 服务器已挂，重启中...&quot;
-    sleep 10s
-    source /etc/profile;
-    nohup java -jar /opt/traffic-job-executor-complaint-1.0.0.jar &gt;&gt;/opt/12328.log 2&gt;&amp;1 &amp;
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-complaint-1.0.0.jar 重启完成！&quot;
-else
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-complaint-1.0.0.jar 服务【正常】&quot;
-fi
-
-# 数据清洗
-dataClean=`ps -ef|grep traffic-job-executor-data-clean-1.0.0.jar|grep -v grep|wc -l`
-if [ $&#123;dataClean&#125; -eq 0 ]
-then
-    echo  &quot;时间：$&#123;date&#125;，traffic-job-executor-data-clean-1.0.0.jar 服务器已挂，重启中...&quot;
-    sleep 10s
-    source /etc/profile;
-    nohup java -jar /opt/traffic-job-executor-data-clean-1.0.0.jar &gt;&gt;/opt/tpsc-clean.log 2&gt;&amp;1 &amp;
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-data-clean-1.0.0.jar 重启完成！&quot;
-else
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-data-clean-1.0.0.jar 服务【正常】&quot;
-fi
-
- echo &quot;===============================================================================&quot;
-</code></pre>
-<p>需要赋予该sh文件可执行权限</p>
-<pre><code class="shell">chmod a+x traffic-job.sh
-</code></pre>
-<h1 id="三、编辑系统定时任务文件"><a href="#三、编辑系统定时任务文件" class="headerlink" title="三、编辑系统定时任务文件"></a>三、编辑系统定时任务文件</h1><pre><code class="shell">crontab -e
-</code></pre>
-<h1 id="四、使用cron表达式，设置1分钟运行一次"><a href="#四、使用cron表达式，设置1分钟运行一次" class="headerlink" title="四、使用cron表达式，设置1分钟运行一次"></a>四、<strong>使用cron表达式，设置1分钟运行一次</strong></h1><pre><code class="shell">*/1 * * * * bash /opt/traffic-job.sh &gt;&gt; /opt/traffic-job-shell-restart.log
-</code></pre>
-<h1 id="五、查看定时任务日志，可以看到每隔1分钟执行了一次"><a href="#五、查看定时任务日志，可以看到每隔1分钟执行了一次" class="headerlink" title="五、查看定时任务日志，可以看到每隔1分钟执行了一次"></a>五、<strong>查看定时任务日志，可以看到每隔1分钟执行了一次</strong></h1><p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220915115623290.png" alt="image-20220915115623290"></p>
+<p>配合示例，对应上面表格的语法，下面的举例更好理解</p>
+<table>
+<thead>
+<tr>
+<th><strong>JsonPath</strong></th>
+<th><strong>Result</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$.store.book[*].author</td>
+<td>所有book的author节点</td>
+</tr>
+<tr>
+<td>$..author</td>
+<td>所有author节点</td>
+</tr>
+<tr>
+<td>$.store.*</td>
+<td>store下的所有节点，book数组和bicycle节点</td>
+</tr>
+<tr>
+<td>$.store..price</td>
+<td>store下的所有price节点</td>
+</tr>
+<tr>
+<td>$..book[2]</td>
+<td>匹配第3个book节点</td>
+</tr>
+<tr>
+<td>$..book[(@.length-1)]</td>
+<td>匹配倒数第1个book节点</td>
+</tr>
+<tr>
+<td>$..book[(-1:)]</td>
+<td>匹配倒数第1个book节点</td>
+</tr>
+<tr>
+<td>$..book[0,1]</td>
+<td>匹配前两个book节点</td>
+</tr>
+<tr>
+<td>$..book[:2]</td>
+<td>匹配前两个book节点</td>
+</tr>
+<tr>
+<td>$..book[?(@.isbn)]</td>
+<td>过滤含isbn字段的节点</td>
+</tr>
+<tr>
+<td>$..book[?(@.price&lt;10)]</td>
+<td>过滤<code>price&lt;10</code>的节点</td>
+</tr>
+<tr>
+<td>$..*</td>
+<td>递归匹配所有子节点</td>
+</tr>
+</tbody></table>
+<p>这个地址可以在线运行 <a target="_blank" rel="noopener" href="http://jsonpath.com/">http://jsonpath.com/</a></p>
+<h2 id="5、拼接url字符串"><a href="#5、拼接url字符串" class="headerlink" title="5、拼接url字符串"></a>5、拼接url字符串</h2><p>拿到结果集后，在每个url字符串后进行拼接处理。这里为了方便，用到了【Java Script代码】组件</p>
+<p>因为路径中有<strong>中文</strong>，为了方便再次请求，需要对url进行编码操作 encodeURI，否则http请求失败。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919211027415.png" alt="image-20220919211027415"></p>
+<p>这里也可以使用 【字符串操作】组件</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919211359727.png" alt="image-20220919211359727"></p>
+<p><strong>Lower&#x2F;Upper</strong>：就是简单的大小写转换，当然只是针对于英文字符的，汉字和数字是无效的。</p>
+<p><strong>Padding</strong>：追加字符串，可以选择头部追加(left),或者尾部追加(right)，不过这个是要配合“Pad char”和“Pad length”使用的。</p>
+<p><strong>Pad char</strong>：只需要再输入框输入想要添加的字符串即可。</p>
+<p><strong>Pad length</strong>：输入长度，这个可以这么理解，假如说未追加内容的字符串是abc长度为3，想要追加的字符串是wq，是以right的方式追加的，如果输入的长度是3，那么结果是没有任何改变的；如果输入的长度是4，那么结果就是abcw；输入的是5，那结果就是abcwq；输入的长度是6，那结果就是abcwqw，相信说到这里应该就很清楚了，不管“Padding”选择的是right还是left，规则都是一样的。</p>
+<p>InitCap：这个的作用就是保证字符串的首字母大写其余的字母都是小写，比如有一个字符串是aBC，如果InitCap的参数选择了“是”，那么结果就是“Abc”。</p>
+<p><strong>Escape</strong>：这个一般应用的较少，比如说选择了其中的“Use CDATA”，那么最后出来的字符串就是CDATA格式的字符串“<![CDATA[test_str]]>”，标红的部分就是原本的字符串，其它的就不一一介绍了，感兴趣的实验一下就明白了。</p>
+<p>Digits：digits本身就是数字的意思，而选择的参数只有三两个“none、”“only”和“remove”，none就是不操作；only就是只保留数字，其他的字符不要；remove就是其他的字符都留下，只将数字字符去除掉。</p>
+<p><strong>Remove Special character</strong>：这个就很简单了，就是去除特殊字符，可以根据需求选择需要删除的字符，如空格(space)、换行符(line feed)等，这里就不一一介绍了，如有疑惑可以百度翻译。</p>
+<h2 id="6、结束"><a href="#6、结束" class="headerlink" title="6、结束"></a>6、结束</h2><p>后面的再次请求，就和前面的操作重复了，就不再描述了。到这里一个简单的http请求就完成了。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
