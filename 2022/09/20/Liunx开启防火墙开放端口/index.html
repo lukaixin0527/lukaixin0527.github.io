@@ -56,7 +56,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -474,12 +474,54 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-Liunx开启防火墙开放端口" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E6%97%B6%E9%97%B4%E5%8E%BB%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%87%A1%E4%BA%8B%E4%BB%8E%E5%B0%8F%E5%81%9A%E8%B5%B7%EF%BC%8C%E4%B8%8D%E6%80%95%E5%8D%95%E8%B0%83%E5%92%8C%E9%87%8D%E5%A4%8D%EF%BC%8C%E9%95%BF%E6%9C%9F%E7%9A%84%E7%A7%AF%E7%B4%AF%E5%9D%9A%E6%8C%81%EF%BC%8C%E6%83%B3%E4%B8%8D%E6%88%90%E5%8A%9F%EF%BC%8C%E4%B9%9F%E9%9A%BE%E3%80%82"><span class="toc-text">抽时间去学习，凡事从小做起，不怕单调和重复，长期的积累坚持，想不成功，也难。</span></a></li></ol>
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-05-11 10:52:20'>2022-09-20 15:35</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>Count:163</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+        <span class="top-comment" title="跳转至评论区">
+            <a href="#comments">
+                Comment:<span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </a>
+        </span>
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Liunx%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">Liunx防火墙</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%98%B2%E7%81%AB%E5%A2%99%E7%8A%B6%E6%80%81"><span class="toc-text">查看防火墙状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">开启防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">关闭防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">重启防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%98%B2%E7%81%AB%E5%A2%99%E6%89%80%E6%9C%89%E5%BC%80%E6%94%BE%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-text">查看防火墙所有开放的端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%9B%91%E5%90%AC%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-text">查看监听的端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%93%AA%E4%B8%AA%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8"><span class="toc-text">检查端口被哪个进程占用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-text">查看进程的详细信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%8C%87%E5%AE%9A%E9%9C%80%E8%A6%81%E5%BC%80%E6%94%BE%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-text">添加指定需要开放的端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3"><span class="toc-text">移除指定端口</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -492,17 +534,45 @@
     }
 </style>
 </div>
-            <h3 id="抽时间去学习，凡事从小做起，不怕单调和重复，长期的积累坚持，想不成功，也难。"><a href="#抽时间去学习，凡事从小做起，不怕单调和重复，长期的积累坚持，想不成功，也难。" class="headerlink" title="抽时间去学习，凡事从小做起，不怕单调和重复，长期的积累坚持，想不成功，也难。"></a>抽时间去学习，凡事从小做起，不怕单调和重复，长期的积累坚持，想不成功，也难。</h3><p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img%E6%BC%AB%E5%A8%8110%E5%91%A8%E5%B9%B4%E5%90%88%E5%BD%B1.jpg" alt="漫威10周年合影"></p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Liunx防火墙"><a href="#Liunx防火墙" class="headerlink" title="Liunx防火墙"></a>Liunx防火墙</h1><h3 id="查看防火墙状态"><a href="#查看防火墙状态" class="headerlink" title="查看防火墙状态"></a>查看防火墙状态</h3><pre><code>firewall-cmd --state
+</code></pre>
+<h3 id="开启防火墙"><a href="#开启防火墙" class="headerlink" title="开启防火墙"></a>开启防火墙</h3><pre><code>systemctl start firewalld.service
+</code></pre>
+<h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><pre><code>systemctl stop firewalld.service
+</code></pre>
+<h3 id="重启防火墙"><a href="#重启防火墙" class="headerlink" title="重启防火墙"></a>重启防火墙</h3><pre><code>service firewalld restart
+</code></pre>
+<h3 id="查看防火墙所有开放的端口"><a href="#查看防火墙所有开放的端口" class="headerlink" title="查看防火墙所有开放的端口"></a>查看防火墙所有开放的端口</h3><pre><code>firewall-cmd --zone=public --list-ports
+</code></pre>
+<h3 id="查看监听的端口"><a href="#查看监听的端口" class="headerlink" title="查看监听的端口"></a>查看监听的端口</h3><pre><code>netstat -lnpt
+</code></pre>
+<h3 id="检查端口被哪个进程占用"><a href="#检查端口被哪个进程占用" class="headerlink" title="检查端口被哪个进程占用"></a>检查端口被哪个进程占用</h3><pre><code>netstat -lnpt |grep 5672
+</code></pre>
+<h3 id="查看进程的详细信息"><a href="#查看进程的详细信息" class="headerlink" title="查看进程的详细信息"></a>查看进程的详细信息</h3><pre><code>ps 6832
+</code></pre>
+<h3 id="添加指定需要开放的端口"><a href="#添加指定需要开放的端口" class="headerlink" title="添加指定需要开放的端口"></a>添加指定需要开放的端口</h3><pre><code>添加指定需要开放的端口： firewall-cmd --add-port=123/tcp --permanent
+重载入添加的端口： firewall-cmd --reload
+查询指定端口是否开启成功： firewall-cmd --query-port=123/tcp
+</code></pre>
+<h3 id="移除指定端口"><a href="#移除指定端口" class="headerlink" title="移除指定端口"></a>移除指定端口</h3><pre><code>firewall-cmd --permanent --remove-port=123/tcp
+</code></pre>
 
-        </article>
-        
-        <p>
-            <a  class="dashang" onclick="dashangToggle()">赏</a>
-        </p>
-        
-        
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
     <div id="comments"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
@@ -524,6 +594,13 @@
 </script>
 
 
+
+
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -532,11 +609,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 <div class="hide_box" onclick="dashangToggle()"></div>
