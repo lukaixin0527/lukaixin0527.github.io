@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Liunx防火墙 | Hexo</title>
-  <meta name="keywords" content=" 防火墙 ">
-  <meta name="description" content="Liunx防火墙 | Hexo">
+  <title>Go 02、基础语法 | Hexo</title>
+  <meta name="keywords" content=" Go ">
+  <meta name="description" content="Go 02、基础语法 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Docker容器最近因为工作需要，利用课余时间通过视频、书籍学习Docker，并在此记录笔记。 第一章Docker简介1.1 Docker能解决什么问题问题：开发人员经常说：&quot;它在我的机器可以正常运行&quot;，言下之意就是，其他机器很可能跑不了 解决：开发人员可以使用 Docker 来解决 &quot;它在我的机器可以正常运行&quot; 的问题，它会将运行程序的相关配置打包（打包成">
 <meta property="og:type" content="article">
@@ -544,9 +544,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Liunx开启防火墙开放端口" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Go基础语法" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Liunx防火墙</h1>
+        <h1 class="article-title">Go 02、基础语法</h1>
     
     <div class="article-meta">
         
@@ -556,7 +556,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="运维">运维</a>
+            <a  data-rel="Golang">Golang</a>
             
         </span>
         
@@ -564,19 +564,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">防火墙</a>
+            <a class="color3">Go</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-10-11 10:19:19'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2022-10-24 20:25:05'>2022-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:163</span>
+        <span>Count:0</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -606,7 +606,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Liunx%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">Liunx防火墙</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%98%B2%E7%81%AB%E5%A2%99%E7%8A%B6%E6%80%81"><span class="toc-text">查看防火墙状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">开启防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">关闭防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-text">重启防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%98%B2%E7%81%AB%E5%A2%99%E6%89%80%E6%9C%89%E5%BC%80%E6%94%BE%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-text">查看防火墙所有开放的端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%9B%91%E5%90%AC%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-text">查看监听的端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%93%AA%E4%B8%AA%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8"><span class="toc-text">检查端口被哪个进程占用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-text">查看进程的详细信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E6%8C%87%E5%AE%9A%E9%9C%80%E8%A6%81%E5%BC%80%E6%94%BE%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="toc-text">添加指定需要开放的端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3"><span class="toc-text">移除指定端口</span></a></li></ol></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -622,29 +622,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Liunx防火墙"><a href="#Liunx防火墙" class="headerlink" title="Liunx防火墙"></a>Liunx防火墙</h1><h3 id="查看防火墙状态"><a href="#查看防火墙状态" class="headerlink" title="查看防火墙状态"></a>查看防火墙状态</h3><pre><code>firewall-cmd --state
-</code></pre>
-<h3 id="开启防火墙"><a href="#开启防火墙" class="headerlink" title="开启防火墙"></a>开启防火墙</h3><pre><code>systemctl start firewalld.service
-</code></pre>
-<h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><pre><code>systemctl stop firewalld.service
-</code></pre>
-<h3 id="重启防火墙"><a href="#重启防火墙" class="headerlink" title="重启防火墙"></a>重启防火墙</h3><pre><code>service firewalld restart
-</code></pre>
-<h3 id="查看防火墙所有开放的端口"><a href="#查看防火墙所有开放的端口" class="headerlink" title="查看防火墙所有开放的端口"></a>查看防火墙所有开放的端口</h3><pre><code>firewall-cmd --zone=public --list-ports
-</code></pre>
-<h3 id="查看监听的端口"><a href="#查看监听的端口" class="headerlink" title="查看监听的端口"></a>查看监听的端口</h3><pre><code>netstat -lnpt
-</code></pre>
-<h3 id="检查端口被哪个进程占用"><a href="#检查端口被哪个进程占用" class="headerlink" title="检查端口被哪个进程占用"></a>检查端口被哪个进程占用</h3><pre><code>netstat -lnpt |grep 5672
-</code></pre>
-<h3 id="查看进程的详细信息"><a href="#查看进程的详细信息" class="headerlink" title="查看进程的详细信息"></a>查看进程的详细信息</h3><pre><code>ps 6832
-</code></pre>
-<h3 id="添加指定需要开放的端口"><a href="#添加指定需要开放的端口" class="headerlink" title="添加指定需要开放的端口"></a>添加指定需要开放的端口</h3><pre><code>添加指定需要开放的端口： firewall-cmd --add-port=123/tcp --permanent
-重载入添加的端口： firewall-cmd --reload
-查询指定端口是否开启成功： firewall-cmd --query-port=123/tcp
-</code></pre>
-<h3 id="移除指定端口"><a href="#移除指定端口" class="headerlink" title="移除指定端口"></a>移除指定端口</h3><pre><code>firewall-cmd --permanent --remove-port=123/tcp
-</code></pre>
-
+        
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
     </div>
