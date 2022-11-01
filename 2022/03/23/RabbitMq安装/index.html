@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Linux编写重启Jar程序脚本、定时清除日志 | Hexo</title>
-  <meta name="keywords" content=" 服务监控 ">
-  <meta name="description" content="Linux编写重启Jar程序脚本、定时清除日志 | Hexo">
+  <title>RabbitMq安装 | Hexo</title>
+  <meta name="keywords" content=" 消息队列 , RabbitMq ">
+  <meta name="description" content="RabbitMq安装 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Go 02、基础语法">
@@ -607,9 +607,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Linux编写重启Jar程序脚本" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-RabbitMq安装" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Linux编写重启Jar程序脚本、定时清除日志</h1>
+        <h1 class="article-title">RabbitMq安装</h1>
     
     <div class="article-meta">
         
@@ -627,19 +627,21 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">服务监控</a>
+            <a class="color5">消息队列</a>
+            
+            <a class="color4">RabbitMq</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-20 15:34:43'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2022-11-01 09:56:21'>2022-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:3.5k</span>
+        <span>Count:1.2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -669,7 +671,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Centos7%E5%AE%89%E8%A3%85crontab"><span class="toc-text">一、Centos7安装crontab</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BC%96%E5%86%99%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E8%84%9A%E6%9C%AC"><span class="toc-text">二、编写自动重启脚本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BC%96%E8%BE%91%E7%B3%BB%E7%BB%9F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%96%87%E4%BB%B6"><span class="toc-text">三、编辑系统定时任务文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8cron%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%8C%E8%AE%BE%E7%BD%AE1%E5%88%86%E9%92%9F%E8%BF%90%E8%A1%8C%E4%B8%80%E6%AC%A1"><span class="toc-text">四、使用cron表达式，设置1分钟运行一次</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%9F%A5%E7%9C%8B%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E6%97%A5%E5%BF%97%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E6%AF%8F%E9%9A%941%E5%88%86%E9%92%9F%E6%89%A7%E8%A1%8C%E4%BA%86%E4%B8%80%E6%AC%A1"><span class="toc-text">五、查看定时任务日志，可以看到每隔1分钟执行了一次</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%AE%89%E8%A3%85%E6%97%A5%E5%BF%97%E5%88%86%E5%89%B2%E5%B7%A5%E5%85%B7cronolog"><span class="toc-text">六、安装日志分割工具cronolog</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%8C%89%E5%A4%A9%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97"><span class="toc-text">七、按天输出日志</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%AE%9A%E6%9C%9F%E5%88%A0%E9%99%A4%E6%97%A5%E5%BF%97"><span class="toc-text">八、定期删除日志</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81crontab%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8Ccron%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">九、crontab表达式和cron表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cron%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">cron表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%8F%E4%B8%AA%E5%9F%9F%E5%85%81%E8%AE%B8%E7%9A%84%E5%80%BC"><span class="toc-text">每个域允许的值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-text">特殊字符的含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-text">示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crontab%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">Crontab表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Crontab%E4%BB%8B%E7%BB%8D"><span class="toc-text">Crontab介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Crontab%E4%BD%BF%E7%94%A8"><span class="toc-text">Crontab使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Crontab%E4%BE%8B%E5%AD%90"><span class="toc-text">Crontab例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98"><span class="toc-text">时区问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-text">解决方案</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-text">1、简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8RabbitMQ"><span class="toc-text">2、下载安装启动RabbitMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E3%80%81%E4%B8%8B%E8%BD%BDRabbitMQ"><span class="toc-text">2.1、下载RabbitMQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E3%80%81%E4%B8%8B%E8%BD%BDErlang"><span class="toc-text">2.2、下载Erlang</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3%E3%80%81%E5%AE%89%E8%A3%85Erlang"><span class="toc-text">2.3、安装Erlang</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4%E3%80%81%E5%AE%89%E8%A3%85RabbitMQ"><span class="toc-text">2.4、安装RabbitMQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5%E3%80%81%E5%90%AF%E5%8A%A8RabbitMQ%E6%9C%8D%E5%8A%A1"><span class="toc-text">2.5、启动RabbitMQ服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81RabbitMQWeb%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E5%8F%8A%E6%8E%88%E6%9D%83%E6%93%8D%E4%BD%9C"><span class="toc-text">3、RabbitMQWeb管理界面及授权操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E3%80%81%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8RabbitMQWeb%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2"><span class="toc-text">3.1、安装启动RabbitMQWeb管理界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%E3%80%81%E6%B7%BB%E5%8A%A0%E8%BF%9C%E7%A8%8B%E7%94%A8%E6%88%B7"><span class="toc-text">3.2、添加远程用户</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -685,362 +687,107 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、Centos7安装crontab"><a href="#一、Centos7安装crontab" class="headerlink" title="一、Centos7安装crontab"></a>一、Centos7安装crontab</h1><pre><code class="shell"># 安装
-yum -y install crontabs
-# 查看状态
-systemctl status crond
-# 启动
-systemctl start crond
-# 开机启动
-systemctl enable crond.service
+        <h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><p><strong>官网</strong>：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/">https://www.rabbitmq.com/</a></p>
+<p><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=RabbitMQ&spm=1001.2101.3001.7020">RabbitMQ</a>是一个开源的遵循<code>AMQP</code>协议实现的基于<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Erlang&spm=1001.2101.3001.7020">Erlang</a>语言编写，支持多种客户端（语言），用于在分布式系统中存储消息，转发消息，具有高可用高可扩性，易用性等特征。<br><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img3c01cd2a894605d1e77f665dea4ba39a.png" alt="image-20210306004740486"></p>
+<hr>
+<h2 id="2、下载安装启动RabbitMQ"><a href="#2、下载安装启动RabbitMQ" class="headerlink" title="2、下载安装启动RabbitMQ"></a>2、下载安装启动RabbitMQ</h2><p><strong>环境准备</strong>：阿里云<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=centos7&spm=1001.2101.3001.7020">centos7</a>.6 服务器</p>
+<pre><code># 查看系统版本
+[root@zsr ~]# lsb_release -a
+LSB Version:	:core-4.1-amd64:core-4.1-noarch
+Distributor ID:	CentOS
+Description:	CentOS Linux release 7.6.1810 (Core) 
+Release:	7.6.1810
+Codename:	Core
 </code></pre>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220915115005062.png" alt="image-20220915115005062"></p>
-<h1 id="二、编写自动重启脚本"><a href="#二、编写自动重启脚本" class="headerlink" title="二、编写自动重启脚本"></a>二、<strong>编写自动重启脚本</strong></h1><pre><code>vi /opt/traffic-job.sh
+<h3 id="2-1、下载RabbitMQ"><a href="#2-1、下载RabbitMQ" class="headerlink" title="2.1、下载RabbitMQ"></a>2.1、下载RabbitMQ</h3><p><strong>下载地址</strong>：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/download.html">https://www.rabbitmq.com/download.html</a><br><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgc2a43d7b156037d026377e58f000c0a1.png" alt="image-20210505195722340"><br>选择对应的系统版本点击下载，下载后会得到<code>.rpm</code>文件<br><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgd30ba3494143e490586b644a777d1a86.png" alt="image-20210306171625359"></p>
+<h3 id="2-2、下载Erlang"><a href="#2-2、下载Erlang" class="headerlink" title="2.2、下载Erlang"></a>2.2、下载Erlang</h3><blockquote>
+<p>RabbitMQ是采用 Erlang语言开发的，所以系统环境必须提供 Erlang环境，需要是安装 Erlang</p>
+</blockquote>
+<blockquote>
+<p><code>Erlang</code>和<code>RabbitMQ</code>版本对照：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/which-erlang.html">https://www.rabbitmq.com/which-erlang.html</a></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img982bab51c7a7c5e7859aac80b73246e8.png" alt="image-20210306105403265"></p>
+</blockquote>
+<p>这里安装最新版本3.8.14的<code>RabbitMQ</code>，对应的<code>Erlang</code>版本推荐<code>23.x</code>，我们下载<code>erlang-23.2.7-2.el7.x86_64.rpm</code></p>
+<p>下载地址：<a target="_blank" rel="noopener" href="https://packagecloud.io/rabbitmq/erlang/packages/el/7/erlang-23.2.7-2.el7.x86_64.rpm">https://packagecloud.io/rabbitmq/erlang/packages/el/7/erlang-23.2.7-2.el7.x86_64.rpm</a><br><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img434d500793ba3b7102502060a2d24dd5.png" alt="image-20210306155749846"><br>其中的<code>el7</code>表示Red Hat 7.x，即<code>CentOS 7.x</code></p>
+<p>点击右上角下载即可得到<code>.rpm</code>文件<br><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img1f7e491967213fae693b324a23e1404e.png" alt="image-20210306171649898"></p>
+<h3 id="2-3、安装Erlang"><a href="#2-3、安装Erlang" class="headerlink" title="2.3、安装Erlang"></a>2.3、安装Erlang</h3><p>首先将下载好的文件上传到服务器，创建一个文件夹用来存放文件</p>
+<pre><code>[root@zsr ~]# mkdir -p /usr/rabbitmq
 </code></pre>
-<pre><code class="shell">#!/bin/sh
-#traffic 相关任务 - 重启命令
+<p>再利用<code>xftp</code>工具将上述下载的两个<code>.rpm</code>文件上传到服务器的刚创建的文件夹中<br><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img329ae85431345deba319246cf34beced.png" alt="image-20210306171754048"><br>然后切换到<code>/usr/rabbitmq</code>目录，解压安装<code>erlang</code></p>
+<pre><code># 解压
+rpm -Uvh erlang-23.2.7-2.el7.x86_64.rpm
 
+# 安装
+yum install -y erlang
 
-date=`date`
-
-# 案件分享
-caseShare=`ps -ef|grep traffic-job-executor-case-share-1.0.0.jar|grep -v grep|wc -l`
-if [ $&#123;caseShare&#125; -eq 0 ]
-then
-    echo  &quot;时间：$&#123;date&#125;，traffic-job-executor-case-share-1.0.0.jar 服务器已挂，重启中...&quot;
-    sleep 10s
-    source /etc/profile;
-    nohup java -jar /opt/traffic-job-executor-case-share-1.0.0.jar &gt;&gt;/opt/case-share.log 2&gt;&amp;1 &amp;
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-case-share-1.0.0.jar 重启完成！&quot;
-else
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-case-share-1.0.0.jar 服务【正常】&quot;
-fi
-
-# 获取12328数据
-complaint=`ps -ef|grep traffic-job-executor-complaint-1.0.0.jar|grep -v grep|wc -l`
-if [ $&#123;complaint&#125; -eq 0 ]
-then
-    echo  &quot;时间：$&#123;date&#125;，traffic-job-executor-complaint-1.0.0.jar 服务器已挂，重启中...&quot;
-    sleep 10s
-    source /etc/profile;
-    nohup java -jar /opt/traffic-job-executor-complaint-1.0.0.jar &gt;&gt;/opt/12328.log 2&gt;&amp;1 &amp;
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-complaint-1.0.0.jar 重启完成！&quot;
-else
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-complaint-1.0.0.jar 服务【正常】&quot;
-fi
-
-# 数据清洗
-dataClean=`ps -ef|grep traffic-job-executor-data-clean-1.0.0.jar|grep -v grep|wc -l`
-if [ $&#123;dataClean&#125; -eq 0 ]
-then
-    echo  &quot;时间：$&#123;date&#125;，traffic-job-executor-data-clean-1.0.0.jar 服务器已挂，重启中...&quot;
-    sleep 10s
-    source /etc/profile;
-    nohup java -jar /opt/traffic-job-executor-data-clean-1.0.0.jar &gt;&gt;/opt/tpsc-clean.log 2&gt;&amp;1 &amp;
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-data-clean-1.0.0.jar 重启完成！&quot;
-else
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-data-clean-1.0.0.jar 服务【正常】&quot;
-fi
-
- echo &quot;===============================================================================&quot;
+123456
 </code></pre>
-<p>需要赋予该sh文件可执行权限</p>
-<pre><code class="shell">chmod a+x traffic-job.sh
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgbc258420e09d877321b8d84bac8dcbf5.png" alt="image-20210306172313930"><br>安装完成后输入如下指令查看版本号</p>
+<pre><code>erl -v
 </code></pre>
-<h1 id="三、编辑系统定时任务文件"><a href="#三、编辑系统定时任务文件" class="headerlink" title="三、编辑系统定时任务文件"></a>三、编辑系统定时任务文件</h1><pre><code class="shell">crontab -e
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgc06df0aa6fa2e3042c7dc816bff2c6a4.png" alt="image-20210306172327030"></p>
+<h3 id="2-4、安装RabbitMQ"><a href="#2-4、安装RabbitMQ" class="headerlink" title="2.4、安装RabbitMQ"></a>2.4、安装RabbitMQ</h3><p>在<code>RabiitMQ</code>安装过程中需要依赖<code>socat</code>插件，首先安装该插件</p>
+<pre><code>yum install -y socat
 </code></pre>
-<h1 id="四、使用cron表达式，设置1分钟运行一次"><a href="#四、使用cron表达式，设置1分钟运行一次" class="headerlink" title="四、使用cron表达式，设置1分钟运行一次"></a>四、<strong>使用cron表达式，设置1分钟运行一次</strong></h1><pre><code class="shell">*/1 * * * * bash /opt/traffic-job.sh &gt;&gt; /opt/traffic-job-shell-restart.log
-</code></pre>
-<h1 id="五、查看定时任务日志，可以看到每隔1分钟执行了一次"><a href="#五、查看定时任务日志，可以看到每隔1分钟执行了一次" class="headerlink" title="五、查看定时任务日志，可以看到每隔1分钟执行了一次"></a>五、<strong>查看定时任务日志，可以看到每隔1分钟执行了一次</strong></h1><p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img/image-20220915115623290.png" alt="image-20220915115623290"></p>
-<h1 id="六、安装日志分割工具cronolog"><a href="#六、安装日志分割工具cronolog" class="headerlink" title="六、安装日志分割工具cronolog"></a>六、安装日志分割工具cronolog</h1><pre><code class="shell">1、下载
- wget http://cronolog.org/download/cronolog-1.6.2.tar.gz
- 
-2、解压缩
-tar zxvf cronolog-1.6.2.tar.gz
+<p>然后解压安装<code>RabbitMQ</code>的安装包</p>
+<pre><code># 解压
+rpm -Uvh rabbitmq-server-3.8.14-1.el7.noarch.rpm
 
-3、进入cronolog安装文件所在目录
-cd cronolog-1.6.2
-
-4、运行安装
- ./configure
- make
- make install
- 
-5、查看cronolog安装后所在目录（验证安装是否成功）
- which cronolog
- 一般情况下显示为：/usr/local/sbin/cronolog
+# 安装
+yum install -y rabbitmq-server
 </code></pre>
-<h1 id="七、按天输出日志"><a href="#七、按天输出日志" class="headerlink" title="七、按天输出日志"></a>七、按天输出日志</h1><pre><code class="shell">#!/bin/sh
-#traffic 相关任务 - 重启命令
+<h3 id="2-5、启动RabbitMQ服务"><a href="#2-5、启动RabbitMQ服务" class="headerlink" title="2.5、启动RabbitMQ服务"></a>2.5、启动RabbitMQ服务</h3><pre><code># 启动rabbitmq
+systemctl start rabbitmq-server
 
-
-date=`date`
-
-# 案件分享
-caseShare=`ps -ef|grep traffic-job-executor-case-share-1.0.0.jar|grep -v grep|wc -l`
-if [ $&#123;caseShare&#125; -eq 0 ]
-then
-    echo  &quot;时间：$&#123;date&#125;，traffic-job-executor-case-share-1.0.0.jar 服务器已挂，重启中...&quot;
-    sleep 10s
-    source /etc/profile;
-    nohup java -jar /opt/traffic-job-executor-case-share-1.0.0.jar | /usr/local/sbin/cronolog  /opt/log/case-share-%Y%m%d.out &amp;
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-case-share-1.0.0.jar 重启完成！&quot;
-else
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-case-share-1.0.0.jar 服务【正常】&quot;
-fi
-
-# 获取12328数据
-complaint=`ps -ef|grep traffic-job-executor-complaint-1.0.0.jar|grep -v grep|wc -l`
-if [ $&#123;complaint&#125; -eq 0 ]
-then
-    echo  &quot;时间：$&#123;date&#125;，traffic-job-executor-complaint-1.0.0.jar 服务器已挂，重启中...&quot;
-    sleep 10s
-    source /etc/profile;
-    nohup java -jar /opt/traffic-job-executor-complaint-1.0.0.jar | /usr/local/sbin/cronolog  /opt/log/12328-%Y%m%d.out &amp;
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-complaint-1.0.0.jar 重启完成！&quot;
-else
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-complaint-1.0.0.jar 服务【正常】&quot;
-fi
-
-# 数据清洗
-dataClean=`ps -ef|grep traffic-job-executor-data-clean-1.0.0.jar|grep -v grep|wc -l`
-if [ $&#123;dataClean&#125; -eq 0 ]
-then
-    echo  &quot;时间：$&#123;date&#125;，traffic-job-executor-data-clean-1.0.0.jar 服务器已挂，重启中...&quot;
-    sleep 10s
-    source /etc/profile;
-    nohup java -jar /opt/traffic-job-executor-data-clean-1.0.0.jar | /usr/local/sbin/cronolog  /opt/log/tpsc-data-clean-%Y%m%d.out &amp;
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-data-clean-1.0.0.jar 重启完成！&quot;
-else
-    echo &quot;时间：$&#123;date&#125;，traffic-job-executor-data-clean-1.0.0.jar 服务【正常】&quot;
-fi
-
- echo &quot;===============================================================================&quot;
+# 查看rabbitmq状态
+systemctl status rabbitmq-server
 </code></pre>
-<h1 id="八、定期删除日志"><a href="#八、定期删除日志" class="headerlink" title="八、定期删除日志"></a>八、定期删除日志</h1><p>编写文件 log_clean.sh</p>
-<pre><code class="shell"># +30 删除30天以前的数据
-save_day=30
-#日志所在目录,多个目录以逗号分隔
-log_dirs=/opt/log/
-#日志后缀，多种后缀以\|分隔s
-log_subfixs=&quot;log\|out\|gz&quot;
-log_prefixs=&quot;catalina&quot;
-echo &#39;start clear ...&#39;
-IFS=,
-#按后缀删除
-if [[ $log_subfixs ]]
-then
-echo &#39;根据后缀消除&#39;
-for log_dir in $&#123;log_dirs&#125;; do
-  find $&#123;log_dir&#125; -mtime +$&#123;save_day&#125; -regex &quot;.*\.\($&#123;log_subfixs&#125;\)&quot;  -exec echo delete file:&#123;&#125; \;
-  find $&#123;log_dir&#125; -mtime +$&#123;save_day&#125; -regex &quot;.*\.\($&#123;log_subfixs&#125;\)&quot;  -exec rm -rf &#123;&#125; \;
-   echo &quot;scan dir:$&#123;log_dir&#125;&quot;
-   
-done
-fi
-#按前缀删除
-if [[ $log_prefixs ]]
-then
-echo &#39;根据前缀清除&#39;
-for log_dir in $&#123;log_dirs&#125;; do
-  find $&#123;log_dir&#125; -mtime +$&#123;save_day&#125; -name &quot;*$&#123;log_prefixs&#125;.*&quot;  -exec echo delete file:&#123;&#125; \;
-  find $&#123;log_dir&#125; -mtime +$&#123;save_day&#125; -name &quot;*$&#123;log_prefixs&#125;.*&quot;  -exec rm -rf &#123;&#125; \;
-  echo &quot;scan dir:$&#123;log_dir&#125;&quot;
-done
-fi
-</code></pre>
-<p>赋予文件权限</p>
-<pre><code class="shell">chmod a+x log_clean.sh
-</code></pre>
-<p>定时执行日志清除任务</p>
-<pre><code class="shell"># 编写crontab
-crontab -e
+<p>显示<code>active</code>则表示服务安装并启动成功<br><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img8670d8cd1b59902bfdba68d9925ee92c.png" alt="image-20210306173012889"><br>其他命令：</p>
+<pre><code># 设置rabbitmq服务开机自启动
+systemctl enable rabbitmq-server
 
-# 添加任务
-0 1 * * * bash /opt/log_clean.sh &gt;&gt; /opt/log/crontab/traffic-log-clean-shell.out
+# 关闭rabbitmq服务
+systemctl stop rabbitmq-server
+
+# 重启rabbitmq服务
+systemctl restart rabbitmq-server
 </code></pre>
-<h1 id="九、crontab表达式和cron表达式"><a href="#九、crontab表达式和cron表达式" class="headerlink" title="九、crontab表达式和cron表达式"></a>九、crontab表达式和cron表达式</h1><h2 id="cron表达式"><a href="#cron表达式" class="headerlink" title="cron表达式"></a>cron表达式</h2><p>Cron表达式是一个字符串，字符串以5或6个空格隔开，<strong>分为6或7个域</strong>，每一个域代表一个含义，Cron有如下两种语法格式：<br>（1） Seconds Minutes Hours DayofMonth Month DayofWeek Year<br>（2） Seconds Minutes Hours DayofMonth Month DayofWeek</p>
-<h3 id="每个域允许的值"><a href="#每个域允许的值" class="headerlink" title="每个域允许的值"></a>每个域允许的值</h3><table>
-<thead>
-<tr>
-<th align="left">域</th>
-<th align="left">允许的数值</th>
-<th align="left">允许的特殊字符</th>
-<th align="left">备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">秒</td>
-<td align="left">0~59</td>
-<td align="left">- * &#x2F;</td>
-<td align="left">-</td>
-</tr>
-<tr>
-<td align="left">分</td>
-<td align="left">0~59</td>
-<td align="left">- * &#x2F;</td>
-<td align="left">-</td>
-</tr>
-<tr>
-<td align="left">小时</td>
-<td align="left">0~23</td>
-<td align="left">- * &#x2F;</td>
-<td align="left">-</td>
-</tr>
-<tr>
-<td align="left">日期</td>
-<td align="left">1~31</td>
-<td align="left">- * ? &#x2F; L W C</td>
-<td align="left">-</td>
-</tr>
-<tr>
-<td align="left">月份</td>
-<td align="left">1~12</td>
-<td align="left">JAN-DEC - * &#x2F;</td>
-<td align="left">-</td>
-</tr>
-<tr>
-<td align="left">星期</td>
-<td align="left">1~7</td>
-<td align="left">SUN-SAT - * ? &#x2F; L C #</td>
-<td align="left">1 表示星期天，2 表示星期一，依次类推</td>
-</tr>
-<tr>
-<td align="left">年（可选）</td>
-<td align="left">留空，1970~2099</td>
-<td align="left">, - * &#x2F;</td>
-<td align="left">自动生成，工具不显示该值</td>
-</tr>
-</tbody></table>
-<h3 id="特殊字符的含义"><a href="#特殊字符的含义" class="headerlink" title="特殊字符的含义"></a>特殊字符的含义</h3><table>
-<thead>
-<tr>
-<th align="left">字符</th>
-<th align="left">含义</th>
-<th align="left">示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">*</td>
-<td align="left">表示匹配域的任意值</td>
-<td align="left">在分这个域使用 <code>*</code>，即表示每分钟都会触发事件。</td>
-</tr>
-<tr>
-<td align="left">？</td>
-<td align="left">表示匹配域的任意值，但<strong>只能用在日期和星期两个域</strong>，因为这两个域会相互影响。</td>
-<td align="left">要在每月的 20 号触发调度，不管每个月的 20 号是星期几，则只能使用如下写法：<code>13 13 15 20 * ?</code>。其中，因为日期域已经指定了 20 号，最后一位星期域只能用 <code>?</code>，不能使用 <code>*</code>。如果最后一位使用 <code>*</code>，则表示不管星期几都会触发，与日期域的 20 号相斥，此时表达式不正确。</td>
-</tr>
-<tr>
-<td align="left">-</td>
-<td align="left">表示起止范围</td>
-<td align="left">在分这个域使用 5-20，表示从 5 分到 20 分钟每分钟触发一次。</td>
-</tr>
-<tr>
-<td align="left">&#x2F;</td>
-<td align="left">表示起始时间开始触发，然后每隔固定时间触发一次</td>
-<td align="left">在分这个域使用 5&#x2F;20，表示在第 5 分钟触发一次，之后每 20 分钟触发一次，即 5、 25、45 等分别触发一次。</td>
-</tr>
-<tr>
-<td align="left">,</td>
-<td align="left">表示列出枚举值</td>
-<td align="left">在分这个域使用 5,20，则意味着在 5 和 20 分每分钟触发一次。</td>
-</tr>
-<tr>
-<td align="left">L</td>
-<td align="left">表示最后，只能出现在日和星期两个域</td>
-<td align="left">在星期这个域使用 5L，意味着在最后的一个星期四触发。</td>
-</tr>
-<tr>
-<td align="left">W</td>
-<td align="left">表示有效工作日（周一到周五），只能出现在日这个域，系统将在离指定日期最近的有效工作日触发事件。</td>
-<td align="left">在日这个域使用 5W，如果 5 号是星期六，则将在最近的工作日星期五，即 4 号触发。如果 5 号是星期天，则在 6 号（周一）触发；如果 5 号为工作日，则就在 5 号触发。另外，W 的最近寻找不会跨过月份。</td>
-</tr>
-<tr>
-<td align="left">LW</td>
-<td align="left">这两个字符可以连用，表示在某个月最后一个工作日，即最后一个星期五。</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">#</td>
-<td align="left">表示每个月第几个星期几，<strong>只能出现在星期这个域</strong></td>
-<td align="left">在星期这个域使用 4#2，表示某月的第二个星期三，4 表示星期三，2 表示第二个。</td>
-</tr>
-</tbody></table>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><ul>
-<li><code>*/5 * * * * ?</code>：每隔 5 秒执行一次</li>
-<li><code>0 */1 * * * ?</code>：每隔 1 分钟执行一次</li>
-<li><code>0 0 2 1 * ? *</code>：每月 1 日的凌晨 2 点执行一次</li>
-<li><code>0 15 10 ? * MON-FRI</code>：周一到周五每天上午 10：15 执行作业</li>
-<li><code>0 15 10 ? 6L 2002-2006</code>：2002 年至 2006 年的每个月的最后一个星期五上午 10:15 执行作业</li>
-<li><code>0 0 23 * * ?</code>：每天 23 点执行一次</li>
-<li><code>0 0 1 * * ?</code>：每天凌晨 1 点执行一次</li>
-<li><code>0 0 1 1 * ?</code>：每月 1 日凌晨 1 点执行一次</li>
-<li><code>0 0 23 L * ?</code>：每月最后一天 23 点执行一次</li>
-<li><code>0 0 1 ? * L</code>：每周星期天凌晨 1 点执行一次</li>
-<li><code>0 26,29,33 * * * ?</code>：在 26 分、29 分、33 分执行一次</li>
-<li><code>0 0 0,13,18,21 * * ?</code>：每天的 0 点、13 点、18 点、21 点都执行一次</li>
-<li><code>0 0 10,14,16 * * ?</code>：每天上午 10 点，下午 2 点，4 点执行一次</li>
-<li><code>0 0/30 9-17 * * ?</code>：朝九晚五工作时间内每半小时执行一次</li>
-<li><code>0 0 12 ? * WED</code>：每个星期三中午 12 点执行一次</li>
-<li><code>0 0 12 * * ?</code>：每天中午 12 点触发</li>
-<li><code>0 15 10 ? * *</code>：每天上午 10:15 触发</li>
-<li><code>0 15 10 * * ?</code>：每天上午 10:15 触发</li>
-<li><code>0 15 10 * * ? *</code>：每天上午 10:15 触发</li>
-<li><code>0 15 10 * * ? 2005</code>：2005 年的每天上午 10:15 触发</li>
-<li><code>0 * 14 * * ?</code>：每天下午 2 点到 2:59 期间的每 1 分钟触发</li>
-<li><code>0 0/5 14 * * ?</code>：每天下午 2 点到 2:55 期间的每 5 分钟触发</li>
-<li><code>0 0/5 14,18 * * ?</code>：每天下午 2 点到 2:55 期间和下午 6 点到 6:55 期间的每 5 分钟触发</li>
-<li><code>0 0-5 14 * * ?</code>：每天下午 2 点到 2:05 期间的每 1 分钟触发</li>
-<li><code>0 10,44 14 ? 3 WED</code>：每年三月的星期三的下午 2:10 和 2:44 触发</li>
-<li><code>0 15 10 ? * MON-FRI</code>：周一至周五的上午 10:15 触发</li>
-<li><code>0 15 10 15 * ?</code>：每月 15 日上午 10:15 触发</li>
-<li><code>0 15 10 L * ?</code>：每月最后一日的上午 10:15 触发</li>
-<li><code>0 15 10 ? * 6L</code>：每月的最后一个星期五上午 10:15 触发</li>
-<li><code>0 15 10 ? * 6L 2002-2005</code>：2002 年至 2005 年的每月的最后一个星期五上午 10:15 触发</li>
-<li><code>0 15 10 ? * 6#3</code>：每月的第三个星期五上午 10:15 触发</li>
-</ul>
-<h2 id="Crontab表达式"><a href="#Crontab表达式" class="headerlink" title="Crontab表达式"></a>Crontab表达式</h2><p>Crontab表达式还是比较好区分的，它<strong>只有五位</strong>。</p>
-<h3 id="Crontab介绍"><a href="#Crontab介绍" class="headerlink" title="Crontab介绍"></a>Crontab介绍</h3><p>crontab指令常见于Unix和类Unix的操作系统之中，用于设置周期性被履行的指令。该指令从规范输入设备读取指令，并将其存放于“crontab”文件中，以供之后读取和履行。</p>
-<p>crontab贮存的指令被看护进程激活，crond常常在后台运转，每一分钟检查是否有预订的作业需求执行。</p>
-<p>crontab表达式的每一行均严格遵守特定的表达式，由空格或tab分隔为数个领域，每个领域可以放置单一或多个表达式。</p>
-<p>时程表的格式:z1 z2 z3 z4 z5 program，其中 z1 是分钟，z2 小时，z3 一个月份中的第几日，z4 月份，z5 表示一个星期中的第几天。program 表示要执行的shell或者命名。</p>
-<pre><code class="shell">0    2    *    *    6
-*    *    *    *    *    *
--    -    -    -    -    -
-|    |    |    |    |    |
-|    |    |    |    |    + 年 [可选参数]
-|    |    |    |    +----- 星期几 (0 - 7) (Sunday=0 or 7)
-|    |    |    +---------- 月份 (1 - 12)
-|    |    +--------------- 几号 (1 - 31)
-|    +-------------------- 小时 (0 - 23)
-+------------------------- 分钟 (0 - 59)
+<hr>
+<h2 id="3、RabbitMQWeb管理界面及授权操作"><a href="#3、RabbitMQWeb管理界面及授权操作" class="headerlink" title="3、RabbitMQWeb管理界面及授权操作"></a>3、RabbitMQWeb管理界面及授权操作</h2><h3 id="3-1、安装启动RabbitMQWeb管理界面"><a href="#3-1、安装启动RabbitMQWeb管理界面" class="headerlink" title="3.1、安装启动RabbitMQWeb管理界面"></a>3.1、安装启动RabbitMQWeb管理界面</h3><blockquote>
+<p>默认情况下，rabbitmq没有安装web端的客户端软件，需要安装才可以生效</p>
+</blockquote>
+<pre><code># 打开RabbitMQWeb管理界面插件
+rabbitmq-plugins enable rabbitmq_management
 </code></pre>
-<h3 id="Crontab使用"><a href="#Crontab使用" class="headerlink" title="Crontab使用"></a>Crontab使用</h3><p>cron是一个linux下的定时执行工具，可以在无需人工干预的情况下运行作业。由于Cron是Linux的内置服务，但它不自动起来，可以用以下的方法启动、关闭这个服务。</p>
-<p>cron服务提供crontab命令来设定cron服务的，以下是这个命令的一些参数与说明： crontab -u &#x2F;&#x2F;设定某个用户的cron服务，一般root用户在执行这个命令的时候需要此参数；crontab -l &#x2F;&#x2F;列出某个用户cron服务的详细内容；crontab -r &#x2F;&#x2F;删除某个用户的cron服务；crontab -e &#x2F;&#x2F;编辑某个用户的cron服务。</p>
-<h3 id="Crontab例子"><a href="#Crontab例子" class="headerlink" title="Crontab例子"></a>Crontab例子</h3><ul>
-<li><code>30 16 * * * /usr/local/etc/rc.d/lighttpd restart</code> 表示每晚天中午的16:30重启lighttpd</li>
-<li><code>40 3 3,15,23 * * /usr/local/etc/rc.d/lighttpd restart</code> 表示每月3、15、23日的3 : 40重启lighttpd</li>
-<li><code>30 3 * * 6,0 /usr/local/etc/rc.d/lighttpd restart</code> 表示每周六、周日的3 : 30重启lighttpd</li>
-<li><code>0,30 20-22 * * * /usr/local/etc/rc.d/lighttpd restart</code> 表示在每天20 : 00至22 : 00之间每隔30分钟重启lighttpd</li>
-<li><code>0 23 * * 6 /usr/local/etc/rc.d/lighttpd restart</code> 表示每星期六的11 : 00 pm重启lighttpd</li>
-<li><code>0 */2 * * * /usr/local/etc/rc.d/lighttpd restart</code> 每2小时重启lighttpd</li>
-<li><code>* 23-7/1 * * * /usr/local/etc/rc.d/lighttpd restart</code> 晚上11点到早上7点之间，每隔一小时重启lighttpd</li>
-<li><code>0 11 5 * mon-wed /usr/local/etc/rc.d/lighttpd restart</code> 每月的5号与每周一到周三的11点重启lighttpd</li>
-<li><code>0 5 1 jan * /usr/local/etc/rc.d/lighttpd restart</code> 一月一号的5点重启lighttpd</li>
-</ul>
-<h2 id="时区问题"><a href="#时区问题" class="headerlink" title="时区问题"></a>时区问题</h2><p>在github的action中使用crontab表达式设置定时任务时，通常会出现这样一个问题，我设置的是北京时间的每天8:00执行任务，结果在凌晨就执行了。</p>
-<p>这个问题出现的原因是，crontab表达式的时间是受操作系统所设置的时区影响的，而如果在github action中使用ubuntu环境运行定时任务，里面的时区默认使用的是UTC，UTC时间比北京时间提前8小时。例如北京时间每天8:00调度函数，那么转化为UTC时间就是每天0:00调度函数，则可以使用<code>0 0 0 * * *</code>，而如果你想在北京时间每天20:00指定定时任务，则需要转换为UTC时间的12:00，cron表达式可以表示为：<code>0 0 12 * * *</code>。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><ol>
-<li><p>上面也提到了，可以直接将北京时间转换为UTC时间，也就是将北京时间减去8小时再写入crontab表达式即可避免时区不一致的问题。</p>
-</li>
-<li><p>如果是在github action中运行定时任务，也可以修改yml文件中的时区配置：</p>
-<pre><code class="yml">env: # 设置环境变量
-  TZ: Asia/Shanghai # 时区
-</code></pre>
-</li>
-<li><p>如果是在本地ubuntu系统中需要修改时区，</p>
-</li>
-</ol>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgfc1fd4d55686496ae5cbe96675c21482.png" alt="image-20210306191329997"><br>然后我们打开浏览器，访问<code>服务器公网ip:15672</code>（注意打开阿里云安全组以及防火墙的15672端口），就可以看到管理界面<br><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imga48b7fdfa923e62a803ab273a2228a1d.png" alt="image-20210306193911485"></p>
+<p><code>rabbitmq</code>有一个默认的账号密码<code>guest</code>，但该情况仅限于本机localhost进行访问，所以需要添加一个远程登录的用户</p>
+<h3 id="3-2、添加远程用户"><a href="#3-2、添加远程用户" class="headerlink" title="3.2、添加远程用户"></a>3.2、添加远程用户</h3><p><strong>RabbitMq角色</strong></p>
+<p>RabbitMQ中的角色分为如下五类：none、management、policymaker、monitoring、administrator</p>
+<p>(1) 超级管理员(administrator)可登陆管理控制台(启用management plugin的情况下)，可查看所有的信息，并且可以对用户，策略(policy)进行操作。</p>
+<p>(2) 监控者(monitoring)可登陆管理控制台(启用management plugin的情况下)，同时可以查看rabbitmq节点的相关信息(进程数，内存使用情况，磁盘使用情况等)(3) 策略制定者(policymaker)可登陆管理控制台(启用management plugin的情况下), 同时可以对policy进行管理。但无法查看节点的相关信息(上图红框标识的部分)。</p>
+<p>(4) 普通管理者(management)仅可登陆管理控制台(启用management plugin的情况下)，无法看到节点信息，也无法对策略进行管理。</p>
+<p>(5) 其他(none)无法登陆管理控制台，通常就是普通的生产者和消费者。</p>
+<p><strong>角色权限指令</strong></p>
+<p>​    <strong>1、查询用户列表</strong> ：   <code>rabbitmqctl list_users</code></p>
+<p>​    <strong>2、新建用户</strong>： <code>rabbitmqctl add_user user password</code>  </p>
+<p>例如创建用户test01密码test01：<code>rabbitmqctl add_user test01 test01</code>    </p>
+<p>​	会提示：完毕。 不要忘记授予用户对某些虚拟主机的权限！</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgImage.png" alt="Image"></p>
+<p><strong>3、设置用户角色</strong>：<code>rabbitmqctl set_user_tags User Tag</code>  </p>
+<p>例如设置用户test01为none权限：<code>rabbitmqctl set_user_tags test01 none</code></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221101095119540.png" alt="image-20221101095119540"></p>
+<p><strong>4、设置用户权限</strong>：<code>rabbitmqctl set_permissions [-p vhostpath] &#123;user&#125; &#123;conf&#125; &#123;write&#125; &#123;read&#125;</code>         </p>
+<p>（1）-p vhostpath ：用于指定一个资源的命名空间，例如 –p &#x2F; 表示根路径命名空间；       </p>
+<p>（2）user：用于指定要为哪个用户授权填写用户名；       </p>
+<p>（3）conf:一个正则表达式match哪些配置资源能够被该用户配置；       </p>
+<p>（4）write:一个正则表达式match哪些配置资源能够被该用户读；       </p>
+<p>（5）read:一个正则表达式match哪些配置资源能够被该用户访问。      </p>
+<p> 例如：用于设置test01用户拥有对所有资源的 读写配置权限       <code>rabbitmqctl set_permissions -p / test01 &quot;.*&quot; &quot;.*&quot; &quot;.*&quot;</code></p>
+<p><strong>5、查询指定用户的权限信息</strong> <code>rabbitmqctl list_user_permissions User</code></p>
+<p> 例如查询test01用户权限 ：<code>rabbitmqctl list_user_permissions test01</code></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221101095232977.png" alt="image-20221101095232977"></p>
+<p><strong>6、删除用户</strong> rabbitmqctl delete_user User </p>
+<p>例如删除test01用户 ： <code>rabbitmqctl delete_user test01</code></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
