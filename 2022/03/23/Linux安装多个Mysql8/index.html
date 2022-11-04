@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>搭建Hexo博客 | Hexo</title>
-  <meta name="keywords" content=" hexo , 博客 ">
-  <meta name="description" content="搭建Hexo博客 | Hexo">
+  <title>Linux安装多个Mysql8 | Hexo</title>
+  <meta name="keywords" content=" mysql ">
+  <meta name="description" content="Linux安装多个Mysql8 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Docker容器最近因为工作需要，利用课余时间通过视频、书籍学习Docker，并在此记录笔记。 第一章Docker简介1.1 Docker能解决什么问题问题：开发人员经常说：&quot;它在我的机器可以正常运行&quot;，言下之意就是，其他机器很可能跑不了 解决：开发人员可以使用 Docker 来解决 &quot;它在我的机器可以正常运行&quot; 的问题，它会将运行程序的相关配置打包（打包成">
 <meta property="og:type" content="article">
@@ -622,9 +622,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-搭建hexo博客" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Linux安装多个Mysql8" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">搭建Hexo博客</h1>
+        <h1 class="article-title">Linux安装多个Mysql8</h1>
     
     <div class="article-meta">
         
@@ -642,21 +642,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">hexo</a>
-            
-            <a class="color3">博客</a>
+            <a class="color1">mysql</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-16 10:05:20'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2022-11-04 16:53:05'>2022-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:1.3k</span>
+        <span>Count:972</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -686,7 +684,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2"><span class="toc-text">搭建Hexo博客</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Hexo%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">一、Hexo是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9C%AC%E5%9C%B0%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2"><span class="toc-text">二、本地快速搭建hexo博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85Node-js"><span class="toc-text">1、安装Node.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%B8%8B%E8%BD%BDhexo"><span class="toc-text">2、下载hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BAHexo%E5%8D%9A%E5%AE%A2"><span class="toc-text">3、本地搭建Hexo博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E7%BC%96%E5%86%99%E5%8D%9A%E5%AE%A2%E6%96%87%E7%AB%A0"><span class="toc-text">4、编写博客文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E4%BF%AE%E6%94%B9Hexo%E4%B8%BB%E9%A2%98"><span class="toc-text">5、修改Hexo主题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github"><span class="toc-text">三、将博客部署到github</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9F%9F%E5%90%8D%E7%BB%91%E5%AE%9A"><span class="toc-text">四、域名绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E8%A7%A3%E6%9E%90%E5%9F%9F%E5%90%8D"><span class="toc-text">1、解析域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81github%E8%AE%BE%E7%BD%AE"><span class="toc-text">2、github设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F"><span class="toc-text">3、配置成功</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%85%8D%E7%BD%AESSL%E5%AE%89%E5%85%A8%E8%AF%81%E4%B9%A6"><span class="toc-text">五、配置SSL安全证书</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E8%B4%AD%E4%B9%B0%E8%AF%81%E4%B9%A6"><span class="toc-text">1、购买证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7"><span class="toc-text">2、证书申请</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F-1"><span class="toc-text">3、配置成功</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8D%B8%E8%BD%BDMariaDB"><span class="toc-text">一、卸载MariaDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC"><span class="toc-text">1.1 查看版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%8D%B8%E8%BD%BD"><span class="toc-text">1.2 卸载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%8D%B8%E8%BD%BD%E5%B9%B2%E5%87%80"><span class="toc-text">1.3 检查是否卸载干净</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85MySQL"><span class="toc-text">二、安装MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%B8%8B%E8%BD%BD%E8%B5%84%E6%BA%90%E5%8C%85"><span class="toc-text">2.1 下载资源包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E8%A7%A3%E5%8E%8B"><span class="toc-text">2.2 解压</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84"><span class="toc-text">三、用户和用户组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%BB%84%E5%92%8C%E7%94%A8%E6%88%B7"><span class="toc-text">3.1 创建用户组和用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95"><span class="toc-text">3.2 数据目录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96MySQL"><span class="toc-text">四、初始化MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="toc-text">4.1 配置参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">4.2 初始化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%90%AF%E5%8A%A8MySQL"><span class="toc-text">五、启动MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%90%AF%E5%8A%A8"><span class="toc-text">5.1 启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%99%BB%E5%BD%95"><span class="toc-text">5.2 登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-text">5.3 修改密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E8%AE%BE%E7%BD%AE%E5%85%81%E8%AE%B8%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="toc-text">5.4 设置允许远程登录</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -702,88 +700,149 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="搭建Hexo博客"><a href="#搭建Hexo博客" class="headerlink" title="搭建Hexo博客"></a>搭建Hexo博客</h1><h2 id="一、Hexo是什么？"><a href="#一、Hexo是什么？" class="headerlink" title="一、Hexo是什么？"></a>一、Hexo是什么？</h2><p>hexo 可以理解为是基于node.js制作的一个博客工具，简单来说利用hexo框架可以快速搭建一个属于自己的博客网站</p>
-<p> 关于hexo的介绍，官网上的介绍很详细了。<a target="_blank" rel="noopener" href="https://hexo.io/">https://hexo.io/</a></p>
-<h2 id="二、本地快速搭建hexo博客"><a href="#二、本地快速搭建hexo博客" class="headerlink" title="二、本地快速搭建hexo博客"></a>二、本地快速搭建hexo博客</h2><h3 id="1、安装Node-js"><a href="#1、安装Node-js" class="headerlink" title="1、安装Node.js"></a>1、安装Node.js</h3><p>进入node.js官网，下载LTS长期支持版</p>
-<p><a target="_blank" rel="noopener" href="https://lukaixin0527.github.io/images/nodejs.jpg"><img src="https://lukaixin0527.github.io/images/nodejs.jpg" alt="img"></a></p>
-<h3 id="2、下载hexo"><a href="#2、下载hexo" class="headerlink" title="2、下载hexo"></a>2、下载hexo</h3><p>打开命令行</p>
-<p>切换到root权限：sudu su</p>
-<p>查看nodejs的版本和npm的版本：node -v npm -v</p>
-<p>需要借助nmp安装包，但是国内很慢，所以需要借助国内的nmp包管理器 npm install -g cnpm –registry&#x3D;<a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a></p>
-<p>检测cnpm是否安装成功，输入cnpm -v</p>
-<p>借助cnpm全局安装hexo cnpm install -g hexo-cli 然后验证 hexo -v</p>
-<h3 id="3、本地搭建Hexo博客"><a href="#3、本地搭建Hexo博客" class="headerlink" title="3、本地搭建Hexo博客"></a>3、本地搭建Hexo博客</h3><p>本地建立一个空文件夹 blog 所有博客文件全部在blog中生成，如果出错，删除重来</p>
-<p>进入blog 文件</p>
-<p>sudu hexo init 初始化一个hexo博客</p>
-<p>hexo s 启动</p>
-<h3 id="4、编写博客文章"><a href="#4、编写博客文章" class="headerlink" title="4、编写博客文章"></a>4、编写博客文章</h3><p>hexo n “我的第一篇博文” 会生成到source&#x2F;_posts文件下</p>
-<p>hexo clean 清除缓存</p>
-<p>hexo g 重新生成 然后访问 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 就可以了</p>
-<p>我一般会用Typora软件写博客</p>
-<pre><code>安装 代码高亮插件 
-// 1.卸载 Hexo 默认自带的 Markdown 渲染器
-cnpm un hexo-renderer-marked --save
-// 2.安装 hexo-renderer-markdown-it 插件
-cnpm i hexo-renderer-markdown-it --save
-// 3.修改_config配置文件
-markdown: &#39;commonmark&#39;
-// 4.关闭hexo自带的渲染插件
-highlight:
-  enable: false // 关闭
-  line_number: true
-  auto_detect: false
-  tab_replace: &#39;&#39;
-  wrap: true
-  hljs: falseCopy
+        <p><strong>需求：一台Centos服务器上离线安装多个Mysql8实例</strong></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221104162247478.png" alt="image-20221104162247478"></p>
+<h1 id="一、卸载MariaDB"><a href="#一、卸载MariaDB" class="headerlink" title="一、卸载MariaDB"></a><strong>一、卸载MariaDB</strong></h1><pre><code>在CentOS中默认安装有MariaDB，是MySQL的一个分支，主要由开源社区维护。
+CentOS 7及以上版本已经不再使用MySQL数据库，而是使用MariaDB数据库。
+如果直接安装MySQL，会和MariaDB的文件冲突。
+因此，需要先卸载自带的MariaDB，再安装MySQL。
 </code></pre>
-<h3 id="5、修改Hexo主题"><a href="#5、修改Hexo主题" class="headerlink" title="5、修改Hexo主题"></a>5、修改Hexo主题</h3><p>直接在官网获取更多主题 <a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a> ，选择自己喜欢的主题，获取git路径</p>
-<p>比如我下载的主题是 yilia</p>
-<p>git clone <a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia.git">https://github.com/litten/hexo-theme-yilia.git</a> themes&#x2F;yilia</p>
-<p>修改配置文件_config.yml</p>
-<p>theme: landscape 修改为 theme: yilia</p>
-<p>然后重新执行命令就可以了</p>
-<p>hexo clean</p>
-<p>hexo g</p>
-<p>hexo s</p>
-<h2 id="三、将博客部署到github"><a href="#三、将博客部署到github" class="headerlink" title="三、将博客部署到github"></a>三、将博客部署到github</h2><p>一般我们的博客会部署到github上，这样就可以远端访问了</p>
-<p>创建github账号(以我的github为例 lukaixin0527)，并且创建一个库 库名格式必须为 ： lukaixin0527.github.io</p>
-<p>下载一个部署插件,进入blog文件夹下 cnpm install –save hexo-deployer-git</p>
-<p>修改设置，修改_config.yml 到文件的最底部 repo:为github路径</p>
-<p>deploy:</p>
-<p>type: git</p>
-<p>repo: <a target="_blank" rel="noopener" href="https://github.com/lukaixin0527/lukaixin0527.github.io.git">https://github.com/lukaixin0527/lukaixin0527.github.io.git</a></p>
-<p>branch: master</p>
-<p>最后部署到远端 hexo d 输入github账号和密码就可以了</p>
-<p>如果提示403，说明没有切换github账号信息，找到本地的账号密码信息删除即可。</p>
-<p>如果成功了，直接访问xxxxx.github.io就可以访问了，比如我的github博客网址 lukaixin0527.github.io</p>
-<h2 id="四、域名绑定"><a href="#四、域名绑定" class="headerlink" title="四、域名绑定"></a>四、域名绑定</h2><p>首先需要购买一个域名</p>
-<p>我是在阿里云买的域名 lukaixin.com</p>
-<p>然后需要实名认证后才可以使用</p>
-<h3 id="1、解析域名"><a href="#1、解析域名" class="headerlink" title="1、解析域名"></a>1、解析域名</h3><p> 就是把网站域名解析到你所购买的网站空间(云服务器)IP上，其实这里说的解析就是一个绑定和指向关系，网站域名指向空间IP地址。</p>
-<p> 简单来说，就是访问购买的域名就可以访问到github上的博客网址</p>
-<p> 接下来开始解析域名</p>
-<p> 这是我的域名，已经实名认证了，DNS服务器状态显示 正常</p>
-<p><a target="_blank" rel="noopener" href="https://lukaixin0527.github.io/images/aliyunhoutai.jpg"><img src="https://lukaixin0527.github.io/images/aliyunhoutai.jpg" alt="img"></a></p>
-<p> 点击解析设置——添加记录，选择CNAME类型(将一个域名指向另一个域名的类型)</p>
-<p> 到这里，域名解析的完成了第一步</p>
-<h3 id="2、github设置"><a href="#2、github设置" class="headerlink" title="2、github设置"></a>2、github设置</h3><p> 在github仓库首页，选择自己的仓库 (lukaixin0527.github.io)</p>
-<p> 找到 create new file ，点击新建文件</p>
-<p> 文件名称命名为 <strong>CNAME</strong></p>
-<p> 内容填写自己的域名 比如我的 <a target="_blank" rel="noopener" href="http://www.lukaixin.com/">www.lukaixin.com</a></p>
-<p> 最后点击commit new file 提交文件就可以</p>
-<h3 id="3、配置成功"><a href="#3、配置成功" class="headerlink" title="3、配置成功"></a>3、配置成功</h3><p> 到这里域名就配置成功了，直接访问域名，就可以访问了</p>
-<h2 id="五、配置SSL安全证书"><a href="#五、配置SSL安全证书" class="headerlink" title="五、配置SSL安全证书"></a>五、配置SSL安全证书</h2><p><strong>HTTP</strong>是明文传输协议，传输内容容易被嗅探和篡改。</p>
-<p>而<strong>HTTPS</strong>，即<strong>HTTP over SSL&#x2F;TLS</strong>,是添加了一层<em>*SSL(Secure Sockets Layer，安全套接层)**，或者是**TLS(Transport Layer Security,</em><em>**传输层安全协议)**，所以**HTTPS</em>*就可以视为<strong>HTTP</strong>和<strong>SSL&#x2F;TLS</strong>协议的组合。</p>
-<p><strong>HTTPS</strong>能做到良好的保密性(防嗅探)，真实性(防篡改)，完整性(防域名劫持和域名欺骗)。</p>
-<h3 id="1、购买证书"><a href="#1、购买证书" class="headerlink" title="1、购买证书"></a>1、购买证书</h3><p>进入阿里云首页，直接搜索SSL证书，点击购买，进入证书选择页面</p>
-<p>因为我的证书是在阿里云购买的，所有可以享受一年免费的证书(嘿嘿~)</p>
-<p><a target="_blank" rel="noopener" href="https://lukaixin0527.github.io/images/zhengshuxuanze.jpg"><img src="https://lukaixin0527.github.io/images/zhengshuxuanze.jpg" alt="img"></a></p>
-<h3 id="2、证书申请"><a href="#2、证书申请" class="headerlink" title="2、证书申请"></a>2、证书申请</h3><p>购买证书成功后，进入证书详情，点击【证书申请】，填写相关信息，注意填写正确的域名</p>
-<p>因为我的证书和域名都在阿里云购买，所有可以享受自动DNS验证，不需要自己去验证了</p>
-<p>点击下一步，再点击验证，到这里就ok了，只需要耐心等待审核就可以了。</p>
-<p><a target="_blank" rel="noopener" href="https://lukaixin0527.github.io/images/zhengshushenqing.jpg"><img src="https://lukaixin0527.github.io/images/zhengshushenqing.jpg" alt="img"></a></p>
-<h3 id="3、配置成功-1"><a href="#3、配置成功-1" class="headerlink" title="3、配置成功"></a>3、配置成功</h3><p>等待证书配置成功后，就可以安全访问了。</p>
-<p>比如我的域名：<a target="_blank" rel="noopener" href="https://www.lukaixin.com/">https://www.lukaixin.com/</a></p>
+<h2 id="1-1-查看版本"><a href="#1-1-查看版本" class="headerlink" title="1.1 查看版本"></a><strong>1.1 查看版本</strong></h2><pre><code>rpm -qa|grep mariadb
+</code></pre>
+<h2 id="1-2-卸载"><a href="#1-2-卸载" class="headerlink" title="1.2 卸载"></a><strong>1.2 卸载</strong></h2><pre><code>rpm -e --nodeps 文件名
+</code></pre>
+<h2 id="1-3-检查是否卸载干净"><a href="#1-3-检查是否卸载干净" class="headerlink" title="1.3 检查是否卸载干净"></a><strong>1.3 检查是否卸载干净</strong></h2><pre><code>rpm -qa|grep mariadb
+</code></pre>
+<h1 id="二、安装MySQL"><a href="#二、安装MySQL" class="headerlink" title="二、安装MySQL"></a><strong>二、安装MySQL</strong></h1><h2 id="2-1-下载资源包"><a href="#2-1-下载资源包" class="headerlink" title="2.1 下载资源包"></a><strong>2.1 下载资源包</strong></h2><p>MySQL官方地址:  <a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">https://dev.mysql.com/downloads/mysql/</a></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221104163246765.png" alt="image-20221104163246765"></p>
+<h2 id="2-2-解压"><a href="#2-2-解压" class="headerlink" title="2.2 解压"></a><strong>2.2 解压</strong></h2><pre><code class="shell">.tar.gz后缀：tar -zxvf 文件名
+.tar.xz后缀：tar -Jxvf 文件名
+
+tar -Jxvf mysql-8.0.31-linux-glibc2.12-x86_64.tar.xz 
+
+解压多次到 /usr/local/mysql目录下的mysql-8.0.31-3306、mysql-8.0.31-3307、mysql-8.0.31-3308、mysql-8.0.31-3309
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221104163817815.png" alt="image-20221104163817815"></p>
+<h1 id="三、用户和用户组"><a href="#三、用户和用户组" class="headerlink" title="三、用户和用户组"></a><strong>三、用户和用户组</strong></h1><h2 id="3-1-创建用户组和用户"><a href="#3-1-创建用户组和用户" class="headerlink" title="3.1 创建用户组和用户"></a><strong>3.1 创建用户组和用户</strong></h2><pre><code># 创建一个用户组：mysql
+groupadd mysql
+# 创建一个系统用户：mysql，指定用户组为mysql
+useradd -r -g mysql mysql
+</code></pre>
+<p><strong>创建用户组：</strong>groupadd</p>
+<p><strong>创建用户：</strong>useradd</p>
+<p>-r<strong>：创建系统用户</strong></p>
+<p>-g<strong>：指定用户组</strong></p>
+<h2 id="3-2-数据目录"><a href="#3-2-数据目录" class="headerlink" title="3.2 数据目录"></a><strong>3.2 数据目录</strong></h2><p><strong>1、创建目录</strong></p>
+<pre><code>mkdir -p /usr/local/mysql/mysql-8.0.31-3306/data
+mkdir -p /usr/local/mysql/mysql-8.0.31-3307/data
+mkdir -p /usr/local/mysql/mysql-8.0.31-3308/data
+mkdir -p /usr/local/mysql/mysql-8.0.31-3309/data
+</code></pre>
+<p><strong>2、赋予权限</strong></p>
+<pre><code># 挨个赋予权限
+# 更改属主和数组
+chown -R mysql:mysql /usr/local/mysql/mysql-8.0.31-3306/data
+# 更改模式
+chmod -R 750 /usr/local/mysql/mysql-8.0.31-3306/data
+</code></pre>
+<h1 id="四、初始化MySQL"><a href="#四、初始化MySQL" class="headerlink" title="四、初始化MySQL"></a><strong>四、初始化MySQL</strong></h1><h2 id="4-1-配置参数"><a href="#4-1-配置参数" class="headerlink" title="4.1 配置参数"></a><strong>4.1 配置参数</strong></h2><p>在&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;mysql-8.0.31-3306&#x2F;下，创建my.cnf配置文件，用于初始化MySQL数据库</p>
+<pre><code>[mysqld]
+port=3306
+user= mysql
+socket= /usr/local/mysql/mysql-8.0.31-3306/data/mysql.sock
+# 安装目录
+basedir= /usr/local/mysql/mysql-8.0.31-3306
+# 数据存放目录
+datadir= /usr/local/mysql/mysql-8.0.31-3306/data
+log-bin= /usr/local/mysql/mysql-8.0.31-3306/data/mysql-bin
+innodb_data_home_dir=/usr/local/mysql/mysql-8.0.31-3306/data
+innodb_log_group_home_dir=/usr/local/mysql/mysql-8.0.31-3306/data
+#日志及进程数据的存放目录
+log-error=/usr/local/mysql/mysql-8.0.31-3306/data/mysql.log
+pid-file=/usr/local/mysql/mysql-8.0.31-3306/data/mysql.pid
+# 服务端使用的字符集默认为8比特编码
+sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+character-set-server=utf8mb4
+lower_case_table_names=1
+autocommit=1
+##################以上要修改的########################
+skip-external-locking
+key_buffer_size=256M
+max_allowed_packet=1M
+table_open_cache=1024
+sort_buffer_size=4M
+net_buffer_length=8K
+read_buffer_size=4M
+read_rnd_buffer_size=512K
+myisam_sort_buffer_size=64M
+thread_cache_size=128
+#query_cache_size = 128M
+tmp_table_size=128M
+explicit_defaults_for_timestamp=true
+max_connections=500
+max_connect_errors=100
+open_files_limit=65535
+
+
+# 创建新表时将使用的默认存储引擎
+default_storage_engine=InnoDB
+innodb_data_file_path=ibdata1:10M:autoextend
+innodb_buffer_pool_size=1024M
+innodb_log_buffer_size=8M
+innodb_flush_log_at_trx_commit=1
+innodb_lock_wait_timeout=50
+transaction-isolation=READ-COMMITTED
+[mysqldump]
+quick
+max_allowed_packet=16M
+[myisamchk]
+key_buffer_size=256M
+sort_buffer_size=4M
+read_buffer=2M
+write_buffer=2M
+[mysqlhotcopy]
+interactive-timeout
+
+#开启bin log 功能
+server-id=523306
+binlog-ignore-db=mysql
+binlog-ignore-db=information_schema
+binlog-ignore-db=sys
+binlog-ignore-db=performance_schema
+binlog_format=mixed
+# 保留10天数据
+binlog_expire_logs_seconds=864000
+</code></pre>
+<h2 id="4-2-初始化"><a href="#4-2-初始化" class="headerlink" title="4.2 初始化"></a><strong>4.2 初始化</strong></h2><p>进入bin目录</p>
+<pre><code>./mysqld --defaults-file=/usr/local/mysql/mysql-8.0.31-3306/my.cnf --basedir=/usr/local/mysql/mysql-8.0.31-3306 --datadir=/usr/local/mysql/mysql-8.0.31-3306/data --user=mysql --initialize
+</code></pre>
+<p>初始化成功后，会在<code>/usr/local/mysql/mysql-8.0.31-3306/data/mysql.log</code>下显示初始化密码</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221104164436934.png" alt="image-20221104164436934"></p>
+<p><strong>参数（重要）</strong></p>
+<p>defaults-file：指定配置文件（要放在–initialize 前面）</p>
+<p>user： 指定用户</p>
+<p>basedir：指定安装目录</p>
+<p>datadir：指定初始化数据目录</p>
+<p>intialize：初始化密码</p>
+<h1 id="五、启动MySQL"><a href="#五、启动MySQL" class="headerlink" title="五、启动MySQL"></a><strong>五、启动MySQL</strong></h1><h2 id="5-1-启动"><a href="#5-1-启动" class="headerlink" title="5.1 启动"></a><strong>5.1 启动</strong></h2><p>进入bin目录</p>
+<pre><code>./mysqld_safe --defaults-file=/usr/local/mysql/mysql-8.0.31-3306/my.cnf &amp;
+</code></pre>
+<p><strong>查看是否启动</strong></p>
+<pre><code>ps -ef|grep mysql
+</code></pre>
+<h2 id="5-2-登录"><a href="#5-2-登录" class="headerlink" title="5.2 登录"></a><strong>5.2 登录</strong></h2><pre><code>./mysql -uroot -p -h 127.0.0.1 --socket=../data/mysql.sock --port=3306
+</code></pre>
+<h2 id="5-3-修改密码"><a href="#5-3-修改密码" class="headerlink" title="5.3 修改密码"></a><strong>5.3 修改密码</strong></h2><pre><code># 修改密码
+ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;123456&#39;;
+# 刷新权限
+FLUSH PRIVILEGES;
+</code></pre>
+<h2 id="5-4-设置允许远程登录"><a href="#5-4-设置允许远程登录" class="headerlink" title="5.4 设置允许远程登录"></a><strong>5.4 设置允许远程登录</strong></h2><pre><code>mysql&gt; use mysql
+mysql&gt; update user set user.Host=&#39;%&#39;where user.User=&#39;root&#39;;
+mysql&gt; flush privileges;
+mysql&gt; quit
+</code></pre>
+<p>到此3306服务就启动成功了，然后重复四、五步骤，分别启动3307、3308、3309即可。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
