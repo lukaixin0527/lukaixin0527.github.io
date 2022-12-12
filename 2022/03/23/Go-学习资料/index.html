@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>正则校验 | Hexo</title>
-  <meta name="keywords" content=" hexo , 正则 ">
-  <meta name="description" content="正则校验 | Hexo">
+  <title>Go 学习资料 | Hexo</title>
+  <meta name="keywords" content=" Go ">
+  <meta name="description" content="Go 学习资料 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Docker容器最近因为工作需要，利用课余时间通过视频、书籍学习Docker，并在此记录笔记。 第一章Docker简介1.1 Docker能解决什么问题问题：开发人员经常说：&quot;它在我的机器可以正常运行&quot;，言下之意就是，其他机器很可能跑不了 解决：开发人员可以使用 Docker 来解决 &quot;它在我的机器可以正常运行&quot; 的问题，它会将运行程序的相关配置打包（打包成">
 <meta property="og:type" content="article">
@@ -652,9 +652,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-正则校验" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Go-学习资料" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">正则校验</h1>
+        <h1 class="article-title">Go 学习资料</h1>
     
     <div class="article-meta">
         
@@ -664,7 +664,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="后端">后端</a>
+            <a  data-rel="Golang">Golang</a> > 
+            
+            <a  data-rel="Golang&lt;---&gt;基础">基础</a>
             
         </span>
         
@@ -672,21 +674,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">hexo</a>
-            
-            <a class="color3">正则</a>
+            <a class="color3">Go</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-11-01 09:28:20'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2022-12-12 11:45:26'>2022-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:545</span>
+        <span>Count:30</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -716,7 +716,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A0%A1%E9%AA%8C%E8%BD%A6%E7%89%8C%E5%8F%B7"><span class="toc-text">一、校验车牌号</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E4%B9%A6"><span class="toc-text">图书</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%86%E9%A2%91"><span class="toc-text">视频</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -732,79 +732,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、校验车牌号"><a href="#一、校验车牌号" class="headerlink" title="一、校验车牌号"></a>一、校验车牌号</h1><pre><code class="java">import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-public class VehiclePlateNoUtil &#123;
-    /**
-     * 获取车牌类型信息
-     *
-     * @param plateNo
-     * @return 返回null，表示车牌不匹配
-     */
-    public static VehiclePlateNoEnum getVehiclePlateNo(String plateNo) &#123;
-        for (VehiclePlateNoEnum vehiclePlateNoEnum : VehiclePlateNoEnum.values()) &#123;
-            Matcher matcher = vehiclePlateNoEnum.pattern.matcher(plateNo);
-            if (matcher.find()) &#123;
-                return vehiclePlateNoEnum;
-            &#125;
-        &#125;
-        return null;
-    &#125;
-
-    public enum VehiclePlateNoEnum &#123;
-        /**
-         * 匹配民用车牌和使馆车牌
-         * 1、第一位为汉子省份缩写
-         * 2、第二位为大写字母城市编码
-         * 3、后面是5位仅含字母和数字的组合
-         */
-        CIVIL_LICENSE_PLATE_AND_EMBASSY_LICENSE_PLATE(1, &quot;民用车牌和使馆车牌&quot;, Pattern.compile(&quot;^[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新]&#123;1&#125;[A-Z]&#123;1&#125;[0-9a-zA-Z]&#123;5&#125;$&quot;)),
-        /**
-         * 匹配特种车牌(挂,警,学,领,港,澳)
-         */
-        SPECIAL_LICENSE_PLATES(2, &quot;特种车牌&quot;, Pattern.compile(&quot;^[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新]&#123;1&#125;[A-Z]&#123;1&#125;[0-9a-zA-Z]&#123;4&#125;[挂警学领港澳]&#123;1&#125;$&quot;)),
-        /**
-         * 匹配
-         */
-        ARMED_POLICE_CAR(3, &quot;武警车牌&quot;, Pattern.compile(&quot;^WJ[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新]?[0-9a-zA-Z]&#123;5&#125;$&quot;)),
-        /**
-         * 匹配军牌
-         */
-        MILITARY_CAR(4, &quot;军用车牌&quot;, Pattern.compile(&quot;^[A-Z]&#123;2&#125;[0-9]&#123;5&#125;$&quot;)),
-        /**
-         * 小型新能源车
-         * 1、匹配新能源车辆6位车牌
-         */
-        SMALL_NEW_ENERGY_VEHICLE(5, &quot;小型新能源车牌&quot;, Pattern.compile(&quot;^[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[0-9a-zA-Z]&#123;5&#125;$&quot;)),
-        /**
-         * 大型新能源车
-         */
-        LARGE_NEW_ENERGY_VEHICLE(6, &quot;大型新能源车牌&quot;, Pattern.compile(&quot;^[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新]&#123;1&#125;[A-Z]&#123;1&#125;[0-9a-zA-Z]&#123;5&#125;[DF]&#123;1&#125;$&quot;));
-        private int code;
-
-        private String description;
-
-        private Pattern pattern;
-
-        VehiclePlateNoEnum(int code, String description, Pattern pattern) &#123;
-            this.code = code;
-            this.description = description;
-            this.pattern = pattern;
-        &#125;
-
-        public int getCode() &#123;
-            return code;
-        &#125;
-
-        public String getDescription() &#123;
-            return description;
-        &#125;
-    &#125;
-&#125;
-
-
-</code></pre>
+        <h1 id="图书"><a href="#图书" class="headerlink" title="图书"></a>图书</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://github.com/golang-china/gopl-zh">Go语言圣经中文版</a></li>
+</ol>
+<h1 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ME411Y71o/?spm_id_from=333.999.0.0&vd_source=7e2d9b23eb293a1d87c0d504b9b79dbb">【尚硅谷】Golang入门到实战教程丨一套精通GO语言</a></li>
+</ol>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
