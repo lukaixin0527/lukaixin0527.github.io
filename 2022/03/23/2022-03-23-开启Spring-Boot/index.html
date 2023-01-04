@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Nginx+Keepalived 高可用 | Hexo</title>
-  <meta name="keywords" content=" Nginx ">
-  <meta name="description" content="Nginx+Keepalived 高可用 | Hexo">
+  <title>开启Spring Boot | Hexo</title>
+  <meta name="keywords" content=" SpringBoot ">
+  <meta name="description" content="开启Spring Boot | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分布式任务调度器 XXL-JOB分布式任务调度平台 PowerJob分布式调度与计算框架  数据可视化平台 GoView低代码数据可视化 100套大数据可视化模板  管理后台 若依管理系统 简单易用的java分布式日志系统">
 <meta property="og:type" content="article">
@@ -800,9 +800,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Nginx+Keepalived-高可用" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-2022-03-23-开启Spring-Boot" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Nginx+Keepalived 高可用</h1>
+        <h1 class="article-title">开启Spring Boot</h1>
     
     <div class="article-meta">
         
@@ -812,7 +812,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="运维">运维</a>
+            <a  data-rel="后端">后端</a> > 
+            
+            <a  data-rel="后端&lt;---&gt;SpringBoot">SpringBoot</a>
             
         </span>
         
@@ -820,19 +822,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">Nginx</a>
+            <a class="color1">SpringBoot</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-09-16 10:15:05'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2023-01-04 17:57:51'>2022-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:689</span>
+        <span>Count:1.8k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -862,7 +864,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx-Keepalived-%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-text">Nginx+Keepalived 高可用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFKeepalived%EF%BC%9F"><span class="toc-text">1、什么是Keepalived？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Keepalived%E5%AE%89%E8%A3%85"><span class="toc-text">2、Keepalived安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81Keepalived%E5%AE%89%E8%A3%85%E6%88%90Linux%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1"><span class="toc-text">3、Keepalived安装成Linux系统服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">4、修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">5、常用指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-text">6、常见问题</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81%E7%94%9F%E6%88%90%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6"><span class="toc-text">1、生成项目文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81Web%E8%AE%BF%E9%97%AE%E6%BC%94%E7%A4%BA"><span class="toc-text">2、Web访问演示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E8%A7%A3%E6%9E%90pom-xml"><span class="toc-text">3、解析pom.xml</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-boot-starter-parent"><span class="toc-text">spring-boot-starter-parent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-boot-starter-web"><span class="toc-text">spring-boot-starter-web</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-boot-maven-plugin"><span class="toc-text">spring-boot-maven-plugin</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -878,80 +880,160 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Nginx-Keepalived-高可用"><a href="#Nginx-Keepalived-高可用" class="headerlink" title="Nginx+Keepalived 高可用"></a>Nginx+Keepalived 高可用</h1><h3 id="1、什么是Keepalived？"><a href="#1、什么是Keepalived？" class="headerlink" title="1、什么是Keepalived？"></a>1、什么是Keepalived？</h3><pre><code>keepalived是为管理管理中保证能够提供高可用的一个服务软件，其功能称为心跳，可以防止单点故障。Copy
-</code></pre>
-<h3 id="2、Keepalived安装"><a href="#2、Keepalived安装" class="headerlink" title="2、Keepalived安装"></a>2、Keepalived安装</h3><p><strong>每个Nginx下都要安装Keepalived</strong></p>
-<pre><code>1、下载地址：http://www.keepalived.org/download.html
-2、cd /usr/local
-3、tar -zxvf keepalived-1.2.18.tar.gz 
-4、cd keepalived-1.2.18
-5、安装软件包 yum install -y openssl openssl-devel
-6、./configure --prefix=/usr/local/keepalived
-7、make &amp;&amp; make installCopy
-</code></pre>
-<h3 id="3、Keepalived安装成Linux系统服务"><a href="#3、Keepalived安装成Linux系统服务" class="headerlink" title="3、Keepalived安装成Linux系统服务"></a>3、Keepalived安装成Linux系统服务</h3><pre><code>1、将keepalived安装成Linux系统服务，因为没有使用keepalived的默认安装路径（默认路径：/usr/local）,安装完成之后，需要做一些修改工作
-2、首先创建文件夹，将keepalived配置文件进行复制：
-3、mkdir /etc/keepalived
-4、cd /usr/local/keepalived-1.2.18
-    cp /usr/local/keepalived/etc/keepalived/keepalived.conf /etc/keepalived/
-  然后复制keepalived脚本文件：
-  cp /usr/local/keepalived/etc/rc.d/init.d/keepalived /etc/init.d/
-  cp /usr/local/keepalived/etc/sysconfig/keepalived /etc/sysconfig/
-  ln -s /usr/local/sbin/keepalived /usr/sbin/
-  ln -s /usr/local/keepalived/sbin/keepalived /sbin/
-  可以设置开机启动：chkconfig keepalived onCopy
-</code></pre>
-<h3 id="4、修改配置文件"><a href="#4、修改配置文件" class="headerlink" title="4、修改配置文件"></a>4、修改配置文件</h3><pre><code>1、cd /etc/keepalived/
-2、修改keeplived.conf 配置高可用文件
-3、添加nginx_check.sh脚本(重启Nginx脚本)Copy
-! Configuration File for keepalived
-
-vrrp_script chk_nginx &#123;
-    script &quot;/etc/keepalived/nginx_check.sh&quot; #运行脚本，脚本内容下面有，就是起到一个nginx宕机以后，自动开启服务
-    interval 2 #检测时间间隔
-    weight -20 #如果条件成立的话，则权重 -20
-&#125;
-# 定义虚拟路由，VI_1 为虚拟路由的标示符，自己定义名称
-vrrp_instance VI_1 &#123;
-    state MASTER #来决定主从   BACKUP是从
-    interface eth0 # 绑定虚拟 IP 的网络接口，根据自己的机器填写 指令ip a 查看
-    virtual_router_id 121 # 虚拟路由的 ID 号， 两个节点设置必须一样
-    mcast_src_ip 47.93.223.237 #填写本机ip
-    priority 100 # 节点优先级,主要比从节点优先级高
-    nopreempt # 优先级高的设置 nopreempt 解决异常恢复后再次抢占的问题
-    advert_int 1 # 组播信息发送间隔，两个节点设置必须一样，默认 1s
-    authentication &#123;
-        auth_type PASS
-        auth_pass 1111
-    &#125;
-    # 将 track_script 块加入 instance 配置块
-    track_script &#123;
-        chk_nginx #执行 Nginx 监控的服务
-    &#125;
-
-    virtual_ipaddress &#123;
-        192.168.110.110 # 虚拟ip,也就是解决写死程序的ip怎么能切换的ip,也可扩展，用途广泛。可配置多个。
+        <p>Spring Boot是在Spring框架上创建的一个全新的框架，其设计目的是简化Spring应用的搭建和开发过程。开启Spring Boot有许多种方法可供选择，这里仅介绍使用<a target="_blank" rel="noopener" href="http://start.spring.io/%E6%9D%A5%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84Spring">http://start.spring.io/来构建一个简单的Spring</a> Boot项目。</p>
+<h1 id="1、生成项目文件"><a href="#1、生成项目文件" class="headerlink" title="1、生成项目文件"></a>1、生成项目文件</h1><p>访问<a target="_blank" rel="noopener" href="http://start.spring.io/%EF%BC%8C%E9%A1%B5%E9%9D%A2%E6%98%BE%E7%A4%BA%E5%A6%82%E4%B8%8B%EF%BC%9A">http://start.spring.io/，页面显示如下：</a></p>
+<p>可以选择Maven项目，打包方式为Jar，Java版本采用JDK8，添加Web依赖。最后点击页面的generate project按钮生成项目文件。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20230104172330254.png" alt="image-20230104172330254"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20230104172544303.png" alt="image-20230104172544303"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20230104172716652.png" alt="image-20230104172716652"></p>
+<p>文件下载后是一个压缩包，进行解压然后使用IDEA以Maven项目的形式导入。导入后IDEA会自动编译项目并下载相应的依赖，项目目录如下所示：</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20230104173600600.png" alt="image-20230104173600600"></p>
+<h1 id="2、Web访问演示"><a href="#2、Web访问演示" class="headerlink" title="2、Web访问演示"></a>2、Web访问演示</h1><p>新增controller包，新建TestController。</p>
+<pre><code class="java">@RestController
+public class TestController &#123;
+    @RequestMapping(&quot;/test&quot;)
+    String index() &#123;
+        return &quot;hello spring boot&quot;;
     &#125;
 &#125;
-Copy
-#!/bin/bash
-A=`ps -C nginx ¨Cno-header |wc -l`
-if [ $A -eq 0 ];then
-    /usr/local/nginx/sbin/nginx
-    sleep 2
-    if [ `ps -C nginx --no-header |wc -l` -eq 0 ];then
-        killall keepalived
-    fi
-fiCopy
 </code></pre>
-<h3 id="5、常用指令"><a href="#5、常用指令" class="headerlink" title="5、常用指令"></a>5、常用指令</h3><pre><code>service keepalived start # 启动
-service keepalived stop  # 关闭Copy
+<p>启动DemoApplication类。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20230104174458396.png" alt="image-20230104174458396"></p>
+<p>访问接口 <a target="_blank" rel="noopener" href="http://localhost:8080/test">http://localhost:8080/test</a> 页面返回 “hello spring boot”</p>
+<h1 id="3、解析pom-xml"><a href="#3、解析pom-xml" class="headerlink" title="3、解析pom.xml"></a>3、解析pom.xml</h1><p>打开pom.xml可看到配置如下：</p>
+<pre><code class="java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+    xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;2.7.7&lt;/version&gt;
+        &lt;relativePath/&gt; &lt;!-- lookup parent from repository --&gt;
+    &lt;/parent&gt;
+    &lt;groupId&gt;com.example&lt;/groupId&gt;
+    &lt;artifactId&gt;demo&lt;/artifactId&gt;
+    &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+    &lt;name&gt;demo&lt;/name&gt;
+    &lt;description&gt;Demo project for Spring Boot&lt;/description&gt;
+    &lt;properties&gt;
+        &lt;java.version&gt;1.8&lt;/java.version&gt;
+    &lt;/properties&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
 </code></pre>
-<p>流程图</p>
-<p><a target="_blank" rel="noopener" href="https://lukaixin0527.github.io/images/Keepalived%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg"><img src="https://lukaixin0527.github.io/images/Keepalived%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg" alt="img"></a></p>
-<h3 id="6、常见问题"><a href="#6、常见问题" class="headerlink" title="6、常见问题"></a>6、常见问题</h3><pre><code>1、如果nginx服务器宕机后，Keepalived没有重启ngxin，有可能是脚本没有权限重启
-进入文件夹后，chmod 777 nginx_check.sh
+<h2 id="spring-boot-starter-parent"><a href="#spring-boot-starter-parent" class="headerlink" title="spring-boot-starter-parent"></a>spring-boot-starter-parent</h2><p>spring-boot-starter-parent指定了当前项目为一个Spring Boot项目，它提供了诸多的默认Maven依赖。具体可查看目录<strong>E:\apache-maven-3.6.3-repository\org\springframework\boot\spring-boot-dependencies\2.7.7</strong>下的<strong>spring-boot-dependencies-2.7.7.pom</strong>文件，这里仅截取一小部分：</p>
+<pre><code class="java">  &lt;properties&gt;
+    &lt;activemq.version&gt;5.16.5&lt;/activemq.version&gt;
+    &lt;antlr2.version&gt;2.7.7&lt;/antlr2.version&gt;
+    &lt;appengine-sdk.version&gt;1.9.98&lt;/appengine-sdk.version&gt;
+    &lt;artemis.version&gt;2.19.1&lt;/artemis.version&gt;
+    &lt;aspectj.version&gt;1.9.7&lt;/aspectj.version&gt;
+    &lt;assertj.version&gt;3.22.0&lt;/assertj.version&gt;
+    &lt;atomikos.version&gt;4.0.6&lt;/atomikos.version&gt;
+    &lt;awaitility.version&gt;4.2.0&lt;/awaitility.version&gt;
+    &lt;build-helper-maven-plugin.version&gt;3.3.0&lt;/build-helper-maven-plugin.version&gt;
+    &lt;byte-buddy.version&gt;1.12.20&lt;/byte-buddy.version&gt;
+    &lt;cache2k.version&gt;2.6.1.Final&lt;/cache2k.version&gt;
+    &lt;caffeine.version&gt;2.9.3&lt;/caffeine.version&gt;
+    &lt;cassandra-driver.version&gt;4.14.1&lt;/cassandra-driver.version&gt;
+    &lt;classmate.version&gt;1.5.1&lt;/classmate.version&gt;
+    &lt;commons-codec.version&gt;1.15&lt;/commons-codec.version&gt;
+    &lt;commons-dbcp2.version&gt;2.9.0&lt;/commons-dbcp2.version&gt;
+    &lt;commons-lang3.version&gt;3.12.0&lt;/commons-lang3.version&gt;
+    &lt;commons-pool.version&gt;1.6&lt;/commons-pool.version&gt;
+    &lt;commons-pool2.version&gt;2.11.1&lt;/commons-pool2.version&gt;
+    &lt;couchbase-client.version&gt;3.3.4&lt;/couchbase-client.version&gt;
+    &lt;db2-jdbc.version&gt;11.5.7.0&lt;/db2-jdbc.version&gt;
 </code></pre>
+<p>需要说明的是，并非所有在<code>&lt;properties&gt;</code>标签中配置了版本号的依赖都有被启用，其启用与否取决于您是否配置了相应的starter。比如tomcat这个依赖就是spring-boot-starter-web的传递性依赖（下面将会描述到）。</p>
+<p>当然，我们可以手动改变这些依赖的版本。比如我想把thymeleaf的版本改为3.0.0.RELEASE，我们可以在pom.xml中进行如下配置：</p>
+<pre><code class="java">&lt;properties&gt;
+   &lt;thymeleaf.version&gt;3.0.0.RELEASE&lt;/thymeleaf.version&gt;
+&lt;/properties&gt;
+</code></pre>
+<h2 id="spring-boot-starter-web"><a href="#spring-boot-starter-web" class="headerlink" title="spring-boot-starter-web"></a>spring-boot-starter-web</h2><p>Spring Boot提供了许多开箱即用的依赖模块，这些模块都是以spring-boot-starter-XX命名的。比如要开启Spring Boot的web功能，只需要在pom.xml中配置spring-boot-starter-web即可：</p>
+<pre><code class="java">&lt;dependency&gt;
+   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+   &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>因为其依赖于spring-boot-starter-parent，所以这里可以不用配置version。保存后Maven会自动帮我们下载spring-boot-starter-web模块所包含的jar文件。如果需要具体查看spring-boot-starter-web包含了哪些依赖，我们可以右键项目选择run as → Maven Build…，在Goals中输入命令<code>dependency:tree</code>，然后点击run即可在控制台查看到如下信息：</p>
+<pre><code class="java">[INFO] +- org.springframework.boot:spring-boot-starter-web:jar:1.5.9.RELEASE:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter:jar:1.5.9.RELEASE:compile
+[INFO] |  |  +- org.springframework.boot:spring-boot:jar:1.5.9.RELEASE:compile
+[INFO] |  |  +- org.springframework.boot:spring-boot-autoconfigure:jar:1.5.9.RELEASE:compile
+[INFO] |  |  +- org.springframework.boot:spring-boot-starter-logging:jar:1.5.9.RELEASE:compile
+[INFO] |  |  |  +- ch.qos.logback:logback-classic:jar:1.1.11:compile
+[INFO] |  |  |  |  \- ch.qos.logback:logback-core:jar:1.1.11:compile
+[INFO] |  |  |  +- org.slf4j:jcl-over-slf4j:jar:1.7.25:compile
+[INFO] |  |  |  +- org.slf4j:jul-to-slf4j:jar:1.7.25:compile
+[INFO] |  |  |  \- org.slf4j:log4j-over-slf4j:jar:1.7.25:compile
+[INFO] |  |  \- org.yaml:snakeyaml:jar:1.17:runtime
+[INFO] |  +- org.springframework.boot:spring-boot-starter-tomcat:jar:1.5.9.RELEASE:compile
+[INFO] |  |  +- org.apache.tomcat.embed:tomcat-embed-core:jar:8.5.23:compile
+[INFO] |  |  |  \- org.apache.tomcat:tomcat-annotations-api:jar:8.5.23:compile
+[INFO] |  |  +- org.apache.tomcat.embed:tomcat-embed-el:jar:8.5.23:compile
+[INFO] |  |  \- org.apache.tomcat.embed:tomcat-embed-websocket:jar:8.5.23:compile
+[INFO] |  +- org.hibernate:hibernate-validator:jar:5.3.6.Final:compile
+[INFO] |  |  +- javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO] |  |  +- org.jboss.logging:jboss-logging:jar:3.3.1.Final:compile
+[INFO] |  |  \- com.fasterxml:classmate:jar:1.3.4:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-databind:jar:2.8.10:compile
+[INFO] |  |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.8.0:compile
+[INFO] |  |  \- com.fasterxml.jackson.core:jackson-core:jar:2.8.10:compile
+[INFO] |  +- org.springframework:spring-web:jar:4.3.13.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-aop:jar:4.3.13.RELEASE:compile
+[INFO] |  |  +- org.springframework:spring-beans:jar:4.3.13.RELEASE:compile
+[INFO] |  |  \- org.springframework:spring-context:jar:4.3.13.RELEASE:compile
+[INFO] |  \- org.springframework:spring-webmvc:jar:4.3.13.RELEASE:compile
+[INFO] |     \- org.springframework:spring-expression:jar:4.3.13.RELEASE:compile
+</code></pre>
+<p>上述这些依赖都是隐式依赖于spring-boot-starter-web，我们也可以手动排除一些我们不需要的依赖。</p>
+<p>比如spring-boot-starter-web默认集成了tomcat，假如我们想把它换为jetty，可以在pom.xml中spring-boot-starter-web下排除tomcat依赖，然后手动引入jetty依赖：</p>
+<pre><code class="java">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+        &lt;exclusions&gt;
+            &lt;exclusion&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+            &lt;/exclusion&gt;
+        &lt;/exclusions&gt;
+    &lt;/dependency&gt;
+    
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-jetty&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+<h2 id="spring-boot-maven-plugin"><a href="#spring-boot-maven-plugin" class="headerlink" title="spring-boot-maven-plugin"></a>spring-boot-maven-plugin</h2><p>spring-boot-maven-plugin为Spring Boot Maven插件，提供了：</p>
+<ol>
+<li>把项目打包成一个可执行的超级JAR（uber-JAR）,包括把应用程序的所有依赖打入JAR文件内，并为JAR添加一个描述文件，其中的内容能让你用<code>java -jar</code>来运行应用程序。</li>
+<li>搜索<code>public static void main()</code>方法来标记为可运行类。</li>
+</ol>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
