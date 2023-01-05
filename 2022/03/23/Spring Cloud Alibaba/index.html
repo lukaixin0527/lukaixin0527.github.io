@@ -299,6 +299,18 @@
                                         
                                         MySQL
                                         
+                                            <small>(2
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="数据库<--->Oracle">
+                                        
+                                        Oracle
+                                        
                                             <small>(1
                                                 )</small>
                                         
@@ -416,6 +428,10 @@
                         </ul>
                     
                 </li>
+            
+        
+    
+        
             
         
     
@@ -619,7 +635,7 @@
         </a>
         
         
-        <a  class="All 数据库 "
+        <a  class="All 数据库 MySQL "
            href="/2022/03/23/2022-03-23-MySQL%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%EF%BC%8C%E8%AE%B0%E5%BD%95%E6%AF%8F%E4%B8%AA%E8%A1%A8%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F/"
            data-tag="存储过程"
            data-author="" >
@@ -781,20 +797,11 @@
         </a>
         
         
-        <a  class="All 数据库 "
+        <a  class="All 数据库 Oracle "
            href="/2022/03/23/%E5%88%A9%E7%94%A8Oracle%E5%88%86%E5%8C%BA%E4%BC%98%E5%8C%96%E6%9F%A5%E8%AF%A2/"
            data-tag="数据库,Oracle,分区"
            data-author="" >
             <span class="post-title" title="利用Oracle分区优化查询">利用Oracle分区优化查询</span>
-            <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
-        </a>
-        
-        
-        <a  class="All 后端 "
-           href="/2022/03/23/%E6%AD%A3%E5%88%99%E6%A0%A1%E9%AA%8C/"
-           data-tag="hexo,正则"
-           data-author="" >
-            <span class="post-title" title="正则校验">正则校验</span>
             <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
         </a>
         
@@ -804,6 +811,15 @@
            data-tag="hexo,博客"
            data-author="" >
             <span class="post-title" title="搭建Hexo博客">搭建Hexo博客</span>
+            <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
+        </a>
+        
+        
+        <a  class="All 后端 "
+           href="/2022/03/23/%E6%AD%A3%E5%88%99%E6%A0%A1%E9%AA%8C/"
+           data-tag="hexo,正则"
+           data-author="" >
+            <span class="post-title" title="正则校验">正则校验</span>
             <span class="post-date" title="2022-03-23 15:13:47">2022/03/23</span>
         </a>
         
@@ -861,7 +877,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-11-01 12:17:36'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2023-01-05 10:11:09'>2022-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
@@ -922,6 +938,7 @@
 <p>Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。</p>
 <h2 id="2、Nacos安装与启动"><a href="#2、Nacos安装与启动" class="headerlink" title="2、Nacos安装与启动"></a>2、Nacos安装与启动</h2><p>安装环境：Linux、JDK1.8+</p>
 <p>1、下载安装包 <a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases">https://github.com/alibaba/nacos/releases</a> 目前下载为最新版本2.1.1，上传至 <strong>&#x2F;usr&#x2F;local</strong> 目录下</p>
+<p>注意：如果是Windows系统，则下载<code>nacos-server-2.1.1.zip</code></p>
 <p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221010163621567.png" alt="image-20221010163621567"></p>
 <p>2、解压安装 </p>
 <pre><code class="shell">tar -zxvf nacos-server-2.1.1.tar.gz
@@ -930,8 +947,11 @@
 <p>启动命令(standalone代表着单机模式运行，非集群模式):</p>
 <pre><code class="shell">sh startup.sh -m standalone
 </code></pre>
-<p>如果您使用的是ubuntu系统，或者运行脚本报错提示[[符号找不到，可尝试如下运行：</p>
+<p>如果使用的是ubuntu系统，或者运行脚本报错提示[[符号找不到，可尝试如下运行：</p>
 <pre><code class="shell">bash startup.sh -m standalone
+</code></pre>
+<p>如果使用的是Windows系统，则执行脚本</p>
+<pre><code class="shell">startup.cmd -m standalone
 </code></pre>
 <p>4、关闭服务器</p>
 <pre><code class="shell">sh shutdown.sh
