@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Linux安装多个Mysql8 | Hexo</title>
-  <meta name="keywords" content=" mysql ">
-  <meta name="description" content="Linux安装多个Mysql8 | Hexo">
+  <title>MySQL排序规则 | Hexo</title>
+  <meta name="keywords" content=" MySQL ">
+  <meta name="description" content="MySQL排序规则 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分布式任务调度器 XXL-JOB分布式任务调度平台 PowerJob分布式调度与计算框架  数据可视化平台 GoView低代码数据可视化 100套大数据可视化模板  管理后台 若依管理系统 简单易用的java分布式日志系统">
 <meta property="og:type" content="article">
@@ -834,9 +834,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Linux安装多个Mysql8" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-2022-03-23-MySQL排序规则" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Linux安装多个Mysql8</h1>
+        <h1 class="article-title">MySQL排序规则</h1>
     
     <div class="article-meta">
         
@@ -846,7 +846,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="运维">运维</a>
+            <a  data-rel="数据库">数据库</a> > 
+            
+            <a  data-rel="数据库&lt;---&gt;MySQL">MySQL</a>
             
         </span>
         
@@ -854,19 +856,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">mysql</a>
+            <a class="color1">MySQL</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-11-04 16:53:05'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2023-01-05 09:55:46'>2022-03-23 00:00</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:972</span>
+        <span>Count:1.1k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -896,7 +898,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%8D%B8%E8%BD%BDMariaDB"><span class="toc-text">一、卸载MariaDB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC"><span class="toc-text">1.1 查看版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%8D%B8%E8%BD%BD"><span class="toc-text">1.2 卸载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%8D%B8%E8%BD%BD%E5%B9%B2%E5%87%80"><span class="toc-text">1.3 检查是否卸载干净</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85MySQL"><span class="toc-text">二、安装MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E4%B8%8B%E8%BD%BD%E8%B5%84%E6%BA%90%E5%8C%85"><span class="toc-text">2.1 下载资源包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E8%A7%A3%E5%8E%8B"><span class="toc-text">2.2 解压</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%94%A8%E6%88%B7%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84"><span class="toc-text">三、用户和用户组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%BB%84%E5%92%8C%E7%94%A8%E6%88%B7"><span class="toc-text">3.1 创建用户组和用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95"><span class="toc-text">3.2 数据目录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96MySQL"><span class="toc-text">四、初始化MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0"><span class="toc-text">4.1 配置参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">4.2 初始化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%90%AF%E5%8A%A8MySQL"><span class="toc-text">五、启动MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%90%AF%E5%8A%A8"><span class="toc-text">5.1 启动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E7%99%BB%E5%BD%95"><span class="toc-text">5.2 登录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-text">5.3 修改密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-%E8%AE%BE%E7%BD%AE%E5%85%81%E8%AE%B8%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="toc-text">5.4 设置允许远程登录</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81MySQL%E7%9A%84%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%9F"><span class="toc-text">1、MySQL的排序规则是干什么的？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-text">1.1 排序规则概念：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-text">1.2 排序规则作用：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%8F%8A%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">2、排序规则设置及优先级</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.1 排序规则设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-MySQL%E5%AE%9E%E4%BE%8B%E7%BA%A7%E5%88%AB%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.1.1 MySQL实例级别设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E5%BA%93%E7%BA%A7%E5%88%AB%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.1.2 库级别设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-%E8%A1%A8%E7%BA%A7%E5%88%AB%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.1.3 表级别设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-4-%E5%88%97%E7%BA%A7%E5%88%AB%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.1.4 列级别设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-5-SQL%E6%8C%87%E5%AE%9A%E8%AE%BE%E7%BD%AE"><span class="toc-text">2.1.5 SQL指定设置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-text">2.2 排序规则优先级</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81%E5%87%A0%E7%A7%8D%E5%B8%B8%E7%94%A8%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99%E4%BB%8B%E7%BB%8D"><span class="toc-text">3、几种常用排序规则介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-utf8mb4-general-ci"><span class="toc-text">3.1 utf8mb4_general_ci</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-utf8mb4-bin"><span class="toc-text">3.2 utf8mb4_bin</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-utf8mb4-unicode-ci"><span class="toc-text">3.3 utf8mb4_unicode_ci</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -912,149 +914,69 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>需求：一台Centos服务器上离线安装多个Mysql8实例</strong></p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221104162247478.png" alt="image-20221104162247478"></p>
-<h1 id="一、卸载MariaDB"><a href="#一、卸载MariaDB" class="headerlink" title="一、卸载MariaDB"></a><strong>一、卸载MariaDB</strong></h1><pre><code>在CentOS中默认安装有MariaDB，是MySQL的一个分支，主要由开源社区维护。
-CentOS 7及以上版本已经不再使用MySQL数据库，而是使用MariaDB数据库。
-如果直接安装MySQL，会和MariaDB的文件冲突。
-因此，需要先卸载自带的MariaDB，再安装MySQL。
+        <h1 id="1、MySQL的排序规则是干什么的？"><a href="#1、MySQL的排序规则是干什么的？" class="headerlink" title="1、MySQL的排序规则是干什么的？"></a>1、MySQL的排序规则是干什么的？</h1><p>​		我们在使用 Navicat for MySQL 或 MySQL Workbench 创建数据库的时候，除了数据库名称和字符集外，我们还可以设置 Collation【排序规则】 （当然我们也可以使用默认的排序规则），那么这里的排序规则到底是干什么的？</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img20190820162608936.png" alt="在这里插入图片描述"></p>
+<h2 id="1-1-排序规则概念："><a href="#1-1-排序规则概念：" class="headerlink" title="1.1 排序规则概念："></a><strong>1.1 排序规则概念：</strong></h2><p>是指对指定字符集下不同字符的比较规则。排序规则有以下特征：</p>
+<p>1、它和字符集（CHARSET）相关</p>
+<p>2、每种字符集都有多种它支持的排序规则</p>
+<p>3、每种字符集都会默认指定一种排序规则为默认值。</p>
+<h2 id="1-2-排序规则作用："><a href="#1-2-排序规则作用：" class="headerlink" title="1.2 排序规则作用："></a><strong>1.2 排序规则作用</strong>：</h2><p>排序规则指定后，它会影响我们使用 ORDER BY语句查询的结果顺序，会影响到 WHERE条件中大于小于号的筛选结果，会影响 DISTINCT、GROUP BY、HAVING 语句的查询结果。另外，mysql 建索引的时候，如果索引列是字符类型，也会影响索引创建，只不过这种影响我们感知不到。总之，<strong>凡是涉及到字符类型比较或排序的地方</strong>，都和排序规则有关。</p>
+<h1 id="2、排序规则设置及优先级"><a href="#2、排序规则设置及优先级" class="headerlink" title="2、排序规则设置及优先级"></a>2、排序规则设置及优先级</h1><h2 id="2-1-排序规则设置"><a href="#2-1-排序规则设置" class="headerlink" title="2.1 排序规则设置"></a>2.1 排序规则设置</h2><p>排序规则设置可以分为：MySQL实例级别、库级别、表级别、列级别以及SQL指定。</p>
+<h3 id="2-1-1-MySQL实例级别设置"><a href="#2-1-1-MySQL实例级别设置" class="headerlink" title="2.1.1 MySQL实例级别设置"></a>2.1.1 MySQL实例级别设置</h3><p>实例级别的排序规则设置就是 MySQL 配置文件或启动指令中的 collation_connection 系统变量。</p>
+<p><strong>实例级别设置排序规则</strong></p>
+<p>可以通过修改mysql的配置文件 my.ini来修改相应的排序规则，修改好后，重启mysql服务。</p>
+<p>查看MySQL<strong>实例级别的字符集和排序规则</strong></p>
+<pre><code class="mysql">show variables like &#39;%character%&#39;;
+show variables like &#39;%collation%&#39;;
 </code></pre>
-<h2 id="1-1-查看版本"><a href="#1-1-查看版本" class="headerlink" title="1.1 查看版本"></a><strong>1.1 查看版本</strong></h2><pre><code>rpm -qa|grep mariadb
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img20190820173744705.png" alt="在这里插入图片描述"></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img2019082017421814.png" alt="在这里插入图片描述"></p>
+<p>从上图可以看到，当前实例级别的字符集是 <code>utf8</code>，排序规则是 <code>utf8-general_ci</code>。</p>
+<h3 id="2-1-2-库级别设置"><a href="#2-1-2-库级别设置" class="headerlink" title="2.1.2 库级别设置"></a>2.1.2 库级别设置</h3><p><strong>库级别设置排序规则</strong></p>
+<p>在创建数据库的时候指定数据集和排序规则</p>
+<pre><code class="mysql">CREATE DATABASE TESTDB 
+DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 </code></pre>
-<h2 id="1-2-卸载"><a href="#1-2-卸载" class="headerlink" title="1.2 卸载"></a><strong>1.2 卸载</strong></h2><pre><code>rpm -e --nodeps 文件名
+<p><strong>查看库级别排序规则</strong></p>
+<pre><code class="mysql">show create database testdb;
 </code></pre>
-<h2 id="1-3-检查是否卸载干净"><a href="#1-3-检查是否卸载干净" class="headerlink" title="1.3 检查是否卸载干净"></a><strong>1.3 检查是否卸载干净</strong></h2><pre><code>rpm -qa|grep mariadb
-</code></pre>
-<h1 id="二、安装MySQL"><a href="#二、安装MySQL" class="headerlink" title="二、安装MySQL"></a><strong>二、安装MySQL</strong></h1><h2 id="2-1-下载资源包"><a href="#2-1-下载资源包" class="headerlink" title="2.1 下载资源包"></a><strong>2.1 下载资源包</strong></h2><p>MySQL官方地址:  <a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql/">https://dev.mysql.com/downloads/mysql/</a></p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221104163246765.png" alt="image-20221104163246765"></p>
-<h2 id="2-2-解压"><a href="#2-2-解压" class="headerlink" title="2.2 解压"></a><strong>2.2 解压</strong></h2><pre><code class="shell">.tar.gz后缀：tar -zxvf 文件名
-.tar.xz后缀：tar -Jxvf 文件名
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img20190820181817637.png" alt="在这里插入图片描述"></p>
+<h3 id="2-1-3-表级别设置"><a href="#2-1-3-表级别设置" class="headerlink" title="2.1.3 表级别设置"></a>2.1.3 表级别设置</h3><p><strong>表级别设置排序规则</strong></p>
+<p>在创建表的时候指定表的数据集和排序规则</p>
+<pre><code class="mysql">use testdb;
 
-tar -Jxvf mysql-8.0.31-linux-glibc2.12-x86_64.tar.xz 
-
-解压多次到 /usr/local/mysql目录下的mysql-8.0.31-3306、mysql-8.0.31-3307、mysql-8.0.31-3308、mysql-8.0.31-3309
+CREATE TABLE user(
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 </code></pre>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221104163817815.png" alt="image-20221104163817815"></p>
-<h1 id="三、用户和用户组"><a href="#三、用户和用户组" class="headerlink" title="三、用户和用户组"></a><strong>三、用户和用户组</strong></h1><h2 id="3-1-创建用户组和用户"><a href="#3-1-创建用户组和用户" class="headerlink" title="3.1 创建用户组和用户"></a><strong>3.1 创建用户组和用户</strong></h2><pre><code># 创建一个用户组：mysql
-groupadd mysql
-# 创建一个系统用户：mysql，指定用户组为mysql
-useradd -r -g mysql mysql
+<p><strong>查看表级别排序规则</strong></p>
+<pre><code class="mysql">show table status from testdb like &#39;user&#39;;
+-- testdb 为数据库名， user 为要查看的表名
 </code></pre>
-<p><strong>创建用户组：</strong>groupadd</p>
-<p><strong>创建用户：</strong>useradd</p>
-<p>-r<strong>：创建系统用户</strong></p>
-<p>-g<strong>：指定用户组</strong></p>
-<h2 id="3-2-数据目录"><a href="#3-2-数据目录" class="headerlink" title="3.2 数据目录"></a><strong>3.2 数据目录</strong></h2><p><strong>1、创建目录</strong></p>
-<pre><code>mkdir -p /usr/local/mysql/mysql-8.0.31-3306/data
-mkdir -p /usr/local/mysql/mysql-8.0.31-3307/data
-mkdir -p /usr/local/mysql/mysql-8.0.31-3308/data
-mkdir -p /usr/local/mysql/mysql-8.0.31-3309/data
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img20190820182932508.png" alt="在这里插入图片描述"></p>
+<h3 id="2-1-4-列级别设置"><a href="#2-1-4-列级别设置" class="headerlink" title="2.1.4 列级别设置"></a>2.1.4 列级别设置</h3><p><strong>列级别设置排序规则</strong></p>
+<p>在创建表的时候指定列的数据集和排序规则</p>
+<pre><code class="mysql">CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 </code></pre>
-<p><strong>2、赋予权限</strong></p>
-<pre><code># 挨个赋予权限
-# 更改属主和数组
-chown -R mysql:mysql /usr/local/mysql/mysql-8.0.31-3306/data
-# 更改模式
-chmod -R 750 /usr/local/mysql/mysql-8.0.31-3306/data
+<p><strong>查看列级别排序规则</strong></p>
+<pre><code class="mysql">show full columns from user;
 </code></pre>
-<h1 id="四、初始化MySQL"><a href="#四、初始化MySQL" class="headerlink" title="四、初始化MySQL"></a><strong>四、初始化MySQL</strong></h1><h2 id="4-1-配置参数"><a href="#4-1-配置参数" class="headerlink" title="4.1 配置参数"></a><strong>4.1 配置参数</strong></h2><p>在&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;mysql-8.0.31-3306&#x2F;下，创建my.cnf配置文件，用于初始化MySQL数据库</p>
-<pre><code>[mysqld]
-port=3306
-user= mysql
-socket= /usr/local/mysql/mysql-8.0.31-3306/data/mysql.sock
-# 安装目录
-basedir= /usr/local/mysql/mysql-8.0.31-3306
-# 数据存放目录
-datadir= /usr/local/mysql/mysql-8.0.31-3306/data
-log-bin= /usr/local/mysql/mysql-8.0.31-3306/data/mysql-bin
-innodb_data_home_dir=/usr/local/mysql/mysql-8.0.31-3306/data
-innodb_log_group_home_dir=/usr/local/mysql/mysql-8.0.31-3306/data
-#日志及进程数据的存放目录
-log-error=/usr/local/mysql/mysql-8.0.31-3306/data/mysql.log
-pid-file=/usr/local/mysql/mysql-8.0.31-3306/data/mysql.pid
-# 服务端使用的字符集默认为8比特编码
-sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
-character-set-server=utf8mb4
-lower_case_table_names=1
-autocommit=1
-##################以上要修改的########################
-skip-external-locking
-key_buffer_size=256M
-max_allowed_packet=1M
-table_open_cache=1024
-sort_buffer_size=4M
-net_buffer_length=8K
-read_buffer_size=4M
-read_rnd_buffer_size=512K
-myisam_sort_buffer_size=64M
-thread_cache_size=128
-#query_cache_size = 128M
-tmp_table_size=128M
-explicit_defaults_for_timestamp=true
-max_connections=500
-max_connect_errors=100
-open_files_limit=65535
-
-
-# 创建新表时将使用的默认存储引擎
-default_storage_engine=InnoDB
-innodb_data_file_path=ibdata1:10M:autoextend
-innodb_buffer_pool_size=1024M
-innodb_log_buffer_size=8M
-innodb_flush_log_at_trx_commit=1
-innodb_lock_wait_timeout=50
-transaction-isolation=READ-COMMITTED
-[mysqldump]
-quick
-max_allowed_packet=16M
-[myisamchk]
-key_buffer_size=256M
-sort_buffer_size=4M
-read_buffer=2M
-write_buffer=2M
-[mysqlhotcopy]
-interactive-timeout
-
-#开启bin log 功能
-server-id=523306
-binlog-ignore-db=mysql
-binlog-ignore-db=information_schema
-binlog-ignore-db=sys
-binlog-ignore-db=performance_schema
-binlog_format=mixed
-# 保留10天数据
-binlog_expire_logs_seconds=864000
+<h3 id="2-1-5-SQL指定设置"><a href="#2-1-5-SQL指定设置" class="headerlink" title="2.1.5 SQL指定设置"></a>2.1.5 SQL指定设置</h3><p><strong>SQL语句中指定排序规则</strong></p>
+<pre><code class="mysql">SELECT id, name FROM `user` 
+ORDER BY name COLLATE utf8mb4_unicode_ci;
 </code></pre>
-<h2 id="4-2-初始化"><a href="#4-2-初始化" class="headerlink" title="4.2 初始化"></a><strong>4.2 初始化</strong></h2><p>进入bin目录</p>
-<pre><code>./mysqld --defaults-file=/usr/local/mysql/mysql-8.0.31-3306/my.cnf --basedir=/usr/local/mysql/mysql-8.0.31-3306 --datadir=/usr/local/mysql/mysql-8.0.31-3306/data --user=mysql --initialize
-</code></pre>
-<p>初始化成功后，会在<code>/usr/local/mysql/mysql-8.0.31-3306/data/mysql.log</code>下显示初始化密码</p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221104164436934.png" alt="image-20221104164436934"></p>
-<p><strong>参数（重要）</strong></p>
-<p>defaults-file：指定配置文件（要放在–initialize 前面）</p>
-<p>user： 指定用户</p>
-<p>basedir：指定安装目录</p>
-<p>datadir：指定初始化数据目录</p>
-<p>intialize：初始化密码</p>
-<h1 id="五、启动MySQL"><a href="#五、启动MySQL" class="headerlink" title="五、启动MySQL"></a><strong>五、启动MySQL</strong></h1><h2 id="5-1-启动"><a href="#5-1-启动" class="headerlink" title="5.1 启动"></a><strong>5.1 启动</strong></h2><p>进入bin目录</p>
-<pre><code>./mysqld_safe --defaults-file=/usr/local/mysql/mysql-8.0.31-3306/my.cnf &amp;
-</code></pre>
-<p><strong>查看是否启动</strong></p>
-<pre><code>ps -ef|grep mysql
-</code></pre>
-<h2 id="5-2-登录"><a href="#5-2-登录" class="headerlink" title="5.2 登录"></a><strong>5.2 登录</strong></h2><pre><code>./mysql -uroot -p -h 127.0.0.1 --socket=../data/mysql.sock --port=3306
-</code></pre>
-<h2 id="5-3-修改密码"><a href="#5-3-修改密码" class="headerlink" title="5.3 修改密码"></a><strong>5.3 修改密码</strong></h2><pre><code># 修改密码
-ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;123456&#39;;
-# 刷新权限
-FLUSH PRIVILEGES;
-</code></pre>
-<h2 id="5-4-设置允许远程登录"><a href="#5-4-设置允许远程登录" class="headerlink" title="5.4 设置允许远程登录"></a><strong>5.4 设置允许远程登录</strong></h2><pre><code>mysql&gt; use mysql
-mysql&gt; update user set user.Host=&#39;%&#39;where user.User=&#39;root&#39;;
-mysql&gt; flush privileges;
-mysql&gt; quit
-</code></pre>
-<p>到此3306服务就启动成功了，然后重复四、五步骤，分别启动3307、3308、3309即可。</p>
+<h2 id="2-2-排序规则优先级"><a href="#2-2-排序规则优先级" class="headerlink" title="2.2 排序规则优先级"></a>2.2 排序规则优先级</h2><p>优先级顺序是 SQL语句 &gt; 列级别设置 &gt; 表级别设置 &gt; 库级别设置 &gt; 实例级别设置</p>
+<p>也就是说，如果SQL语句中指定了排序规则，则以其指定为准，否则以下一级为准（也就是列级别），如果列级别没有指定，默认是继承表级别的设置，以此类推。</p>
+<h1 id="3、几种常用排序规则介绍"><a href="#3、几种常用排序规则介绍" class="headerlink" title="3、几种常用排序规则介绍"></a>3、几种常用排序规则介绍</h1><p>我们以字符集utf8mb4为例，常用的排序规则有：<code>utf8mb4_general_ci</code>、<code>utf8mb4_bin</code>、<code>utf8mb4_unicode_ci</code>。</p>
+<h2 id="3-1-utf8mb4-general-ci"><a href="#3-1-utf8mb4-general-ci" class="headerlink" title="3.1 utf8mb4_general_ci"></a>3.1 utf8mb4_general_ci</h2><p>ci即case insensitive，不区分大小写。没有实现Unicode排序规则，在遇到某些特殊语言或者字符集，排序结果可能不一致，但是，在绝大多数情况下，这些特殊字符的顺序并不需要那么精确。另外，在比较和排序的时候速度更快。</p>
+<h2 id="3-2-utf8mb4-bin"><a href="#3-2-utf8mb4-bin" class="headerlink" title="3.2 utf8mb4_bin"></a>3.2 utf8mb4_bin</h2><p>将字符串每个字符用二进制数据编译存储，区分大小写，而且可以存二进制的内容。</p>
+<h2 id="3-3-utf8mb4-unicode-ci"><a href="#3-3-utf8mb4-unicode-ci" class="headerlink" title="3.3 utf8mb4_unicode_ci"></a>3.3 utf8mb4_unicode_ci</h2><p>不区分大小写，基于标准的Unicode来排序和比较，能够在各种语言之间精确排序，在特殊情况下，Unicode排序规则为了能够处理特殊字符的情况，实现了略微复杂的排序算法，所以兼容度比较高，但是性能不高。</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
