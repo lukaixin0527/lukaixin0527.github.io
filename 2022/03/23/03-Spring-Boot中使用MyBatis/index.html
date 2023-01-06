@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Kettle | Hexo</title>
-  <meta name="keywords" content=" ETL , Kettle , JSON Path ">
-  <meta name="description" content="Kettle | Hexo">
+  <title>Spring Boot中使用MyBatis | Hexo</title>
+  <meta name="keywords" content=" SpringBoot ">
+  <meta name="description" content="Spring Boot中使用MyBatis | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分布式任务调度器 XXL-JOB分布式任务调度平台 PowerJob分布式调度与计算框架  数据可视化平台 GoView低代码数据可视化 100套大数据可视化模板  管理后台 若依管理系统 简单易用的java分布式日志系统">
 <meta property="og:type" content="article">
@@ -868,9 +868,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-Kettle-案例【发送Http请求】" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-03-Spring-Boot中使用MyBatis" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Kettle</h1>
+        <h1 class="article-title">Spring Boot中使用MyBatis</h1>
     
     <div class="article-meta">
         
@@ -880,7 +880,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="后端">后端</a>
+            <a  data-rel="后端">后端</a> > 
+            
+            <a  data-rel="后端&lt;---&gt;SpringBoot">SpringBoot</a>
             
         </span>
         
@@ -888,23 +890,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color4">ETL</a>
-            
-            <a class="color2">Kettle</a>
-            
-            <a class="color5">JSON Path</a>
+            <a class="color1">SpringBoot</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-10-31 17:20:47'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2023-01-06 17:49:51'>2022-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:1.6k</span>
+        <span>Count:1.5k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -934,7 +932,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81Kettle%E5%AE%89%E8%A3%85"><span class="toc-text">一、Kettle安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%89%A7%E8%A1%8CSQL%E8%84%9A%E6%9C%AC"><span class="toc-text">二、执行SQL脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81sql%E8%84%9A%E6%9C%AC%E5%8F%AA%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%EF%BC%8C%E4%B8%94%E7%AC%AC%E4%B8%80%E4%B8%AA%E6%89%A7%E8%A1%8C"><span class="toc-text">1、sql脚本只执行一次，且第一个执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81sql%E8%84%9A%E6%9C%AC%E5%8F%AA%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1%EF%BC%8C%E4%B8%94%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E6%89%A7%E8%A1%8C"><span class="toc-text">2、sql脚本只执行一次，且最后一个执行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81Kettle-%E6%A1%88%E4%BE%8B%E3%80%90%E5%8F%91%E9%80%81Http%E8%AF%B7%E6%B1%82%E3%80%91"><span class="toc-text">三、Kettle-案例【发送Http请求】</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E8%8E%B7%E5%8F%96%E8%AF%B7%E6%B1%82%E8%B7%AF%E5%BE%84"><span class="toc-text">1、获取请求路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%8F%91%E9%80%81Http%E8%AF%B7%E6%B1%82"><span class="toc-text">2、发送Http请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E6%8E%A5%E6%94%B6Http%E8%BF%94%E5%9B%9E%E7%BB%93%E6%9E%9C"><span class="toc-text">3、接收Http返回结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E3%80%81JSON-Path-%E8%AF%AD%E6%B3%95"><span class="toc-text">4、JSON Path 语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E3%80%81%E6%8B%BC%E6%8E%A5url%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">5、拼接url字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E3%80%81%E7%BB%93%E6%9D%9F"><span class="toc-text">6、结束</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81mybatis-spring-boot-starter"><span class="toc-text">1、mybatis-spring-boot-starter</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81%E5%BC%95%E5%85%A5mysql8"><span class="toc-text">2、引入mysql8</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81Druid%E6%95%B0%E6%8D%AE%E6%BA%90"><span class="toc-text">3、Druid数据源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1%E3%80%81%E9%85%8D%E7%BD%AEDruid%E4%BE%9D%E8%B5%96"><span class="toc-text">3.1、配置Druid依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2%E3%80%81Druid%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE"><span class="toc-text">3.2、Druid数据源配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%E3%80%81%E4%BD%BF%E7%94%A8MyBatis"><span class="toc-text">4、使用MyBatis</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%E3%80%81%E6%B5%8B%E8%AF%95"><span class="toc-text">5、测试</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -950,202 +948,233 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="一、Kettle安装"><a href="#一、Kettle安装" class="headerlink" title="一、Kettle安装"></a>一、Kettle安装</h1><p>安装环境：Windows</p>
-<p>下载地址：<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/pentaho/files/">https://sourceforge.net/projects/pentaho/files/</a></p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221031160556335.png" alt="image-20221031160556335"></p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221031160839419.png" alt="image-20221031160839419"></p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221031160907682.png" alt="image-20221031160907682"></p>
-<h1 id="二、执行SQL脚本"><a href="#二、执行SQL脚本" class="headerlink" title="二、执行SQL脚本"></a>二、执行SQL脚本</h1><h2 id="1、sql脚本只执行一次，且第一个执行"><a href="#1、sql脚本只执行一次，且第一个执行" class="headerlink" title="1、sql脚本只执行一次，且第一个执行"></a>1、sql脚本只执行一次，且第一个执行</h2><p>执行SQL脚本组件，默认会第一个执行,且只执行一次。</p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221031170103337.png" alt="image-20221031170103337"></p>
-<h2 id="2、sql脚本只执行一次，且最后一个执行"><a href="#2、sql脚本只执行一次，且最后一个执行" class="headerlink" title="2、sql脚本只执行一次，且最后一个执行"></a>2、sql脚本只执行一次，且最后一个执行</h2><p>需要使用 <strong>阻塞</strong>步骤，等待前面所有的步骤完成后，再执行。</p>
-<p>需要注意的是，在执行SQL脚本中，需要勾选 <strong>执行每一行</strong>，否则还会第一个执行！</p>
-<p>虽然达到了最后执行的要求，但是前面有多少条数据，就会执行多少次。</p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221031171529417.png" alt="image-20221031171529417"></p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221031171655579.png" alt="image-20221031171655579"></p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221031171756264.png" alt="image-20221031171756264"></p>
-<pre><code>不让【执行SQL脚本】第一个执行而且不重复执行
-问题描述： 在kettle的转换里面，除了正常的表输入表输出外还有一个sql脚本，要控制sql脚本的执行顺序，以及sql脚本的执行次数
+        <p>整合MyBatis之前，先搭建一个基本的Spring Boot项目。然后引入<code>mybatis-spring-boot-starter</code>和数据库连接驱动（这里使用关系型数据库Mysql8.0）。</p>
+<h1 id="1、mybatis-spring-boot-starter"><a href="#1、mybatis-spring-boot-starter" class="headerlink" title="1、mybatis-spring-boot-starter"></a>1、mybatis-spring-boot-starter</h1><p>在pom中引入：</p>
+<pre><code class="java">&lt;!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;2.3.0&lt;/version&gt;
+&lt;/dependency&gt;
 </code></pre>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u012848709/article/details/67679366">https://blog.csdn.net/u012848709/article/details/67679366</a></p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20221031161701097.png" alt="image-20221031161701097"></p>
-<h1 id="三、Kettle-案例【发送Http请求】"><a href="#三、Kettle-案例【发送Http请求】" class="headerlink" title="三、Kettle-案例【发送Http请求】"></a>三、Kettle-案例【发送Http请求】</h1><p>案例：利用发送Http请求(1)后的结果集中的 url数组，对url进行修改后，再次遍历请求。</p>
-<p>最后的结果是这样</p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919204450863.png" alt="image-20220919204450863"></p>
-<h2 id="1、获取请求路径"><a href="#1、获取请求路径" class="headerlink" title="1、获取请求路径"></a>1、获取请求路径</h2><p>可以从数据库中读取，也可以手动生成。这里用 【生成记录】组件</p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919204722117.png" alt="image-20220919204722117"></p>
-<h2 id="2、发送Http请求"><a href="#2、发送Http请求" class="headerlink" title="2、发送Http请求"></a>2、发送Http请求</h2><p>这里用的Get请求，利用【HTTP client】组件</p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919205010849.png" alt="image-20220919205010849"></p>
-<h2 id="3、接收Http返回结果"><a href="#3、接收Http返回结果" class="headerlink" title="3、接收Http返回结果"></a>3、接收Http返回结果</h2><p>因为返回结果为json字符串，所以用到【JSON 输入】组件</p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919205117113.png" alt="image-20220919205117113"></p>
-<p>因为json字符串一般会返回多个不同类型的字段，我们可以自定义返回字段，拿到我们想要的数据。</p>
-<p>其中<strong>路径</strong> 中用到了 <strong>JSON Path</strong> 来筛选数据。 </p>
-<p>例子中的 $.childUriList[*]  为拿到 childUriList数组中的每一个字符串</p>
-<pre><code class="json">&#123;
-&quot;childUriList&quot;:
-[
-&quot;XXXX&quot;,
-&quot;XXXX&quot;,
-&quot;XXXX&quot;
-]
-&#125;
+<p>不同版本的Spring Boot和MyBatis版本对应不一样，具体可查看官方文档：<a target="_blank" rel="noopener" href="http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/%E3%80%82">http://www.mybatis.org/spring-boot-starter/mybatis-spring-boot-autoconfigure/。</a></p>
+<p>通过<code>dependency:tree</code>命令查看<code>mybatis-spring-boot-starter</code>都有哪些隐性依赖：</p>
+<pre><code class="java"> +- org.mybatis.spring.boot:mybatis-spring-boot-starter:jar:2.3.0:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter-jdbc:jar:2.7.7:compile
+[INFO] |  |  +- com.zaxxer:HikariCP:jar:4.0.3:compile
+[INFO] |  |  \- org.springframework:spring-jdbc:jar:5.3.24:compile
+[INFO] |  |     \- org.springframework:spring-tx:jar:5.3.24:compile
+[INFO] |  +- org.mybatis.spring.boot:mybatis-spring-boot-autoconfigure:jar:2.3.0:compile
+[INFO] |  +- org.mybatis:mybatis:jar:3.5.11:compile
+[INFO] |  \- org.mybatis:mybatis-spring:jar:2.1.0:compile
 </code></pre>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919205300096.png" alt="image-20220919205300096"></p>
-<h2 id="4、JSON-Path-语法"><a href="#4、JSON-Path-语法" class="headerlink" title="4、JSON Path 语法"></a>4、JSON Path 语法</h2><p>1、什么市JSON Path</p>
-<p>SONPath 之于 JSON，就如 XPath之于 XML。JSONPath 可以方便对 JSON 数据结构进行内容提取。</p>
-<p>2、语法介绍</p>
-<table>
-<thead>
-<tr>
-<th><strong>JsonPath</strong></th>
-<th><strong>说明</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>$</td>
-<td>文档根元素</td>
-</tr>
-<tr>
-<td>@</td>
-<td>当前元素</td>
-</tr>
-<tr>
-<td>.<code>或</code>[]</td>
-<td>匹配下级元素</td>
-</tr>
-<tr>
-<td>..</td>
-<td>递归匹配所有子元素</td>
-</tr>
-<tr>
-<td>*</td>
-<td>通配符，匹配下级元素</td>
-</tr>
-<tr>
-<td>[]</td>
-<td>下标运算符，根据索引获取元素，<strong>XPath索引从1开始，JsonPath索引从0开始</strong></td>
-</tr>
-<tr>
-<td>[,]</td>
-<td>连接操作符，将多个结果拼接成数组返回，可以使用索引或别名</td>
-</tr>
-<tr>
-<td>[start:end:step]</td>
-<td>数据切片操作，XPath不支持</td>
-</tr>
-<tr>
-<td>?()</td>
-<td>过滤表达式</td>
-</tr>
-<tr>
-<td>()</td>
-<td>脚本表达式，使用底层脚本引擎，XPath不支持</td>
-</tr>
-</tbody></table>
-<p>这是一个非常经典的案例，你几乎可以在任何介绍JSON Path的地方看到它，但是很实用。</p>
-<pre><code class="JSON">&#123; &quot;store&quot;: &#123;
-    &quot;book&quot;: [ 
-      &#123; &quot;category&quot;: &quot;reference&quot;,
-        &quot;author&quot;: &quot;Nigel Rees&quot;,
-        &quot;title&quot;: &quot;Sayings of the Century&quot;,
-        &quot;price&quot;: 8.95
-      &#125;,
-      &#123; &quot;category&quot;: &quot;fiction&quot;,
-        &quot;author&quot;: &quot;Evelyn Waugh&quot;,
-        &quot;title&quot;: &quot;Sword of Honour&quot;,
-        &quot;price&quot;: 12.99
-      &#125;,
-      &#123; &quot;category&quot;: &quot;fiction&quot;,
-        &quot;author&quot;: &quot;Herman Melville&quot;,
-        &quot;title&quot;: &quot;Moby Dick&quot;,
-        &quot;isbn&quot;: &quot;0-553-21311-3&quot;,
-        &quot;price&quot;: 8.99
-      &#125;,
-      &#123; &quot;category&quot;: &quot;fiction&quot;,
-        &quot;author&quot;: &quot;J. R. R. Tolkien&quot;,
-        &quot;title&quot;: &quot;The Lord of the Rings&quot;,
-        &quot;isbn&quot;: &quot;0-395-19395-8&quot;,
-        &quot;price&quot;: 22.99
-      &#125;
-    ],
-    &quot;bicycle&quot;: &#123;
-      &quot;color&quot;: &quot;red&quot;,
-      &quot;price&quot;: 19.95
+<p>可发现其包含了<code>spring-boot-starter-jdbc</code>依赖</p>
+<h1 id="2、引入mysql8"><a href="#2、引入mysql8" class="headerlink" title="2、引入mysql8"></a>2、引入mysql8</h1><pre><code class="java">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;version&gt;8.0.29&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h1 id="3、Druid数据源"><a href="#3、Druid数据源" class="headerlink" title="3、Druid数据源"></a>3、Druid数据源</h1><p>Druid是一个关系型数据库连接池，是阿里巴巴的一个开源项目，地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/druid%E3%80%82Druid%E4%B8%8D%E4%BD%86%E6%8F%90%E4%BE%9B%E8%BF%9E%E6%8E%A5%E6%B1%A0%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E8%BF%98%E6%8F%90%E4%BE%9B%E7%9B%91%E6%8E%A7%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%AE%9E%E6%97%B6%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0%E5%92%8CSQL%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%83%85%E5%86%B5%E3%80%82">https://github.com/alibaba/druid。Druid不但提供连接池的功能，还提供监控功能，可以实时查看数据库连接池和SQL查询的工作情况。</a></p>
+<h2 id="3-1、配置Druid依赖"><a href="#3-1、配置Druid依赖" class="headerlink" title="3.1、配置Druid依赖"></a>3.1、配置Druid依赖</h2><p>Druid为Spring Boot项目提供了对应的starter：</p>
+<pre><code class="java">&lt;!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-starter --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+    &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;1.2.15&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h2 id="3-2、Druid数据源配置"><a href="#3-2、Druid数据源配置" class="headerlink" title="3.2、Druid数据源配置"></a>3.2、Druid数据源配置</h2><p>上面通过查看mybatis starter的隐性依赖发现，Spring Boot的数据源配置的默认类型是<code>Hikari</code>，为了使用Druid连接池，需要在application.yml下配置：</p>
+<pre><code class="yaml">spring:
+  datasource:
+    druid:
+      # 数据库访问配置, 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/spring-all
+      username: root
+      password: root
+      # 连接池配置
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 连接等待超时时间
+      max-wait: 30000
+      # 配置检测可以关闭的空闲连接间隔时间
+      time-between-eviction-runs-millis: 60000
+      # 配置连接在池中的最小生存时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: select &#39;1&#39; from dual
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置监控统计拦截的filters, 去掉后监控界面sql无法统计, &#39;wall&#39;用于防火墙
+      filters: stat,wall
+      # Spring监控AOP切入点，如x.y.z.service.*,配置多个英文逗号分隔
+      aop-patterns: com.example.demo.servie.*
+
+
+      # WebStatFilter配置
+      web-stat-filter:
+        enabled: true
+        # 添加过滤规则
+        url-pattern: /*
+        # 忽略过滤的格式
+        exclusions: &#39;*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*&#39;
+
+      # StatViewServlet配置
+      stat-view-servlet:
+        enabled: true
+        # 访问路径为/druid时，跳转到StatViewServlet
+        url-pattern: /druid/*
+        # 是否能够重置数据
+        reset-enable: false
+        # 需要账号密码才能访问控制台
+        login-username: druid
+        login-password: druid
+        # IP白名单
+        # allow: 127.0.0.1
+        #　IP黑名单（共同存在时，deny优先于allow）
+        # deny: 192.168.1.218
+
+      # 配置StatFilter
+      filter:
+        stat:
+          log-slow-sql: true
+</code></pre>
+<p>上述配置不但配置了Druid作为连接池，而且还开启了Druid的监控功能。 其他配置可参考官方wiki——<a target="_blank" rel="noopener" href="https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter">https://github.com/alibaba/druid/tree/master/druid-spring-boot-starter</a></p>
+<p>此时，运行项目，访问<a target="_blank" rel="noopener" href="http://localhost:8080/druid%EF%BC%9A%E8%BE%93%E5%85%A5%E9%85%8D%E7%BD%AE%E7%9A%84%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81">http://localhost:8080/druid：输入配置的账号密码</a> druid&#x2F;druid 登录即可。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20230106170648298.png" alt="image-20230106170648298"></p>
+<p>关于Druid的更多说明，可查看官方wiki——<a target="_blank" rel="noopener" href="https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">https://github.com/alibaba/druid/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98</a></p>
+<h1 id="4、使用MyBatis"><a href="#4、使用MyBatis" class="headerlink" title="4、使用MyBatis"></a>4、使用MyBatis</h1><p>使用的库表：</p>
+<pre><code class="mysql">CREATE TABLE `student` (
+  `id` int NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `age` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+</code></pre>
+<p>创建对应实体：</p>
+<pre><code class="java">public class Student implements Serializable &#123;
+    private static final long serialVersionUID = -339516038496531943L;
+    private Integer id;
+    private String name;
+    private Integer age;
+
+    public Integer getId() &#123;
+        return id;
     &#125;
-  &#125;
+    public void setId(Integer id) &#123;
+        this.id = id;
+    &#125;
+    public String getName() &#123;
+        return name;
+    &#125;
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+    public Integer getAge() &#123;
+        return age;
+    &#125;
+    public void setAge(Integer age) &#123;
+        this.age = age;
+    &#125;
 &#125;
 </code></pre>
-<p>配合示例，对应上面表格的语法，下面的举例更好理解</p>
-<table>
-<thead>
-<tr>
-<th><strong>JsonPath</strong></th>
-<th><strong>Result</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>$.store.book[*].author</td>
-<td>所有book的author节点</td>
-</tr>
-<tr>
-<td>$..author</td>
-<td>所有author节点</td>
-</tr>
-<tr>
-<td>$.store.*</td>
-<td>store下的所有节点，book数组和bicycle节点</td>
-</tr>
-<tr>
-<td>$.store..price</td>
-<td>store下的所有price节点</td>
-</tr>
-<tr>
-<td>$..book[2]</td>
-<td>匹配第3个book节点</td>
-</tr>
-<tr>
-<td>$..book[(@.length-1)]</td>
-<td>匹配倒数第1个book节点</td>
-</tr>
-<tr>
-<td>$..book[(-1:)]</td>
-<td>匹配倒数第1个book节点</td>
-</tr>
-<tr>
-<td>$..book[0,1]</td>
-<td>匹配前两个book节点</td>
-</tr>
-<tr>
-<td>$..book[:2]</td>
-<td>匹配前两个book节点</td>
-</tr>
-<tr>
-<td>$..book[?(@.isbn)]</td>
-<td>过滤含isbn字段的节点</td>
-</tr>
-<tr>
-<td>$..book[?(@.price&lt;10)]</td>
-<td>过滤<code>price&lt;10</code>的节点</td>
-</tr>
-<tr>
-<td>$..*</td>
-<td>递归匹配所有子节点</td>
-</tr>
-</tbody></table>
-<p>这个地址可以在线运行 <a target="_blank" rel="noopener" href="http://jsonpath.com/">http://jsonpath.com/</a></p>
-<h2 id="5、拼接url字符串"><a href="#5、拼接url字符串" class="headerlink" title="5、拼接url字符串"></a>5、拼接url字符串</h2><p>拿到结果集后，在每个url字符串后进行拼接处理。这里为了方便，用到了【Java Script代码】组件</p>
-<p>因为路径中有<strong>中文</strong>，为了方便再次请求，需要对url进行编码操作 encodeURI，否则http请求失败。</p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919211027415.png" alt="image-20220919211027415"></p>
-<p>这里也可以使用 【字符串操作】组件</p>
-<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20220919211359727.png" alt="image-20220919211359727"></p>
-<p><strong>Lower&#x2F;Upper</strong>：就是简单的大小写转换，当然只是针对于英文字符的，汉字和数字是无效的。</p>
-<p><strong>Padding</strong>：追加字符串，可以选择头部追加(left),或者尾部追加(right)，不过这个是要配合“Pad char”和“Pad length”使用的。</p>
-<p><strong>Pad char</strong>：只需要再输入框输入想要添加的字符串即可。</p>
-<p><strong>Pad length</strong>：输入长度，这个可以这么理解，假如说未追加内容的字符串是abc长度为3，想要追加的字符串是wq，是以right的方式追加的，如果输入的长度是3，那么结果是没有任何改变的；如果输入的长度是4，那么结果就是abcw；输入的是5，那结果就是abcwq；输入的长度是6，那结果就是abcwqw，相信说到这里应该就很清楚了，不管“Padding”选择的是right还是left，规则都是一样的。</p>
-<p>InitCap：这个的作用就是保证字符串的首字母大写其余的字母都是小写，比如有一个字符串是aBC，如果InitCap的参数选择了“是”，那么结果就是“Abc”。</p>
-<p><strong>Escape</strong>：这个一般应用的较少，比如说选择了其中的“Use CDATA”，那么最后出来的字符串就是CDATA格式的字符串“<![CDATA[test_str]]>”，标红的部分就是原本的字符串，其它的就不一一介绍了，感兴趣的实验一下就明白了。</p>
-<p>Digits：digits本身就是数字的意思，而选择的参数只有三两个“none、”“only”和“remove”，none就是不操作；only就是只保留数字，其他的字符不要；remove就是其他的字符都留下，只将数字字符去除掉。</p>
-<p><strong>Remove Special character</strong>：这个就很简单了，就是去除特殊字符，可以根据需求选择需要删除的字符，如空格(space)、换行符(line feed)等，这里就不一一介绍了，如有疑惑可以百度翻译。</p>
-<h2 id="6、结束"><a href="#6、结束" class="headerlink" title="6、结束"></a>6、结束</h2><p>后面的再次请求，就和前面的操作重复了，就不再描述了。到这里一个简单的http请求就完成了。</p>
+<p>创建一个包含基本CRUD的StudentMapper：</p>
+<pre><code class="java">@Component
+@Mapper
+public interface StudentMapper &#123;
+    @Insert(&quot;insert into student(id,name,age) values(#&#123;id&#125;,#&#123;name&#125;,#&#123;age&#125;)&quot;)
+    int add(Student student);
+
+    @Update(&quot;update student set name=#&#123;name&#125;,age=#&#123;age&#125; where id=#&#123;id&#125;&quot;)
+    int update(Student student);
+
+    @Delete(&quot;delete from student where id=#&#123;id&#125;&quot;)
+    int deleteById(Integer id);
+
+    @Select(&quot;select * from student where id=#&#123;id&#125;&quot;)
+    @Results(id = &quot;student&quot;, value = &#123;
+            @Result(property = &quot;id&quot;, column = &quot;id&quot;, javaType = Integer.class),
+            @Result(property = &quot;name&quot;, column = &quot;name&quot;, javaType = String.class),
+            @Result(property = &quot;age&quot;, column = &quot;age&quot;, javaType = Integer.class)
+    &#125;)
+    Student queryStudentById(Integer id);
+&#125;
+</code></pre>
+<p>简单的语句只需要使用@Insert、@Update、@Delete、@Select这4个注解即可，动态SQL语句需要使用@InsertProvider、@UpdateProvider、@DeleteProvider、@SelectProvider等注解。具体可参考MyBatis官方文档：<a target="_blank" rel="noopener" href="http://www.mybatis.org/mybatis-3/zh/java-api.html%E3%80%82">http://www.mybatis.org/mybatis-3/zh/java-api.html。</a></p>
+<h1 id="5、测试"><a href="#5、测试" class="headerlink" title="5、测试"></a>5、测试</h1><p>接下来编写Service：</p>
+<pre><code class="java">public interface  StudentService &#123;
+    int add(Student student);
+    int update(Student student);
+    int deleteById(Integer id);
+    Student queryStudentById(Integer id);
+&#125;
+</code></pre>
+<p>实现类：</p>
+<pre><code class="java">@Service(&quot;studentService&quot;)
+public class StudentServiceImpl implements StudentService &#123;
+    @Autowired
+    private StudentMapper studentMapper;
+
+    @Override
+    public int add(Student student) &#123;
+        return this.studentMapper.add(student);
+    &#125;
+
+    @Override
+    public int update(Student student) &#123;
+        return this.studentMapper.update(student);
+    &#125;
+
+    @Override
+    public int deleteById(Integer id) &#123;
+        return this.studentMapper.deleteById(id);
+    &#125;
+
+    @Override
+    public Student queryStudentById(Integer id) &#123;
+        return this.studentMapper.queryStudentById(id);
+    &#125;
+&#125;
+</code></pre>
+<p>编写controller：</p>
+<pre><code class="java">@RestController
+public class TestController &#123;
+    @Autowired
+    private StudentService studentService;
+
+    @RequestMapping(value = &quot;/query/&#123;id&#125;&quot;, method = RequestMethod.GET)
+    public Student query(@PathVariable(&quot;id&quot;) Integer id) &#123;
+        return this.studentService.queryStudentById(id);
+    &#125;
+
+    @RequestMapping(value = &quot;/add&quot;, method = RequestMethod.POST)
+    public Integer add(@RequestBody Student student) &#123;
+        return this.studentService.add(student);
+    &#125;
+
+    @RequestMapping(value = &quot;/delete/&#123;id&#125;&quot;, method = RequestMethod.GET)
+    public Integer delete(@PathVariable(&quot;id&quot;) Integer id) &#123;
+        return this.studentService.deleteById(id);
+    &#125;
+
+    @RequestMapping(value = &quot;/update&quot;, method = RequestMethod.POST)
+    public Integer update(@RequestBody Student student) &#123;
+        return this.studentService.update(student);
+    &#125;
+ &#125;
+</code></pre>
+<p>完整的项目目录如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgimage-20230106174854104.png" alt="image-20230106174854104"></p>
+<p>通过postman进行测试访问后，查看SQL监控情况：</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgjava-imgimage-20230106174159233.png" alt="image-20230106174159233"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
