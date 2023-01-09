@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>《Go语言圣经》读书笔记 | Hexo</title>
-  <meta name="keywords" content=" Go ">
-  <meta name="description" content="《Go语言圣经》读书笔记 | Hexo">
+  <title>ShardingSphere介绍 | Hexo</title>
+  <meta name="keywords" content=" 分库分表 ">
+  <meta name="description" content="ShardingSphere介绍 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分布式任务调度器 XXL-JOB分布式任务调度平台 PowerJob分布式调度与计算框架  数据可视化平台 GoView低代码数据可视化 100套大数据可视化模板  管理后台 若依管理系统 简单易用的java分布式日志系统">
 <meta property="og:type" content="article">
@@ -881,9 +881,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-2022-03-23-《Go语言圣经》读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-ShardingSphere介绍" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">《Go语言圣经》读书笔记</h1>
+        <h1 class="article-title">ShardingSphere介绍</h1>
     
     <div class="article-meta">
         
@@ -893,9 +893,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="Golang">Golang</a> > 
-            
-            <a  data-rel="Golang&lt;---&gt;读书笔记">读书笔记</a>
+            <a  data-rel="数据库">数据库</a>
             
         </span>
         
@@ -903,19 +901,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color3">Go</a>
+            <a class="color5">分库分表</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-12-16 16:24:59'>2022-03-23 15:13</time>
+            Created At : <time class="date" title='Updated At: 2023-01-09 11:24:48'>2022-03-23 15:13</time>
         
     </div>
     <div class="article-meta">
         
-        <span>Count:2.5k</span>
+        <span>Count:4.9k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -945,7 +943,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC2%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-text">第2章　程序结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%91%BD%E5%90%8D"><span class="toc-text">2.1. 命名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%A3%B0%E6%98%8E"><span class="toc-text">2.2. 声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-%E5%8F%98%E9%87%8F"><span class="toc-text">2.3. 变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-%E7%AE%80%E7%9F%AD%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="toc-text">2.3.1. 简短变量声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-%E6%8C%87%E9%92%88"><span class="toc-text">2.3.2. 指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-new%E5%87%BD%E6%95%B0"><span class="toc-text">2.3.3. new函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4-%E5%8F%98%E9%87%8F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">2.3.4. 变量的生命周期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-%E8%B5%8B%E5%80%BC"><span class="toc-text">2.4. 赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-%E5%85%83%E7%BB%84%E8%B5%8B%E5%80%BC"><span class="toc-text">2.4.1. 元组赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-%E5%8F%AF%E8%B5%8B%E5%80%BC%E6%80%A7"><span class="toc-text">2.4.2. 可赋值性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-%E7%B1%BB%E5%9E%8B"><span class="toc-text">2.5. 类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-%E5%8C%85%E5%92%8C%E6%96%87%E4%BB%B6"><span class="toc-text">2.6. 包和文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-1-%E5%AF%BC%E5%85%A5%E5%8C%85"><span class="toc-text">2.6.1. 导入包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-2-%E5%8C%85%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">2.6.2. 包的初始化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-7-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">2.7. 作用域</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC3%E7%AB%A0-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">第3章　基础数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%95%B4%E5%9E%8B"><span class="toc-text">3.1. 整型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-text">3.2. 浮点数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E5%A4%8D%E6%95%B0"><span class="toc-text">3.3. 复数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E5%B8%83%E5%B0%94%E5%9E%8B"><span class="toc-text">3.4. 布尔型</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%E3%80%81ShardingSphere%E4%BB%8B%E7%BB%8D"><span class="toc-text">1、ShardingSphere介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5"><span class="toc-text">1.1 设计理念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BA%A7%E5%93%81%E8%A7%84%E5%88%92"><span class="toc-text">1.2 产品规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-Sharding-JDBC"><span class="toc-text">1.3 Sharding-JDBC</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-Sharding-JDBC%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="toc-text">1.3.1 Sharding-JDBC主要功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-Sharding-JDBC%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-text">1.3.2 Sharding-JDBC处理流程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%E3%80%81Sharding-JDBC%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="toc-text">2、Sharding-JDBC核心原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%88%86%E7%89%87%E6%A6%82%E5%BF%B5"><span class="toc-text">2.1 分片概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-%E8%A1%A8%E6%A6%82%E5%BF%B5"><span class="toc-text">2.1.1 表概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-%E5%88%86%E7%89%87%E7%AE%97%E6%B3%95"><span class="toc-text">2.1.2 分片算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-%E5%88%86%E7%89%87%E7%AD%96%E7%95%A5"><span class="toc-text">2.1.3 分片策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%95%B0%E6%8D%AE%E5%88%86%E7%89%87%E5%8E%9F%E7%90%86"><span class="toc-text">2.2 数据分片原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-SQL%E8%A7%A3%E6%9E%90"><span class="toc-text">2.2.1 SQL解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-%E6%89%A7%E8%A1%8C%E5%99%A8%E4%BC%98%E5%8C%96"><span class="toc-text">2.2.2 执行器优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-SQL%E8%B7%AF%E7%94%B1"><span class="toc-text">2.2.3 SQL路由</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-4-SQL%E6%94%B9%E5%86%99"><span class="toc-text">2.2.4 SQL改写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-5-SQL%E6%89%A7%E8%A1%8C"><span class="toc-text">2.2.5 SQL执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-6-SQL%E7%BB%93%E6%9E%9C%E5%BD%92%E5%B9%B6"><span class="toc-text">2.2.6 SQL结果归并</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%E3%80%81Sharding-JDBC%E5%92%8CMycat%E5%AF%B9%E6%AF%94"><span class="toc-text">3、Sharding-JDBC和Mycat对比</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -961,115 +959,302 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch1/ch1-01.html">《Go语言圣经》中文版</a></p>
-<h1 id="第2章-程序结构"><a href="#第2章-程序结构" class="headerlink" title="第2章　程序结构"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2.html#%E7%AC%AC2%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84">第2章　程序结构</a></h1><h2 id="2-1-命名"><a href="#2-1-命名" class="headerlink" title="2.1. 命名"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-01.html#21-%E5%91%BD%E5%90%8D">2.1. 命名</a></h2><p>Go语言中的函数名、变量名、常量名、类型名、语句标号和包名等所有的命名，都遵循一个简单的命名规则：<strong>一个名字必须以一个字母（Unicode字母）或下划线开头，后面可以跟任意数量的字母、数字或下划线</strong>。大写字母和小写字母是不同的：heapSort和Heapsort是两个不同的名字。</p>
-<p>Go语言中类似if和switch的关键字有25个；关键字不能用于自定义名字，只能在特定语法结构中使用。</p>
-<pre><code class="go">break      default       func     interface   select
-case       defer         go       map         struct
-chan       else          goto     package     switch
-const      fallthrough   if       range       type
-continue   for           import   return      var
+        <h1 id="1、ShardingSphere介绍"><a href="#1、ShardingSphere介绍" class="headerlink" title="1、ShardingSphere介绍"></a>1、ShardingSphere介绍</h1><p>ShardingSphere是一套开源的分布式数据库中间件解决方案，目前由Sharding-JDBC和Sharding-Proxy两款独立的产品组成，2020年4⽉16⽇正式成为 Apache 软件基⾦会的顶级项⽬。</p>
+<ul>
+<li><strong>Sharding-JDBC</strong>：定位为轻量级Java框架，在Java的JDBC层提供的额外服务，支持任意实现JDBC规范的数据库。</li>
+<li><strong>Sharding-Proxy</strong>：定位为透明化的数据库代理端，通过实现数据库二进制协议，对异构语言提供支持。目前提供MySQL和PostgreSQL协议。</li>
+</ul>
+<p>ShardingSphere利用<strong>分布式场景下关系型数据库的计算和存储能力，提供标准化的数据分片、分布式事务和数据库治理功能</strong>，可以将任意数据库转换为分布式数据库，适用于如Java同构、异构语言、容器、云原生等各种多样化的应用场景。</p>
+<h2 id="1-1-设计理念"><a href="#1-1-设计理念" class="headerlink" title="1.1 设计理念"></a>1.1 设计理念</h2><p>ShardingSphere采用<strong>Database Plus的设计理念</strong>，致力于构建数据库上层的标准和生态，利用连接、增强和可插拔的方式在生态中补充数据库所缺失的能力。</p>
+<blockquote>
+<p><strong>Database Plus</strong>：一种分布式数据库系统的设计理念。旨在碎片化的异构数据库上层构建生态，在最大限度的复用数据库原生存算能力的前提下，进一步提供面向全局的扩展和叠加计算能力（例如：数据分片、数据加密等）。使应用和数据库间的交互面向Database Plus构建的标准，从而屏蔽数据库碎片化对上层业务带来的差异化影响。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img640" alt="图片"></p>
+<p>来源：ShardingSphere官网</p>
+<p><strong>1）连接：打造数据库上层标准</strong></p>
+<p>通过对数据库协议、SQL方言以及数据库存储的灵活适配，快速构建多模异构数据库上层的标准，同时通过内置DistSQL为应用提供标准化的连接方式。</p>
+<p><strong>2）增强：数据库计算增强引擎</strong></p>
+<p>在原生数据库基础能力之上，提供分布式及流量增强方面的能力。前者可突破底层数据库在计算与存储上的瓶颈，后者通过对流量的变形、重定向、治理、鉴权及分析能力提供更为丰富的数据应用增强能力。</p>
+<p><strong>3）可插拔：构建数据库功能生态</strong></p>
+<p>ShardingSphere的可插拔架构划分为3层，它们是：L1内核层、L2功能层、L3生态层</p>
+<ul>
+<li><strong>L1内核层</strong>：是数据库基本能力的抽象，其所有组件均必须存在，但具体实现方式可通过可插拔的方式更换。主要包括查询优化器、分布式事务引擎、分布式执行引擎、权限引擎和调度引擎等。</li>
+<li><strong>L2功能层</strong>：用于提供增量能力，其所有组件均是可选的，可以包含零至多个组件。组件之间完全隔离，互无感知，多组件可通过叠加的方式相互配合使用。主要包括数据分片、读写分离、数据库高可用、数据加密、影子库等。 用户自定义功能可完全面向Apache ShardingSphere定义的顶层接口进行定制化扩展，而无需改动内核代码。</li>
+<li><strong>L3生态层</strong>：用于对接和融入现有数据库生态，包括数据库协议、SQL解析器和存储适配器，分别对应于Apache ShardingSphere以数据库协议提供服务的方式、SQL方言操作数据的方式以及对接存储节点的数据库类型。</li>
+</ul>
+<h2 id="1-2-产品规划"><a href="#1-2-产品规划" class="headerlink" title="1.2 产品规划"></a>1.2 产品规划</h2><p>随着版本的不断迭代，ShardingSphere的功能也变得多元化起来：从最开始Sharding-JDBC 1.0版本只有数据分片，到2.0版本开始支持数据库治理，再到3.0版本Sharding-Proxy上线并支持分布式事务，再到4.0进入Apache基金会，再到如今5.0版本的可插拔式设计。其宗旨是<strong>构建数据库上层的标准和生态，建立统一标准和规范，完善数据库能力。</strong></p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgShardingSphere%E4%BA%A7%E5%93%81%E8%A7%84%E5%88%92" alt="图片"></p>
+<p>来源：ShardingSphere官网</p>
+<h2 id="1-3-Sharding-JDBC"><a href="#1-3-Sharding-JDBC" class="headerlink" title="1.3 Sharding-JDBC"></a>1.3 Sharding-JDBC</h2><p>接下来重点介绍Sharding-JDBC框架，Sharding-JDBC定位为轻量级Java框架，在Java的JDBC层提供的额外服务。它使用客户端直连数据库，以jar包形式提供服务，无需额外部署和依赖，可理解为增强版的JDBC驱动，完全兼容JDBC和各种ORM框架。</p>
+<ul>
+<li>适用于任何基于JDBC的ORM框架，如：JPA, Hibernate, Mybatis, Spring JDBC Template或直接使用JDBC；</li>
+<li>支持任何第三方的数据库连接池，如：DBCP, C3P0, BoneCP, HikariCP等；</li>
+<li>支持任意实现JDBC规范的数据库，目前支持MySQL，PostgreSQL，Oracle，SQLServer以及任何可使用JDBC访问的数据库。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgSharding-JDBC" alt="图片"></p>
+<h3 id="1-3-1-Sharding-JDBC主要功能"><a href="#1-3-1-Sharding-JDBC主要功能" class="headerlink" title="1.3.1 Sharding-JDBC主要功能"></a>1.3.1 Sharding-JDBC主要功能</h3><p>Sharding-JDBC主要支持<strong>数据分片、分布式事务和数据库治理</strong>功能。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgSharding-JDBC%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD" alt="图片"></p>
+<ol>
+<li><p><strong>数据分片</strong></p>
+</li>
+<li><ol>
+<li>分库分表：将数据分片进行垂直拆分和水平拆分</li>
+<li>读写分离：根据SQL语义的分析，将读操作和写操作分别路由至主库与从库</li>
+<li>分片策略：基于分片键和不同的分片算法实现分片</li>
+<li>分布式主键：内置的分布式主键生成器，例如UUID、SNOWFLAKE</li>
+</ol>
+</li>
+<li><p><strong>分布式事务</strong></p>
+</li>
+<li><ol>
+<li>标准化的事务接口：begin&#x2F;commit&#x2F;rollback接口实现</li>
+<li>XA强一致性事务：AP、TM和RM模型保证分布式事务一致性</li>
+<li>柔性事务：BASE事务模型实现事务的最终一致性</li>
+</ol>
+</li>
+<li><p><strong>数据库治理</strong></p>
+</li>
+<li><ol>
+<li>数据库网关：SQL方言自动翻译功能，将不同类型的数据库方言自动翻译为后端数据库所使用的方言</li>
+<li>流量治理：计算节点的过载保护和数据节点限流</li>
+<li>数据加密：数据加密功能，实现数据的合规化改造治理</li>
+<li><strong>可视化链路跟踪</strong>：多种监控性能和监控指标，实现监控仪表盘和应用链路跟踪</li>
+</ol>
+</li>
+</ol>
+<h3 id="1-3-2-Sharding-JDBC处理流程"><a href="#1-3-2-Sharding-JDBC处理流程" class="headerlink" title="1.3.2 Sharding-JDBC处理流程"></a>1.3.2 Sharding-JDBC处理流程</h3><p>Sharding-JDBC定位为Java框架，对于开发人员只需要使用调用JDBC API访问数据库，只要正确使用DataSource、Connection、Statement 、ResultSet 等API接口，直接操作数据库即可，实现“<em>创建DataSource-&gt;获取Connection-&gt;构建Statement-&gt;执行SQL语句-&gt;处理ResultSet</em>”完整的流程。Sharding-JDBC就是将原来的DataSource、Connection等接口扩展成 ShardingDataSource、ShardingConnection，对外暴露的JDBC操作接口与JDBC规范中的接口完全一致。因此，Sharding-JDBC适用于任何基于JDBC的ORM框架，并完美兼容任何第三方的数据库连接池。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B" alt="图片"></p>
+<h1 id="2、Sharding-JDBC核心原理"><a href="#2、Sharding-JDBC核心原理" class="headerlink" title="2、Sharding-JDBC核心原理"></a>2、Sharding-JDBC核心原理</h1><h2 id="2-1-分片概念"><a href="#2-1-分片概念" class="headerlink" title="2.1 分片概念"></a>2.1 分片概念</h2><p>数据分片通常将原本一张数据量很大的表根据分片规则和分片键拆分为表结构完全一样的小数据量的表，如下图所示，每张表只存储大表中的一部分数据。当SQL执行时会通过不同的分片策略，访问不同的库和分片中的数据。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img%E5%88%86%E7%89%87%E6%A6%82%E5%BF%B5" alt="图片"></p>
+<h3 id="2-1-1-表概念"><a href="#2-1-1-表概念" class="headerlink" title="2.1.1 表概念"></a>2.1.1 表概念</h3><ol>
+<li><strong>逻辑表</strong>：相同结构的水平拆分数据库（表）的逻辑名称，是SQL中表的逻辑标识。比如图中的t_prod，拆分后数据库中已经不存在这张表，取而代之的是t_prod_n这些表，t_prod就称为这些拆分表的逻辑表。</li>
+<li><strong>真实表</strong>：数据库中真实存在的物理表，比如图中的t_prod_0…t_prod_3</li>
+<li><strong>数据节点</strong>：分库分表后不可再分割的最小的数据单元，由数据源名称和数据表组成，比如t_prod_db_1.t_prod_0就表示一个数据节点</li>
+<li><strong>绑定表</strong>：指代分片规则一致的一组分片表，比如t_prod和t_order均按照分片键id进行分片，则t_prod和t_order为绑定表。使用绑定表进行多表关联查询时，必须使用分片键进行关联，否则会出现笛卡尔积关联或跨库关联，从而影响查询效率。</li>
+<li><strong>广播表</strong>：指所有的分片数据源中都存在的表，表结构及其数据在每个数据库中均完全一致。适用于数据量不大且需要与海量数据的表进行关联查询的场景，如字典表、参数表。</li>
+<li><strong>单表</strong>：指所有的分片数据源中仅唯一存在的表。适用于数据量不大且无需分片的表。</li>
+</ol>
+<h3 id="2-1-2-分片算法"><a href="#2-1-2-分片算法" class="headerlink" title="2.1.2 分片算法"></a>2.1.2 分片算法</h3><p>Sharding-JDBC对分片键基于一定的分片规则实现数据分片，从执行SQL的角度来看分片算法理解为一种路由机制。Sharding-JDBC支持以下内置的分片算法：</p>
+<ol>
+<li><strong>精确分片算法</strong>（PreciseShardingAlgorithm）：用于单个字段作为分片键，SQL中有“&#x3D;”和“IN”等条件的分片，需要在标准分片策略（StandardShardingStrategy）下使用。</li>
+<li><strong>范围分片算法</strong>（RangeShardingAlgorithm）：范围分片算法用于单个字段作为分片键，SQL 中有“BETWEEN AND、&gt;、&lt;、&gt;&#x3D;、&lt;&#x3D;”下使用。</li>
+<li><strong>复合分片算法</strong>（ComplexKeysShardingAlgorithm）：用于多个字段作为分片键的分片操作，同时获取到多个分片健的值，根据多个字段处理业务逻辑。需要在复合分片策略（ComplexShardingStrategy）下使用。</li>
+<li><strong>Hint分片算法</strong>（HintShardingAlgorithm）：上边的算法中我们都是解析语句提取分片键，并设置分片策略进行分片。但有些时候我们并没有使用任何的分片键和分片策略，可还想将SQL路由到目标数据库和表，就需要通过手动干预指定SQL的目标数据库和表信息，这也叫强制路由。</li>
+</ol>
+<h3 id="2-1-3-分片策略"><a href="#2-1-3-分片策略" class="headerlink" title="2.1.3 分片策略"></a>2.1.3 分片策略</h3><p>分片策略是一个抽象的概念，实际的分片操作是<strong>由分片键+分片算法</strong>实现的。</p>
+<ol>
+<li><strong>标准分片策略</strong>：适用于单分片键，此策略支持PreciseShardingAlgorithm和RangeShardingAlgorithm 两个分片算法。</li>
+<li><strong>复合分片策略</strong>：支持多分片键，同样支持对SQL语句中的“&#x3D;、&gt;、&lt;、&gt;&#x3D;、&lt;&#x3D;、IN、BETWEEN AND”的分片操作。</li>
+<li><strong>行表达式分片策略</strong>：支持对 SQL语句中的“&#x3D;、IN”的分片操作，但只支持单分片键。这种策略通常用于简单的分片，不需要自定义分片算法，可以直接在配置文件中写规则。</li>
+<li><strong>Hint分片策略</strong>：对应Hint分片算法，通过指定分片健而非从 SQL中提取分片健的方式进行分片的策略。</li>
+</ol>
+<h2 id="2-2-数据分片原理"><a href="#2-2-数据分片原理" class="headerlink" title="2.2 数据分片原理"></a>2.2 数据分片原理</h2><p>Sharding-JDBC数据分片的原理如图所示，分为“<strong>SQL解析-&gt;执⾏器优化-&gt;SQL路由-&gt;SQL改写-&gt;SQL执⾏-&gt;结果归并</strong>”过程。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-img%E6%95%B0%E6%8D%AE%E5%88%86%E7%89%87%E5%8E%9F%E7%90%86" alt="图片"></p>
+<h3 id="2-2-1-SQL解析"><a href="#2-2-1-SQL解析" class="headerlink" title="2.2.1 SQL解析"></a>2.2.1 SQL解析</h3><p>SQL解析分为<strong>词法解析和语法解析</strong>。先通过词法解析器将SQL拆分为一个个不可再分的单词，再使用语法解析器对SQL进行理解，并最终提炼出解析上下文。解析上下文包括表、选择项、排序项、分组项、聚合函数、分页信息、查询条件以及可能需要修改的占位符的标记。</p>
+<pre><code>SELECT id, name FROM t_user WHERE status = &#39;ACTIVE&#39; AND age &gt; 18
 </code></pre>
-<p>此外，还有大约30多个预定义的名字，比如int和true等，主要对应内建的常量、类型和函数。</p>
-<pre><code class="go">内建常量: true false iota nil
+<p>以上SQL语句，解析之后抽象的语法树如下：</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgSQL%E8%A7%A3%E6%9E%90" alt="图片"></p>
+<p>通过对抽象语法树遍历，提炼出分片所需的上下文，上下文包含查询字段信息（Field）、表信息（Table）、查询条件（Condition）、排序信息（Order By）、分组信息（Group By）以及分页信息（Limit）等，并标记出 SQL中有可能需要改写的位置。</p>
+<h3 id="2-2-2-执行器优化"><a href="#2-2-2-执行器优化" class="headerlink" title="2.2.2 执行器优化"></a>2.2.2 执行器优化</h3><p>由Federation执行引擎（开发中）提供支持，<strong>对关联查询、子查询等复杂查询进行优</strong>化，同时支持跨多个数据库实例的分布式查询，内部使用关系代数优化查询计划，通过最优计划查询出结果。</p>
+<h3 id="2-2-3-SQL路由"><a href="#2-2-3-SQL路由" class="headerlink" title="2.2.3 SQL路由"></a>2.2.3 SQL路由</h3><p>SQL路由<strong>根据解析上下文匹配数据库和表的分片策略，并生成路由路径</strong>。对于携带分片键的SQL，根据分片键的不同可以划分为单片路由（分片键的操作符是等号）、多片路由（分片键的操作符是IN）和范围路由（分片键的操作符是BETWEEN）。简单点理解就是可以根据配置的分片策略计算出SQ该在哪个库的哪个表中执行，而SQL路由又根据有无分片健区分出分片路由和广播路由。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgSQL%E8%B7%AF%E7%94%B1" alt="图片"></p>
+<p>1）<strong>分片路由：</strong>用于根据分片键进行路由的场景，又细分为直接路由、标准路由和笛卡尔积路由这3种类型。</p>
+<ul>
+<li><strong>直接路由：</strong>满足直接路由的条件相对苛刻，它需要通过Hint（使用HintAPI直接指定路由至库表）方式分片，并且是只分库不分表的前提下，则可以避免SQL解析和之后的结果归并。</li>
+<li><strong>标准路由：</strong>当分片运算符是等于号时，路由结果将落入单库（表）；当分片运算符是BETWEEN或IN时，则路由结果不一定落入唯一的库（表），因此一条逻辑SQL最终可能被拆分为多条用于执行的真实SQL。</li>
+<li><strong>笛卡尔积路由：</strong>它无法根据绑定表的关系定位分片规则，因此非绑定表之间的关联查询需要拆解为笛卡尔积组合执行。</li>
+</ul>
+<p>2）<strong>广播路由：</strong>对于不携带分片键的SQL，则采取广播路由的方式。根据SQL类型又可以划分为全库表路由、全库路由、全实例路由、单播路由和阻断路由这5种类型。</p>
+<ul>
+<li><strong>全库表路由：</strong>全库表路由用于处理对数据库中与其逻辑表相关的所有真实表的操作，主要包括不带分片键的DQL和DML以及DDL等</li>
+<li><strong>全库路由：</strong>全库路由用于处理对数据库的操作，包括用于库设置的SET类型的数据库管理命令，以及TCL这样的事务控制语句。</li>
+<li><strong>全实例路由：</strong>全实例路由用于DCL操作，授权语句针对的是数据库的实例。</li>
+<li><strong>单播路由：</strong>单播路由用于获取某一真实表信息的场景，它仅需要从任意库中的任意真实表中获取数据即可。</li>
+<li><strong>阻断路由：</strong>阻断路由用于屏蔽 SQL 对数据库的操作，比如use database</li>
+</ul>
+<h3 id="2-2-4-SQL改写"><a href="#2-2-4-SQL改写" class="headerlink" title="2.2.4 SQL改写"></a>2.2.4 SQL改写</h3><p>SQL改写是将SQL改写为在真实数据库中可以正确执行的语句。SQL改写分为<strong>正确性改写和优化改写。</strong></p>
+<ul>
+<li><strong>正确性改写：</strong>在包含分表的场景中，需要将分表配置中的逻辑表名称改写为路由之后所获取的真实表名称。另外还包括包括补列和分页信息修正等内容。</li>
+<li><strong>优化改写：</strong>在不影响查询正确性的情况下，对性能进行提升的有效手段。分为单节点优化和流式归并优化</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgSQL%E6%94%B9%E5%86%99" alt="图片"></p>
+<h3 id="2-2-5-SQL执行"><a href="#2-2-5-SQL执行" class="headerlink" title="2.2.5 SQL执行"></a>2.2.5 SQL执行</h3><p>SQL执行引擎采用一套自动化的执行引擎，负责将路由和改写完成之后的真实SQL安全且高效发送到底层数据源执行。</p>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgSQL%E6%89%A7%E8%A1%8C" alt="图片"></p>
+<p>SQL执行引擎分为<strong>准备阶段和执行阶段</strong>：</p>
+<p>1）准备阶段</p>
+<p>准备阶段用于准备执行的数据，分为<strong>结果集分组和执行单元创建</strong>两个步骤。</p>
+<ul>
+<li>结果集分组：将SQL的路由结果按照数据源的名称进行分组</li>
+<li>通过上一步骤获得的路由分组结果创建执行的单元</li>
+</ul>
+<p>2）执行阶段</p>
+<p>执行阶段用于真正的执行SQL，它分为<strong>分组执行和归并结果集生成</strong>两个步骤</p>
+<ul>
+<li>分组执行将准备执行阶段生成的执行单元分组下发至底层并发执行引擎，并针对执行过程中的每个关键步骤发送事件。</li>
+<li>归并结果集生成通过在执行准备阶段的获取的连接模式，生成内存归并结果集或流式归并结果集，并将其传递至结果归并引擎，以进行下一步的工作</li>
+</ul>
+<h3 id="2-2-6-SQL结果归并"><a href="#2-2-6-SQL结果归并" class="headerlink" title="2.2.6 SQL结果归并"></a>2.2.6 SQL结果归并</h3><p>SQL结果归并是<strong>将多个执行结果集归并以便于通过统一的JDBC接口输出</strong>。结果归并从功能上分为遍历、排序、分组、分页和聚合5种类型；从结构划分，可分为流式归并、内存归并和装饰者归并。</p>
+<ul>
+<li><strong>遍历归并</strong>：将多个数据结果集合并为一个单向链表，在遍历完成链表中当前数据结果集之后，将链表元素后移一位，继续遍历下一个数据结果集即可</li>
+<li><strong>排序归并</strong>：每个数据结果集自身是有序的，因此只需要将数据结果集当前游标指向的数据值进行排序即可，不需要对所有的结果集进行全量的排序，节省了内存的消耗</li>
+<li><strong>分组归并</strong>：分为流式分组归并和内存分组归并， 流式分组归并要求SQL的排序项与分组项的字段以及排序类型（ASC或DESC）必须保持一致。如果不一致，需要将所有的结果集数据加载至内存中进行分组和聚合。</li>
+<li><strong>聚合归并</strong>：使用聚合函数进行比较、累加和求平均值</li>
+<li><strong>分页归并</strong>：通过装饰者模式来增加对数据结果集进行分页的能力，将无需获取的数据过滤掉。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/lukaixin0527/images/master/java-imgSQL%E7%BB%93%E6%9E%9C%E5%BD%92%E5%B9%B6" alt="图片"></p>
+<h1 id="3、Sharding-JDBC和Mycat对比"><a href="#3、Sharding-JDBC和Mycat对比" class="headerlink" title="3、Sharding-JDBC和Mycat对比"></a>3、Sharding-JDBC和Mycat对比</h1><p>Mycat和ShardingSphere（Sharding-JDBC）都是非常流行的开源分布式数据库中间件，各自具有一些独特的功能，也有很多企业成功应用的案例。二者之间的特性对比如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Mycat</th>
+<th>Sharding-JDBC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开发语言</td>
+<td>Java</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>开源协议</td>
+<td>GPL-2.0&#x2F;GPL-3.0</td>
+<td>Apache-2.0</td>
+</tr>
+<tr>
+<td>数据库</td>
+<td>多种</td>
+<td>多种</td>
+</tr>
+<tr>
+<td>连接数</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>应用语言</td>
+<td>任意</td>
+<td>Java</td>
+</tr>
+<tr>
+<td>代码入侵</td>
+<td>无</td>
+<td>需修改代码</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>损耗略高</td>
+<td>损耗低</td>
+</tr>
+<tr>
+<td>无中心化</td>
+<td>无</td>
+<td>是</td>
+</tr>
+<tr>
+<td>管理控制台</td>
+<td>Mycat-web</td>
+<td>ShardingUI</td>
+</tr>
+<tr>
+<td>分库分表</td>
+<td>单库多表&#x2F;多库单表</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>多租户方案</td>
+<td>支持</td>
+<td>无</td>
+</tr>
+<tr>
+<td>读写分离</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>分片策略定制化</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>分布式主键</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>标准化事务接口</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>XA强一致性事务</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>柔性事务</td>
+<td>无</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>配置动态化</td>
+<td>开发中</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>编排治理</td>
+<td>开发中</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>数据脱敏</td>
+<td>无</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>可视化链路跟踪</td>
+<td>无</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>多节点操作</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>跨库关联</td>
+<td>跨库2表JOIN</td>
+<td>无</td>
+</tr>
+<tr>
+<td>IP白名单</td>
+<td>支持</td>
+<td>无</td>
+</tr>
+<tr>
+<td>SQL黑名单</td>
+<td>支持</td>
+<td>无</td>
+</tr>
+<tr>
+<td>存储过程</td>
+<td>支持</td>
+<td>无</td>
+</tr>
+</tbody></table>
+<p>Mycat是一个分布式数据库中间件，对前端来说相当于一个数据库代理。ShardingSphere定位为关系型数据库中间件，旨在充分合理地在分布式的场景下利用关系型数据库的计算和存储能力，而并非实现一个全新的关系型数据库。目前来看接入Apache基金会的ShardingSphere体系更加完善，社区更加活跃。</p>
+<hr>
+<blockquote>
+<p>参考资料：</p>
+</blockquote>
+<ol>
+<li>官网，<a target="_blank" rel="noopener" href="https://shardingsphere.apache.org/document/current/cn/overview/">https://shardingsphere.apache.org/document/current/cn/overview/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/agonie201218/article/details/125164699">https://blog.csdn.net/agonie201218/article/details/125164699</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/horses/article/details/106086208">https://blog.csdn.net/horses/article/details/106086208</a></li>
+<li><a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzI3MzUzMjIxNA==&mid=2247485010&idx=1&sn=33db27c6993ccabf5924da9708f23c7c&chksm=eb20920bdc571b1dce7721840bc6a2050f7e1fa820d04a4beff87c80f99eab2192fc2f6f6be5&scene=21#wechat_redirect">分布式数据库中间件Mycat介绍</a></li>
+</ol>
 
-内建类型: int int8 int16 int32 int64
-          uint uint8 uint16 uint32 uint64 uintptr
-          float32 float64 complex128 complex64
-          bool byte rune string error
-
-内建函数: make len cap new append copy close delete
-          complex real imag
-          panic recover
-</code></pre>
-<p>名字的长度没有逻辑限制，但是Go语言的风格是尽量使用短小的名字</p>
-<p>在习惯上，Go语言程序员推荐使用 <strong>驼峰式</strong> 命名</p>
-<h2 id="2-2-声明"><a href="#2-2-声明" class="headerlink" title="2.2. 声明"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-02.html#22-%E5%A3%B0%E6%98%8E">2.2. 声明</a></h2><p>Go语言主要有四种类型的声明语句：var、const、type和func，分别对应变量、常量、类型和函数实体对象的声明</p>
-<h2 id="2-3-变量"><a href="#2-3-变量" class="headerlink" title="2.3. 变量"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-03.html#23-%E5%8F%98%E9%87%8F">2.3. 变量</a></h2><p>var声明语句可以创建一个特定类型的变量，然后给变量附加一个名字，并且设置变量的初始值。变量声明的一般语法如下：</p>
-<pre><code class="Go">var 变量名字 类型 = 表达式
-</code></pre>
-<p>其中“<em>类型</em>”或“*&#x3D; 表达式*”两个部分可以省略其中的一个。如果省略的是类型信息，那么将根据初始化表达式来推导变量的类型信息。如果初始化表达式被省略，那么将用零值初始化该变量。 数值类型变量对应的零值是0，布尔类型变量对应的零值是false，字符串类型对应的零值是空字符串，接口或引用类型（包括slice、指针、map、chan和函数）变量对应的零值是nil。数组或结构体等聚合类型对应的零值是每个元素或字段都是对应该类型的零值。</p>
-<p>零值初始化机制可以确保每个声明的变量总是有一个良好定义的值，因此在Go语言中不存在未初始化的变量。这个特性可以简化很多代码，而且可以在没有增加额外工作的前提下确保边界条件下的合理行为。</p>
-<h3 id="2-3-1-简短变量声明"><a href="#2-3-1-简短变量声明" class="headerlink" title="2.3.1. 简短变量声明"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-03.html#231-%E7%AE%80%E7%9F%AD%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E">2.3.1. 简短变量声明</a></h3><p>在函数内部，有一种称为简短变量声明语句的形式可用于声明和初始化局部变量。它以“<strong>名字 :&#x3D; 表达式</strong>”形式声明变量，变量的类型根据表达式来自动推导。</p>
-<pre><code class="go">anim := gif.GIF&#123;LoopCount: nframes&#125;
-freq := rand.Float64() * 3.0
-t := 0.0
-i, j := 0, 1
-</code></pre>
-<h3 id="2-3-2-指针"><a href="#2-3-2-指针" class="headerlink" title="2.3.2. 指针"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-03.html#232-%E6%8C%87%E9%92%88">2.3.2. 指针</a></h3><p>一个变量对应一个保存了变量对应类型值的内存空间。</p>
-<p>一个指针的值是另一个变量的地址。一个指针对应变量在内存中的存储位置。并不是每一个值都会有一个内存地址，但是对于每一个变量必然有对应的内存地址。通过指针，我们可以直接读或更新对应变量的值，而不需要知道该变量的名字（如果变量有名字的话）。</p>
-<p>如果用“var x int”声明语句声明一个x变量，那么&amp;x表达式（取x变量的内存地址）将产生一个指向该整数变量的指针，指针对应的数据类型是<code>*int</code>，指针被称之为“指向int类型的指针”。</p>
-<pre><code class="go">x := 1
-p := &amp;x         // p, of type *int, points to x
-fmt.Println(*p) // &quot;1&quot;
-*p = 2          // equivalent to x = 2
-fmt.Println(x)  // &quot;2&quot;
-</code></pre>
-<h3 id="2-3-3-new函数"><a href="#2-3-3-new函数" class="headerlink" title="2.3.3. new函数"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-03.html#233-new%E5%87%BD%E6%95%B0">2.3.3. new函数</a></h3><p>另一个创建变量的方法是调用内建的new函数。表达式new(T)将创建一个T类型的匿名变量，初始化为T类型的零值，然后<strong>返回变量地址</strong>(不是值)，返回的指针类型为<code>*T</code>。</p>
-<pre><code class="Go">p := new(int)   // p, *int 类型, 指向匿名的 int 变量
-fmt.Println(*p) // &quot;0&quot;
-*p = 2          // 设置 int 匿名变量的值为 2
-fmt.Println(*p) // &quot;2&quot;
-</code></pre>
-<p>用new创建变量和普通变量声明语句方式创建变量没有什么区别，除了不需要声明一个临时变量的名字外，我们还可以在表达式中使用new(T)。换言之，new函数类似是一种语法糖，而不是一个新的基础概念。</p>
-<h3 id="2-3-4-变量的生命周期"><a href="#2-3-4-变量的生命周期" class="headerlink" title="2.3.4. 变量的生命周期"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-03.html#234-%E5%8F%98%E9%87%8F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">2.3.4. 变量的生命周期</a></h3><p>变量的生命周期指的是在程序运行期间变量有效存在的时间段。对于在包一级声明的变量来说，它们的生命周期和整个程序的运行周期是一致的。而相比之下，局部变量的生命周期则是动态的：每次从创建一个新变量的声明语句开始，直到该变量不再被引用为止，然后变量的存储空间可能被回收。函数的参数变量和返回值变量都是局部变量。它们在函数每次被调用的时候创建。</p>
-<h2 id="2-4-赋值"><a href="#2-4-赋值" class="headerlink" title="2.4. 赋值"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-04.html#24-%E8%B5%8B%E5%80%BC">2.4. 赋值</a></h2><p>使用赋值语句可以更新一个变量的值，最简单的赋值语句是将要被赋值的变量放在&#x3D;的左边，新值的表达式放在&#x3D;的右边。</p>
-<pre><code class="Go">x = 1                       // 命名变量的赋值
-*p = true                   // 通过指针间接赋值
-person.name = &quot;bob&quot;         // 结构体字段赋值
-count[x] = count[x] * scale // 数组、slice或map的元素赋值
-</code></pre>
-<p>特定的二元算术运算符和赋值语句的复合操作有一个简洁形式，例如上面最后的语句可以重写为：</p>
-<pre><code class="Go">count[x] *= scale
-</code></pre>
-<p>这样可以省去对变量表达式的重复计算。</p>
-<p>数值变量也可以支持<code>++</code>递增和<code>--</code>递减语句（译注：自增和自减是语句，而不是表达式，因此<code>x = i++</code>之类的表达式是错误的）：</p>
-<pre><code class="Go">v := 1
-v++    // 等价方式 v = v + 1；v 变成 2
-v--    // 等价方式 v = v - 1；v 变成 1
-</code></pre>
-<h3 id="2-4-1-元组赋值"><a href="#2-4-1-元组赋值" class="headerlink" title="2.4.1. 元组赋值"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-04.html#241-%E5%85%83%E7%BB%84%E8%B5%8B%E5%80%BC">2.4.1. 元组赋值</a></h3><p>元组赋值是另一种形式的赋值语句，它允许同时更新多个变量的值。</p>
-<pre><code class="Go">x, y = y, x
-a[i], a[j] = a[j], a[i]	
-</code></pre>
-<p>和变量声明一样，我们可以用下划线空白标识符<code>_</code>来丢弃不需要的值。</p>
-<pre><code class="Go">_, err = io.Copy(dst, src) // 丢弃字节数
-_, ok = x.(T)              // 只检测类型，忽略具体值
-</code></pre>
-<h3 id="2-4-2-可赋值性"><a href="#2-4-2-可赋值性" class="headerlink" title="2.4.2. 可赋值性"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-04.html#242-%E5%8F%AF%E8%B5%8B%E5%80%BC%E6%80%A7">2.4.2. 可赋值性</a></h3><p>赋值语句是显式的赋值形式，但是程序中还有很多地方会发生隐式的赋值行为：函数调用会隐式地将调用参数的值赋值给函数的参数变量，一个返回语句会隐式地将返回操作的值赋值给结果变量，一个复合类型的字面量（§4.2）也会产生赋值行为。例如下面的语句：</p>
-<pre><code class="Go">medals := []string&#123;&quot;gold&quot;, &quot;silver&quot;, &quot;bronze&quot;&#125;
-</code></pre>
-<p>隐式地对slice的每个元素进行赋值操作，类似这样写的行为：</p>
-<pre><code class="Go">medals[0] = &quot;gold&quot;
-medals[1] = &quot;silver&quot;
-medals[2] = &quot;bronze&quot;
-</code></pre>
-<h2 id="2-5-类型"><a href="#2-5-类型" class="headerlink" title="2.5. 类型"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-05.html#25-%E7%B1%BB%E5%9E%8B">2.5. 类型</a></h2><pre><code class="go">type 类型名字 底层类型
-</code></pre>
-<p>类型声明语句一般出现在包一级，因此如果新创建的类型名字的<strong>首字符大写</strong>，则在<strong>包外部</strong>也可以使用。</p>
-<h2 id="2-6-包和文件"><a href="#2-6-包和文件" class="headerlink" title="2.6. 包和文件"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-06.html#26-%E5%8C%85%E5%92%8C%E6%96%87%E4%BB%B6">2.6. 包和文件</a></h2><p>每个包都对应一个独立的名字空间。例如，在image包中的Decode函数和在unicode&#x2F;utf16包中的 Decode函数是不同的。要在外部引用该函数，必须显式使用image.Decode或utf16.Decode形式访问。</p>
-<p>包还可以让我们通过控制哪些名字是外部可见的来隐藏内部实现信息。在Go语言中，一个简单的规则是：如果一个名字是大写字母开头的，那么该名字是导出的（译注：因为汉字不区分大小写，因此汉字开头的名字是没有导出的）。</p>
-<h3 id="2-6-1-导入包"><a href="#2-6-1-导入包" class="headerlink" title="2.6.1. 导入包"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-06.html#261-%E5%AF%BC%E5%85%A5%E5%8C%85">2.6.1. 导入包</a></h3><p>在Go语言程序中，每个包都有一个全局唯一的导入路径。</p>
-<pre><code class="go">import (
-    &quot;fmt&quot;
-    &quot;os&quot;
-    &quot;strconv&quot;
-    &quot;gopl.io/ch2/tempconv&quot;
-)
-</code></pre>
-<h3 id="2-6-2-包的初始化"><a href="#2-6-2-包的初始化" class="headerlink" title="2.6.2. 包的初始化"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-06.html#262-%E5%8C%85%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96">2.6.2. 包的初始化</a></h3><p>包的初始化首先是解决包级变量的依赖顺序，然后按照包级变量声明出现的顺序依次初始化：</p>
-<pre><code class="Go">var a = b + c // a 第三个初始化, 为 3
-var b = f()   // b 第二个初始化, 为 2, 通过调用 f (依赖c)
-var c = 1     // c 第一个初始化, 为 1
-
-func f() int &#123; return c + 1 &#125;
-</code></pre>
-<p>如果包中含有多个.go源文件，它们将按照发给编译器的顺序进行初始化，Go语言的构建工具首先会将.go文件根据文件名排序，然后依次调用编译器编译。</p>
-<p>对于在包级别声明的变量，如果有初始化表达式则用表达式初始化，还有一些没有初始化表达式的，例如某些表格数据初始化并不是一个简单的赋值过程。在这种情况下，我们可以用一个特殊的init初始化函数来简化初始化工作。每个文件都可以包含多个init初始化函数</p>
-<pre><code class="Go">func init() &#123; /* ... */ &#125;
-</code></pre>
-<h2 id="2-7-作用域"><a href="#2-7-作用域" class="headerlink" title="2.7. 作用域"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch2/ch2-07.html#27-%E4%BD%9C%E7%94%A8%E5%9F%9F">2.7. 作用域</a></h2><p>一个声明语句将程序中的实体和一个名字关联，比如一个函数或一个变量。声明语句的作用域是指源代码中可以有效使用这个名字的范围。</p>
-<h1 id="第3章-基础数据类型"><a href="#第3章-基础数据类型" class="headerlink" title="第3章　基础数据类型"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch3/ch3.html#%E7%AC%AC3%E7%AB%A0-%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">第3章　基础数据类型</a></h1><h2 id="3-1-整型"><a href="#3-1-整型" class="headerlink" title="3.1. 整型"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch3/ch3-01.html#31-%E6%95%B4%E5%9E%8B">3.1. 整型</a></h2><h2 id="3-2-浮点数"><a href="#3-2-浮点数" class="headerlink" title="3.2. 浮点数"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch3/ch3-02.html#32-%E6%B5%AE%E7%82%B9%E6%95%B0">3.2. 浮点数</a></h2><h2 id="3-3-复数"><a href="#3-3-复数" class="headerlink" title="3.3. 复数"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch3/ch3-03.html#33-%E5%A4%8D%E6%95%B0">3.3. 复数</a></h2><h2 id="3-4-布尔型"><a href="#3-4-布尔型" class="headerlink" title="3.4. 布尔型"></a><a target="_blank" rel="noopener" href="https://golang-china.github.io/gopl-zh/ch3/ch3-04.html#34-%E5%B8%83%E5%B0%94%E5%9E%8B">3.4. 布尔型</a></h2>
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 xiaomumu527@gmial.com </span>
     </div>
